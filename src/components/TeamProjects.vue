@@ -5,12 +5,12 @@
    <div class="imgLogo" v-for="item in items" :key="item.id">
      <img :src="item.img"/>
    </div>
-      <span class= "madDevs">{{ madDevs }}</span>   
-      <span class= "goDee">{{ goDee }}</span>   
-      <span class= "anotherSlack">{{ slackTeam}}</span>   
-      <span class= "Nappy">{{ nappy }}</span>   
-      <span class= "Choko">{{ choko }}</span>   
-      <span class= "yetAnother">{{ anotherTeam }}</span>   
+      <span class="madDevs">{{ madDevs }}</span>   
+      <span class="goDee">{{ goDee }}</span>   
+      <span class="anotherSlack">{{ slackTeam}}</span>   
+      <span class="Nappy">{{ nappy }}</span>   
+      <span class="Choko">{{ choko }}</span>   
+      <span class="yetAnother">{{ anotherTeam }}</span>   
    </div>
   </div>
 </template>
