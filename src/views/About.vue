@@ -1,6 +1,18 @@
 <template>
   <div class="about">
-  <h1>dfedfdffsf</h1>
+  <Checkin />
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import Checkin  from '@/components/Checkin .vue'
+
+export default {
+  name: 'home',
+  components: {
+   Checkin 
+  }
+}
+</script>
 
