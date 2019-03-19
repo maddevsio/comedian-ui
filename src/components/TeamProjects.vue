@@ -19,7 +19,7 @@ export default {
     projectsName: 'Mad Devs',
      items: [
        {
-        img:require('../assets/logo/madLogo.jpeg')
+        img:require('../assets/logo/madLogo.png')
        }
      ]
     }
