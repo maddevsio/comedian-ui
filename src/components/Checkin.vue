@@ -1,111 +1,72 @@
-<template> 
-  <div class ="block">
+<template>   
  	<div class ="form-block">
-         <h3>{{ title }}</h3>
- 		<form action="">
- 			<div class="form-row field">
- 				<label for="id">{{ login }}</label> 				
- 				<input type="text" id="username" placeholder="Oli Moli">
- 			</div>
- 			<div class="form-row field">
- 				<label for="id">{{ password }}</label>
- 				<input type="password" v-model="name" placeholder="password" />
- 			</div>
- 			<div class="form-row field">
-            <label for="id">{{ email }}</label>
- 				<input type="email" id="email" placeholder="oliver67@gmail.com">
- 			</div>  			
-  			<div class="form-row">
-              <p>{{ gender }}</p>
-              <input type="radio" id="women" name="gender">
-              <label for="women">{{ women }}</label>
-              <input type="radio" id="men" name="gender">
-              <label for="women">{{ men }}</label>  								
-  			</div>             
-            <div class="form-row">
-              <label for="">{{ language }}</label>
-               <select>
-                 <option value="1">Deutsch</option>
-                 <option value="2">English</option>
-	             <option value="3">Русский</option>
-	          </select>
-             </div>               
-             <button><a href="https://codecombat.com/play/level/the-raised-sword?">{{ send }}</a></button>
- 	</form>
-  </div>
-</div>  
+    <h2>{{ title }}</h2>   
+      <div class="imgLogo" v-for="item in items" :key="item.id">
+        <img :src="item.img"/>         
+      </div>
+       <span class="mad_name">{{ madDevs }}</span> 
+  			<div class="form-row"> 				
+ 				<input type="password" v-model="name" placeholder="password"> 		
+ 		  </div> 	
+       <button class="btn"><a href="#" class="submit">{{ login }}</a></button>		
+   </div> 
 </template>
 <script>
 export default {
   name: 'Checkin',
    data () {
     return {
-      title:'ЗАРЕГИСТРИРУЙСЯ И ИГРАЙ!' ,
-      login:'Логин(Ник)', 
-      password: 'Ваш пароль',
-      email: 'Ваш E-Mail',
-      gender:'Укажите ваш пол',
-      women: 'Женский',
-      men: 'Мужской',
-      language:'Язык интерфейса',
-      send:'Send'
+      title:'Login with your password',
+       madDevs: 'Mad Devs',
+       login: 'login',
+     items: [
+        {
+        img:require('../assets/logo/madLogo.png')
+       }
+     ] 
     }
  }
 }
 </script>
-
 <style>
-.block{
-  width:  300px;
-  margin: 0 auto;
-  padding: 30px 0;
-}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 .form-block{
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-family: 'Roboto', sans-serif; 
 }
 
-.form-row{
-  padding: 0 0 10px;
+.imgLogo img {
+  width: 103px;
+  padding: 9px 0 9px 0;
 }
 .form-block input{
-  width: 100%;
-  height: 28px;
-  border: 1px solid #ccc;
+  width: 23%;
+  height: 36px;
+  border: 2px solid #ccc;
   padding: 0 3px;
-  color: #444;
-  font-style: italic;
+  color: #444;    
   font-size: 14px;
+  margin-top: 16px;
 }
 
-.form-row span{
-  display: block;
-  margin: 0 0 5px;
-}
-.form-row input[type=
-  "checkbox"]{
-  display: none;
-}
-.form-row input[type=
-  "checkbox"]+ label::before{
-  content: " ";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-}
-
-.form-row select{
-  width: 100%;
-  height: 28px;
-  border: 1px solid #ccc;
-  padding: 0 3px;
-  color: #444;
-  font-style: italic;
-  font-size: 14px;
-} 
-
-a {
+.mad_name {
   text-decoration: none;
+  font-size: 32px;
+  font-weight: 700;
+  color: #333333;   
+}
+
+.btn {
+  width: 16%;
+  height: 46px;
+  margin-top: 15px;
+  border-radius: 4px;
+  border: 2px solid #ccc;
+}
+
+.submit {
+  text-decoration: none;
+  font-size: 16px;
+  color: #444;  
 }
 </style>

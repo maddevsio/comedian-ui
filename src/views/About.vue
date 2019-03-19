@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import Checkin  from '@/components/Checkin .vue'
+import Checkin from '@/components/Checkin.vue'
 
 export default {
   name: 'home',
