@@ -5,12 +5,16 @@
    <div class="imgLogo" v-for="item in items" :key="item.id">
      <img :src="item.img"/>
    </div>
+<<<<<<< HEAD
       <span class="madDevs">{{ madDevs }}</span>   
       <span class="goDee">{{ goDee }}</span>   
       <span class="anotherSlack">{{ slackTeam}}</span>   
       <span class="Nappy">{{ nappy }}</span>   
       <span class="Choko">{{ choko }}</span>   
       <span class="yetAnother">{{ anotherTeam }}</span>   
+=======
+   <span class= "projectsName">{{ projectsName }}</span>   
+>>>>>>> 40a3f0ff072016182c97201eb1778012a721a52b
    </div>
   </div>
 </template>
@@ -20,6 +24,7 @@ export default {
   name: 'Team',
   data() {
     return {
+<<<<<<< HEAD
         title: 'Choose your Comedian to enter/login',
         madDevs: 'Mad Devs',
         goDee: 'Go Dee',
@@ -45,6 +50,13 @@ export default {
         },
         {
         img:require('../assets/logo/madLogo.png')        
+=======
+    title: 'Choose your Comedian to enter/login',
+    projectsName: 'Mad Devs',
+     items: [
+       {
+        img:require('../assets/logo/madLogo.png')
+>>>>>>> 40a3f0ff072016182c97201eb1778012a721a52b
        }
      ]
     }
