@@ -1,17 +1,19 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Header/>
     <SideNav/>
   </div>
 </template>
 
 <script>
+import Header from '@/components/navigation/Header.vue'
 import SideNav from '@/components/navigation/SideNav.vue'
 
 export default {
   name: 'home',
   components: {
-    SideNav
+    SideNav,
+    Header
   }
 }
 </script>
