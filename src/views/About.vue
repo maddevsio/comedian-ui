@@ -1,15 +1,18 @@
 <template>
   <div class="about">
     <Header/>
-    <h1>Content</h1>
+    <SideNav/>
   </div>
 </template>
+
 <script>
 import Header from '@/components/navigation/Header.vue'
+import SideNav from '@/components/navigation/SideNav.vue'
 
 export default {
-  name: 'menu',
+  name: 'home',
   components: {
+    SideNav,
     Header
   }
 }
