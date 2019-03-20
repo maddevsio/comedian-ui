@@ -111,7 +111,8 @@ export default {
 
 .imgLogo {
   width: 550px;
-  height: 110px
+  height: 110px;
+  padding-bottom: 18px;
 }
 
 img {
