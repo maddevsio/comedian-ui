@@ -6,10 +6,10 @@
       </div>
        <span class="mad_name">{{ madDevs }}</span> 
   			<div class="form-row"> 				
- 				<input type="password" v-model="name" placeholder="password"> 		
- 		  </div> 	
-       <button class="btn"><a href="#" class="submit">{{ login }}</a></button>		
-   </div> 
+ 				<input type="password" v-model="password" placeholder="password" /> 		
+ 		  </div> 	       
+       <button class="btn"><a type="submit">{{ login }}</a></button>	  
+      </div> 
 </template>
 <script>
 export default {
@@ -64,7 +64,7 @@ export default {
   border: 2px solid #ccc;
 }
 
-.submit {
+a {
   text-decoration: none;
   font-size: 16px;
   color: #444;  

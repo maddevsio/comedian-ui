@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="checkIn">
   <Checkin />
   </div>
 </template>
@@ -9,7 +9,7 @@
 import Checkin from '@/components/Checkin.vue'
 
 export default {
-  name: 'home',
+  name: 'checkIn',
   components: {
    Checkin 
   }
