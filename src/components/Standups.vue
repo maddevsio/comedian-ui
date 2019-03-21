@@ -6,9 +6,9 @@
   >
     <template v-slot:items="props">
       <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">{{ props.item.User ID}}</td>
-      <td class="text-xs-right">{{ props.item.Channel ID }}</td>
-      <td class="text-xs-right">{{ props.item.Modified}}</td>
+      <td class="text-xs-right">{{ props.item.User }}</td>
+      <td class="text-xs-right">{{ props.item.Channel }}</td>
+      <td class="text-xs-right">{{ props.item.Modified }}</td>
       <td class="text-xs-right">{{ props.item.Text }}</td>
       <td class="text-xs-right">{{ props.item.Options }}</td>    
     </template>
