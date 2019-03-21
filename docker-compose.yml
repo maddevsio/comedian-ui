@@ -1,4 +1,7 @@
 version: '2.2'
+networks:
+  comedian_comedian:
+    external: true
 
 services:
 
