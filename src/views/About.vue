@@ -1,19 +1,23 @@
 <template>
-  <div class="about">
+ <div class="about">
+    <Checkin /> 
     <Header/>
     <SideNav/>
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
+import Checkin from '@/components/Checkin.vue'
 import Header from '@/components/navigation/Header.vue'
 import SideNav from '@/components/navigation/SideNav.vue'
 
 export default {
-  name: 'home',
+  name: 'about',
   components: {
-    SideNav,
-    Header
+   Checkin,
+   SideNav,
+   Header
   }
 }
 </script>
