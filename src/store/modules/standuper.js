@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
     GET_STANDUPERS: ({ commit }) => {
     return new Promise((resolve, reject) => {
-      axios.get(`${URL}/v1/standupers/`)
+      axios.get(`${URL}/v1/standupers`)
         .then((response) => {
           commit('SET_STANDUPERS', response.data)
           resolve()
