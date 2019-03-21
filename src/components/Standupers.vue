@@ -6,12 +6,13 @@
   >
     <template v-slot:items="props">
       <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">{{ props.item.slack_id }}</td>
+      <td class="text-xs-right">{{ props.item.id }}</td>
+      <td class="text-xs-right">{{ props.item.user_id }}</td>
+      <td class="text-xs-right">{{ props.item.team_id }}</td>
       <td class="text-xs-right">{{ props.item.channel_id }}</td>
-      <td class="text-xs-right">{{ props.item.role }}</td>
-      <td class="text-xs-right">{{ props.item.submitted_standup }}</td>
+      <td class="text-xs-right">{{ props.item.role_in_channel }}</td>
+      <td class="text-xs-right">{{ props.item.submitted_standup_today }}</td>
       <td class="text-xs-right">{{ props.item.created }}</td>
-      <td class="text-xs-right">{{ props.item.options }}</td>
     </template>
   </v-data-table>
 </template>
@@ -25,18 +26,18 @@ import { mapState } from 'vuex'
     data () {
       return {
         headers: [
-          {
-            text: 'ID',
+          {           
             align: 'left',
             sortable: false,
             value: 'name'
           },
-          { text: 'Slack ID', value: 'slack_id' },
+          { text: 'ID', value: 'id' },
+          { text: 'User ID', value: 'user_id' },
+          { text: 'Team ID', value: 'team_id' },
           { text: 'Channel ID', value: 'channel_id' },
-          { text: 'Role', value: 'role' },
-          { text: 'Submitted Standup', value: 'submitted_standup' },
-          { text: 'Created', value: 'created' },
-          { text: 'Options', value: 'options' }
+          { text: 'Role in channel', value: 'role_in_channel' },
+          { text: 'Submitted Standup today', value: 'submitted_standup_today' },
+          { text: 'Created', value: 'created' }
         ]
       }
     },
