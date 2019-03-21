@@ -15,6 +15,6 @@ services:
       - LETSENCRYPT_HOST=staging.comedian.maddevs.co
       - LETSENCRYPT_EMAIL=fedorenko.tolik@gmail.com
     expose:
-      - 8080
+      - 8080:80/TCP
 
 
