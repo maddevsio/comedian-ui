@@ -19,7 +19,9 @@ const mutations = {
 }
 
 const actions = {
-    GET_STANDUPERS: ({ commit }) => {
+  GET_STANDUPERS: ({
+    commit
+  }) => {
     return new Promise((resolve, reject) => {
       axios.get(`${URL}/v1/standupers`)
         .then((response) => {
