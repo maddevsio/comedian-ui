@@ -1,9 +1,11 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /app
+
 COPY package*.json ./
 COPY yarn.lock ./
-RUN yarn
 COPY . .
+#RUN npm install -g @vue/cli@latest
+RUN yarn
 RUN yarn build
 
 # production stage
