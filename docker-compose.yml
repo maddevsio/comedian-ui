@@ -7,3 +7,11 @@ services:
     container_name: comedian-ui
     image: registry.gitlab.com/team-monitoring/comedian-ui:staging
     restart: always
+    environment:
+      - VIRTUAL_HOST=staging.comedian.maddevs.co
+      - LETSENCRYPT_HOST=staging.comedian.maddevs.co
+      - LETSENCRYPT_EMAIL=fedorenko.tolik@gmail.com
+    expose:
+      - 80
+
+
