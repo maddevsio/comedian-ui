@@ -1,9 +1,0 @@
-version: '2.2'
-
-services:
-
-
-  comedian-ui:
-    container_name: comedian-ui
-    image: registry.gitlab.com/team-monitoring/comedian-ui:staging
-    restart: always
