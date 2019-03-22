@@ -38,7 +38,7 @@ export default {
         {
           id: 4,
           text: 'Users',
-          page:'/#'
+          page:'/users'
         }           
       ]
     }
