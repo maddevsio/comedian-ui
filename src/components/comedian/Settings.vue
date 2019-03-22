@@ -9,10 +9,10 @@
         >
           <v-text-field
             v-model="bot.team_name"
-            :value="data.team_name"
+            :value="bot.team_name"
             label="Team Name"
             required
-          ></v-text-field>
+          />
         </v-flex>
 
         <v-flex
@@ -22,8 +22,9 @@
           <v-text-field
             v-model="bot.password"
             label="Password"
+            type="password"
             required
-          ></v-text-field>
+          />
         </v-flex>
 
         <v-flex
@@ -48,7 +49,7 @@
             v-model="bot.notifier_interval"
             label="Notifier Interval"
             required
-          >{{data.notifier_interval}}</v-text-field>
+          />
         </v-flex>
          <v-flex
           xs12
@@ -58,7 +59,7 @@
             v-model="bot.reminder_time"
             label="Reminder Time"
             required
-          >{{data.reminder_time}}</v-text-field>
+          />
         </v-flex>
          <v-flex
           xs12
@@ -68,7 +69,7 @@
             v-model="bot.reminder_repeats_max"
             label="Reminder Repeats"
             required
-          >{{data.reminder_repeats_max}}</v-text-field>
+          />
         </v-flex>
         </v-layout>
     </v-container>
@@ -79,6 +80,7 @@
   </v-form>
 
  <p>{{bot}}</p>
+ <p>{{errors}}</p>
   </div>
 </template>
 
@@ -91,7 +93,7 @@ export default {
         'ru_RU',
         'en_EN'
       ],
-      data:[],
+      errors:[],
         bot: {
         team_name: '',
         password: '',
@@ -104,12 +106,12 @@ export default {
     },
   methods: {
      Save() {
-      axios.post('https://staging.comedian.maddevs.co/v1/bots/2', {
+      /*axios.post('https://staging.comedian.maddevs.co/v1/bots/6', {
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
         body: {  
-          "id": 2,
+          "id": 6,
           "user_id": "",
           "notifier_interval":this.bot.notifier_interval,
           "language": this.bot.language,
@@ -118,17 +120,30 @@ export default {
           "bot_access_token": "",
           "team_id": "TFREGJ268",
           "team_name": this.bot.team_name,
-          "password": this.bot.password },
-      });
+          "password": this.bot.password }
+      });*/
+       const body= {  
+          "id": 6,
+          "user_id": "",
+          "notifier_interval":this.bot.notifier_interval,
+          "language": this.bot.language,
+          "reminder_repeats_max": this.bot.reminder_repeats_max,
+          "reminder_time": this.bot.reminder_time,
+          "bot_access_token": "",
+          "team_id": "TFREGJ268",
+          "team_name": this.bot.team_name,
+          "password": this.bot.password 
+          }
+       this.errors.pop()
+       this.errors.push(body)
     }   
   },
   created() {
-    axios.get('https://staging.comedian.maddevs.co/v1/bots/2').then((response) => {
+    axios.get('https://staging.comedian.maddevs.co/v1/bots/6').then((response) => {
       this.bot = response.data
     })
     .catch((e) => {
-      // alert(e)
-      console.error(e)
+      this.errors.push(e);
     })
   }
 }

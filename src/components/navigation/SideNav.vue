@@ -18,17 +18,17 @@ export default {
         {
           id: 0,
           text: 'Settings',
-          page:'/#'
+          page:'/comedian'
         },
         {
           id: 1,
           text: 'Channels',
-          page:'/#'
+          page:'/channels'
         },
         {
           id: 2,
           text: 'Standupers',
-          page:'/#'
+          page:'/standupers'
         },
         {
           id: 3,
@@ -65,3 +65,4 @@ export default {
   border-color:#42b983;
 }  
 </style>
+

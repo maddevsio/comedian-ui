@@ -18,6 +18,11 @@ export default new Router({
       component: () => import('./views/Comedian.vue')
     },
     {
+      path: '/about',
+      name: 'checkin',
+      component: () => import('./views/About.vue')
+    },
+    {
       path: '/standupers',
       name: 'standupers',
       component: () => import('./views/Standupers.vue')
