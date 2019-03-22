@@ -26,6 +26,11 @@ export default new Router({
       path: '/standupers',
       name: 'standupers',
       component: () => import('./views/Standupers.vue')
+    },
+    {
+      path: '/channels',
+      name: 'channels',
+      component: () => import('./views/Channels.vue')
     }
   ]
 })
