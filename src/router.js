@@ -13,7 +13,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/comedian',
+      path: '/teams/:id',
       name: 'comedian',
       component: () => import('./views/Comedian.vue')
     },
