@@ -106,7 +106,7 @@ export default {
     },
   methods: {
      Save() {
-      /*axios.post('https://staging.comedian.maddevs.co/v1/bots/6', {
+      axios.post(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`, {
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
@@ -121,25 +121,13 @@ export default {
           "team_id": "TFREGJ268",
           "team_name": this.bot.team_name,
           "password": this.bot.password }
-      });*/
-       const body= {  
-          "id": 6,
-          "user_id": "",
-          "notifier_interval":this.bot.notifier_interval,
-          "language": this.bot.language,
-          "reminder_repeats_max": this.bot.reminder_repeats_max,
-          "reminder_time": this.bot.reminder_time,
-          "bot_access_token": "",
-          "team_id": "TFREGJ268",
-          "team_name": this.bot.team_name,
-          "password": this.bot.password 
-          }
+      });      
        this.errors.pop()
-       this.errors.push(body)
+      //  this.errors.push(body)
     }   
   },
   created() {
-    axios.get('https://staging.comedian.maddevs.co/v1/bots/6').then((response) => {
+    axios.get(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`).then((response) => {
       this.bot = response.data
     })
     .catch((e) => {
