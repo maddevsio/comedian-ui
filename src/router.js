@@ -31,6 +31,11 @@ export default new Router({
       path: '/channels',
       name: 'channels',
       component: () => import('./views/Channels.vue')
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: () => import('./views/Users.vue')
     }
   ]
 })
