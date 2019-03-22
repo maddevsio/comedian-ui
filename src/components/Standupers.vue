@@ -8,13 +8,13 @@
   >
     <template v-slot:items="props">
       <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">{{ props.item.id }}</td>
-      <td class="text-xs-right">{{ props.item.user_id }}</td>
-      <td class="text-xs-right">{{ props.item.team_id }}</td>
-      <td class="text-xs-right">{{ props.item.channel_id }}</td>
-      <td class="text-xs-right">{{ props.item.role_in_channel }}</td>
-      <td class="text-xs-right">{{ props.item.submitted_standup_today }}</td>
-      <td class="text-xs-right">{{ props.item.created }}</td>
+      <td >{{ props.item.id }}</td>
+      <td >{{ props.item.user_id }}</td>
+      <td >{{ props.item.team_id }}</td>
+      <td >{{ props.item.channel_id }}</td>
+      <td >{{ props.item.role_in_channel }}</td>
+      <td> {{ props.item.submitted_standup_today }}</td>
+      <td >{{ props.item.created }}</td>
     </template>
   </v-data-table>
  </div>
@@ -50,3 +50,9 @@ import { mapState } from 'vuex'
     }
   }
 </script>
+<style>
+td {
+  text-align: left;
+}
+  
+</style>

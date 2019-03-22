@@ -40,7 +40,7 @@ import axios from  'axios'
         channels:[],
       }
     },
-    beforeCreate() {
+    beforeCreate() {  
      axios.get('https://staging.comedian.maddevs.co/v1/channels').then((response) => {
       this.channels = response.data
     })
