@@ -7,8 +7,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
       component: Home
@@ -17,16 +16,36 @@ export default new Router({
       path: '/team',
       name: 'team',
       component: () => import('./views/Team.vue')
+     },
+    {
+      path: '/comedian',
+      name: 'comedian',
+      component: () => import('./views/Comedian.vue')
+    },
+    {
+      path: '/about',
+      name: 'checkin',
+      component: () => import('./views/About.vue')
     },
     {
       path: '/standupers',
-      name: 'standupers',   
+      name: 'standupers',
       component: () => import('./views/Standupers.vue')
     },
     {
       path: '/option',
       name: 'option',   
       component: () => import('./views/Option.vue')
+    },
+    {
+      path: '/channels',
+      name: 'channels',
+      component: () => import('./views/Channels.vue')
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: () => import('./views/Users.vue')
     }
   ]
 })

@@ -1,0 +1,22 @@
+version: '2.2'
+networks:
+  comedian_comedian:
+    external: true
+
+services:
+
+
+  comedian-ui:
+    container_name: comedian-ui
+    image: registry.gitlab.com/team-monitoring/comedian-ui:staging
+    restart: always
+    environment:
+      - VIRTUAL_HOST=admin-staging.comedian.maddevs.co
+      - LETSENCRYPT_HOST=admin-staging.comedian.maddevs.co
+      - LETSENCRYPT_EMAIL=fedorenko.tolik@gmail.com
+    expose:
+      - 80
+    networks: 
+      - comedian_comedian
+
+
