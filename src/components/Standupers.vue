@@ -1,4 +1,6 @@
 <template>
+ <div>
+   <h2 class="standupers_title">{{ title }}</h2>
   <v-data-table
     :headers="headers"
     :items="standupers"
@@ -15,6 +17,7 @@
       <td class="text-xs-right">{{ props.item.created }}</td>
     </template>
   </v-data-table>
+ </div>
 </template>
 
 <script>
@@ -25,6 +28,7 @@ import { mapState } from 'vuex'
     }),
     data () {
       return {
+        title: 'Standupers',
         headers: [
           {           
             align: 'left',

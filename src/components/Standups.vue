@@ -1,9 +1,9 @@
  <template>
   <div>
+    <h2 class="standups_title">{{ title }}</h2>
     <v-data-table
       :headers="headers"
-      :items="standups"
-      hide-actions
+      :items="standups"     
       class="elevation-1"
     >
       <template v-slot:items="props">
@@ -16,11 +16,7 @@
         <td class="text-xs-right">{{ props.item.comment }}</td>
         <td class="text-xs-right">{{ props.item.message_ts }}</td>    
       </template>
-    </v-data-table>
-
-    <!-- <div class="text-xs-center pt-3">
-      <v-pagination v-model="pagination.page" :total-visible="4" :length="pages"></v-pagination>
-    </div> -->
+    </v-data-table>   
   </div>  
 </template>		  
 
@@ -30,23 +26,13 @@ import { mapState } from 'vuex'
     computed: mapState({
         standups: state => state.standups.standups
     }),
-    // computed:{
-    //   pages() {
-    //     if (this.pagination.rowsPerPage == null ||
-    //       this.pagination.totalItems == null
-    //     ) return 0
 
-    //     return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
-    //   },
-    //   ...mapState({
-    //     standups: state => state.standups.standups
-    //     })
-    // },
     data () {
       return {
-        // pagination: {
-        //   rowsPerPage: 3
-        // },
+        title:'Standups',
+        pagination: {
+          rowsPerPage: 3
+        },
         headers: [
           {
             align: 'left',
@@ -62,10 +48,10 @@ import { mapState } from 'vuex'
           { text: 'Options', value: 'message_ts'} 
         ]
       }
-    },
-    beforeCreate() {
-      this.$store.dispatch('GET_STANDUPS')
+    },    
+      beforeCreate() {
+        this.$store.dispatch('GET_STANDUPS')
+      }
     }
-  }
 </script>     
 
