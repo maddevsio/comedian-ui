@@ -29,10 +29,7 @@ import { mapState } from 'vuex'
 
     data () {
       return {
-        title:'Standups',
-        pagination: {
-          rowsPerPage: 3
-        },
+        title:'Standups',       
         headers: [
           {
             align: 'left',
