@@ -9,23 +9,23 @@ Vue.use(VueAxios, axios)
 URL = "https://staging.comedian.maddevs.co"
 
 const state = {
-  standupers: []
+  bot: []
 }
 
 const mutations = {
-  SET_STANDUPERS: (state, standupers) => {
-    state.standupers = standupers
+  SET_BOT: (state, bot) => {
+    state.bot = bot
   }
 }
 
 const actions = {
-  GET_STANDUPERS: ({
+  GET_BOT: ({
     commit
   }) => {
     return new Promise((resolve, reject) => {
-      axios.get(`${URL}/v1/standupers`)
+      axios.get(`${URL}/v1/bots/2`)
         .then((response) => {
-          commit('SET_STANDUPERS', response.data)
+          commit('SET_BOT', response.data)
           resolve()
         })
         .catch((error) => {
@@ -35,10 +35,10 @@ const actions = {
   }
 }
 
-const standuper = {
+const bot = {
   state,
   mutations,
   actions
 }
 
-export default standuper
+export default bot

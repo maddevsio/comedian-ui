@@ -7,20 +7,24 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
       component: Home
     },
     {
+      path: '/comedian',
+      name: 'comedian',
+      component: () => import('./views/Comedian.vue')
+    },
+    {
       path: '/about',
-      name: 'about',
+      name: 'checkin',
       component: () => import('./views/About.vue')
     },
     {
       path: '/standupers',
-      name: 'standupers',   
+      name: 'standupers',
       component: () => import('./views/Standupers.vue')
     }
   ]
