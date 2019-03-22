@@ -11,10 +11,12 @@ services:
     image: registry.gitlab.com/team-monitoring/comedian-ui:staging
     restart: always
     environment:
-      - VIRTUAL_HOST=staging.comedian.maddevs.co
-      - LETSENCRYPT_HOST=staging.comedian.maddevs.co
+      - VIRTUAL_HOST=admin-staging.comedian.maddevs.co
+      - LETSENCRYPT_HOST=admin-staging.comedian.maddevs.co
       - LETSENCRYPT_EMAIL=fedorenko.tolik@gmail.com
     expose:
-      - 8080:80/TCP
+      - 80
+    networks: 
+      - comedian_comedian
 
 
