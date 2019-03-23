@@ -13,8 +13,7 @@
       <td class="text-xs-left">{{ props.item.channel_id }}</td>
       <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
       <td class="text-xs-left">
-        <!-- <router-link :to="{ name: 'edit', params: { id: props.item.id } }"><i class="material-icons option-btn">edit</i>    <i class="material-icons option-btn">delete</i></router-link></td> -->
-        <i class="material-icons option-btn">edit</i>  <i class="material-icons option-btn" @click="deleteChannel(props.item.id)">delete</i></td>
+      <router-link :to="{ name: 'edit', params: { id: props.item.id } }"><i class="material-icons option-btn">edit</i>    <i class="material-icons option-btn" @click="deleteChannel(props.item.id)">delete</i></router-link></td>
     </template>   
   </v-data-table>
 </div>  
@@ -53,9 +52,6 @@ import axios from  'axios'
          .catch((error) =>{
           console.log(error);
         });
-      },
-      editChannel(id) {
-       this.$router.push('') 
       }
     },
     beforeCreate() {
