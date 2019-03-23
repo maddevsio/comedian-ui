@@ -9,7 +9,6 @@
         >
           <v-text-field
             v-model="bot.team_name"
-            :value="bot.team_name"
             label="Team Name"
             required
           />
@@ -81,9 +80,6 @@
      Save
     </v-btn>
   </v-form>
-
- <p>{{bot}}</p>
- <p>{{errors}}</p>
   </div>
 </template>
 
@@ -97,14 +93,13 @@ export default {
         'ru_RU',
         'en_EN'
       ],
-      errors:[],
         bot: {
         team_name: '',
         password: '',
         language:'en_US',
         notifier_interval:'2',
-        reminder_time:'2',
-        reminder_repeat_max:'1',
+        reminder_time:'10',
+        reminder_repeat_max:'3',
         }
       }
     },
@@ -120,7 +115,6 @@ export default {
       axios.post(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`, {
         ...transformedValues,
       });      
-       this.errors.pop()
     }   
   },
   created() {
@@ -128,7 +122,7 @@ export default {
       this.bot = response.data
     })
     .catch((e) => {
-      this.errors.push(e);
+      console.log(e);
     })
   }
 }
