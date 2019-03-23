@@ -1,10 +1,23 @@
 <template>
    <div>
-    <nav class="nav-bar">
-      <router-link v-for="routes in links" 
+     <v-toolbar>
+    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-toolbar-title>{{ title }}</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <router-link
+      class="v-btn v-btn--flat theme--light"
+      v-for="routes in links"
       v-bind:key="routes.id"
       :to="`${routes.page}`"
-      class="nav-bar__link">{{routes.text}}</router-link>
+      flat
+    >
+      {{routes.text}}
+    </router-link>
+    </v-toolbar-items>
+  </v-toolbar>
+    <nav class="nav-bar">
+      
     </nav>
   </div>
 </template>
@@ -12,42 +25,7 @@
 <script>
 export default {
   name: 'Header',
-  data() {
-    return {
-      links: [
-        {
-          id: 0,
-          text: 'Comedian',
-          page:'/#'
-        },
-        {
-          id: 1,
-          text: 'Collector',
-          page:'/#'
-        },
-        {
-          id: 2,
-          text: 'Reporter',
-          page:'/#'
-        },
-        {
-          id: 3,
-          text: 'Sprint Reporter',
-          page:'/#'
-        },
-        {
-          id: 4,
-          text: 'On Duty Service',
-          page:'/#'
-        },
-        {
-          id: 5,
-          text: 'Other Service',
-          page:'/#'
-        }        
-      ]
-    }
-  }
+  props: ['title', 'links'],
 }
 </script>
 <style>
