@@ -15,8 +15,21 @@
         <td >{{ props.item.comment }}</td>    
         
         <div>
-          <v-btn v-on:click="editStandup(props.item.comment)"><img src="https://img.icons8.com/office/16/000000/pencil.png"></v-btn>
-          <v-btn v-on:click="deleteStandup(props.item.id)"><img src="https://img.icons8.com/color/40/000000/return-purchase.png"></v-btn>
+         <td class="justify-center layout px-0">
+          <v-icon
+            small
+            class="mr-2"
+            @click="editStandup(props.item)"
+          >
+            edit
+          </v-icon>
+          <v-icon
+            small
+            @click="deleteStandup(props.item)"
+          >
+            delete
+          </v-icon>
+        </td>
         </div>
       </template>
     </v-data-table>   
@@ -46,11 +59,13 @@
     },
     
     methods: {
-      deleteStandup(id) {
-        this.$store.dispatch('REMOVE_STANDUP', id)
+      deleteStandup(value) {
+        console.log(value)
+        this.$store.dispatch('REMOVE_STANDUP', value.id)
       },
-      editStandup(comment) {
-        this.$store.dispatch('POST_STANDUP', comment)
+      editStandup(value) {
+        // TODO go to view or edit page
+        console.log(value)
       },      
     },    
     beforeCreate() {

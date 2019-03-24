@@ -37,7 +37,7 @@ const actions = {
   },
   REMOVE_STANDUP: ({ commit, id}) => {  
     return new Promise((resolve, reject) => {
-      axios.get(`${URL}/v1/standups/${id}`)
+      axios.delete(`${URL}/v1/standups/${id}`)
         .then((response) => {
           commit('REMOVE_STANDUP', id)
           resolve()
