@@ -15,8 +15,8 @@
         <td >{{ props.item.comment }}</td>    
         
         <div>
-          <v-btn v-on:click="editStandup(props.item.comment)">edit</v-btn>
-          <v-btn v-on:click="deleteStandup(props.item.id)">remove</v-btn>
+          <v-btn v-on:click="editStandup(props.item.comment)"><img src="https://img.icons8.com/office/16/000000/pencil.png"></v-btn>
+          <v-btn v-on:click="deleteStandup(props.item.id)"><img src="https://img.icons8.com/color/40/000000/return-purchase.png"></v-btn>
         </div>
       </template>
     </v-data-table>   
@@ -58,3 +58,9 @@
     }
   }
 </script>    
+
+<style>
+  .theme--light.v-btn:not(.v-btn--icon):not(.v-btn--flat) {
+    background-color: rgb(186, 186, 201);
+}
+</style>
