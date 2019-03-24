@@ -15,6 +15,10 @@ const state = {
 const mutations = {
   SET_STANDUPS: (state, standups) => {
     state.standups = standups
+  },
+  REMOVE_STANDUP: (state, id) =>{
+    index = state.standups.findIndex(x => x.id == id)
+    state.standups.splice(index, 1)
   }
 }
 
@@ -30,7 +34,32 @@ const actions = {
           reject(error)
         })
     })
-  }
+  },
+  REMOVE_STANDUP: ({ commit, id}) => {  
+    return new Promise((resolve, reject) => {
+      axios.get(`${URL}/v1/standups/${id}`)
+        .then((response) => {
+          commit('REMOVE_STANDUP', id)
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  POST_STANDUP: ({ commit}) => {
+        console.log(commit)    
+    return new Promise((resolve, reject) => {
+      axios.get(`${URL}/v1/standups/${commit}`)
+        .then((response) => {
+          commit('POST_STANDUP', commit)
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
 }
 
 const standups = {

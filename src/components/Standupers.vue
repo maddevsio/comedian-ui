@@ -6,15 +6,14 @@
     :items="standupers"
     class="elevation-1"
   >
-    <template v-slot:items="props">
-      <td>{{ props.item.name }}</td>
+    <template v-slot:items="props">     
       <td >{{ props.item.id }}</td>
       <td >{{ props.item.user_id }}</td>
       <td >{{ props.item.team_id }}</td>
       <td >{{ props.item.channel_id }}</td>
       <td >{{ props.item.role_in_channel }}</td>
       <td> {{ props.item.submitted_standup_today }}</td>
-      <td >{{ props.item.created }}</td>
+      <!-- <td >{{ props.item.created }}</td> -->
     </template>
   </v-data-table>
  </div>
@@ -30,11 +29,7 @@ import { mapState } from 'vuex'
       return {
         title: 'Standupers',
         headers: [
-          {           
-            align: 'left',
-            sortable: false,
-            value: 'name'
-          },
+        
           { text: 'ID', value: 'id' },
           { text: 'User ID', value: 'user_id' },
           { text: 'Team ID', value: 'team_id' },
