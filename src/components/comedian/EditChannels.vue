@@ -2,28 +2,7 @@
 <div> 
   <v-form  method="post">
     <v-container>
-      <v-layout>
-        <!-- <v-flex
-          xs12
-          md4
-        >
-          <v-text-field
-            v-model="channel.channel_name"
-            label="Channel Name"
-            required
-          />
-        </v-flex> -->
-        <!-- <v-flex
-          xs12
-          md4
-        >
-          <v-text-field
-            v-model="channel.channel_id"
-            label="Channel Id"
-            required
-          />
-        </v-flex> -->
-
+       <v-layout row justify-center>
         <v-flex
           xs12
           md4
@@ -59,8 +38,7 @@ export default {
        const transformedValues = transform(this.channel, {
          channel_standup_time: 'int'
        }) 
-      axios.post(`https://staging.comedian.maddevs.co/v1/channels/${this.$route.params.id}`, {
-        id:this.$route.params.id, 
+      axios.patch(`https://staging.comedian.maddevs.co/v1/channels/${this.$route.params.id}`, {
         ...transformedValues,
       });      
     }   
