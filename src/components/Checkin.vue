@@ -8,7 +8,8 @@
   			<div class="form-row"> 				
  				<input type="password" v-model="password" placeholder="password" /> 		
  		  </div> 	       
-       <button class="btn"><a type="submit">{{ login }}</a></button>	  
+       <button class="btn">
+         <a type="submit">{{ login }}</a></button>	  
       </div> 
 </template>
 <script>
@@ -29,8 +30,6 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
 .form-block{
   font-family: 'Roboto', sans-serif; 
 }

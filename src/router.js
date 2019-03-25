@@ -13,6 +13,11 @@ export default new Router({
       component: Home
     },
     {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/Team.vue')
+     },
+    {
       path: '/teams/:id',
       name: 'comedian',
       component: () => import('./views/Comedian.vue')
@@ -26,6 +31,11 @@ export default new Router({
       path: '/standupers',
       name: 'standupers',
       component: () => import('./views/Standupers.vue')
+    },
+    {
+      path: '/option',
+      name: 'option',   
+      component: () => import('./views/Option.vue')
     },
     {
       path: '/channels',

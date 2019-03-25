@@ -1,20 +1,20 @@
-<template>
- <div>
-   <h2 class="standupers_title">{{ title }}</h2>
-  <v-data-table
-    :headers="headers"
-    :items="standupers"
-    class="elevation-1"
-  >
-    <template v-slot:items="props">     
-      <td >{{ props.item.id }}</td>
-      <td >{{ props.item.user_id }}</td>
-      <td >{{ props.item.channel_id }}</td>
-      <td >{{ props.item.role_in_channel }}</td>
-      <td >{{ props.item.submitted_standup_today }}</td>
-      <td >{{ props.item.created }}</td>   
-   <div>
-  <div class="text-xs-center">
+ <template>
+  <div>
+    <h2 class="standups_title">{{ title }}</h2>
+    <v-data-table
+      :headers="headers"
+      :items="standups"     
+      class="elevation-1"
+    >
+      <template v-slot:items="props">
+        <td >{{ props.item.id }}</td>
+        <td >{{ props.item.user_id }}</td>
+        <td >{{ props.item.channel_id }}</td>
+        <td >{{ props.item.created }}</td>
+        <td >{{ props.item.modified}}</td>
+        <td >{{ props.item.comment }}</td>    
+       
+   <div class="text-xs-center">
       <v-dialog
         v-model="dialog"
         width="500"
@@ -63,46 +63,57 @@
       </v-icon>
     </td>
       </div>      
-  </div>
- </div>
+   </div>
 
-    </template>
-  </v-data-table>
- </div>
-</template>
+      </template>
+    </v-data-table>   
+  </div>  
+</template>		  
 
 <script>
-import { mapState } from 'vuex'
+  import { mapState } from 'vuex'
   export default {
     computed: mapState({
-        standupers: state => state.standuper.standupers
+      standups: state => state.standups.standups
     }),
+
     data () {
       return {
         dialog: false,
-        title: 'Standupers',
+        title:'Standups',       
         headers: [
-        
-          { text: 'ID', value: 'id' },
-          { text: 'Slack ID', value: 'user_id' },         
-          { text: 'Channel ID', value: 'channel_id' },
-          { text: 'Role in channel', value: 'role_in_channel' },
-          { text: 'Submitted Standup today', value: 'submitted_standup_today' },
-          { text: 'Created', value: 'created' },
+          { text: 'ID', value: 'id'},
+          { text: 'User ID', value: 'user_id'},
+          { text: 'Channel ID', value: 'channel_id'},
+          { text: 'Created', value: 'created'},
+          { text: 'Modified', value: 'modified'},
+          { text: 'Text', value: 'comment'},
           { text: 'Options'} 
         ]
       }
     },
+    
+    methods: {
+      deleteStandup(value) {
+        console.log(value)
+        this.$store.dispatch('REMOVE_STANDUP', value.id)
+      },
+      editStandup(value) {
+        // TODO go to view or edit page
+        console.log(value)
+      },      
+    },    
     beforeCreate() {
-    this.$store.dispatch('GET_STANDUPERS')
+      this.$store.dispatch('GET_STANDUPS')
     }
   }
-</script>
+</script>    
+
 <style>
 .text-xs-center {
   display: flex;
   margin-left: 27px;
-} 
+}
 
 .theme--light.v-datatable thead th.column.sortable.active, .theme--light.v-datatable thead th.column.sortable.active .v-icon, .theme--light.v-datatable thead th.column.sortable:hover {
   color: rgba(10, 7, 32, 0.87);
