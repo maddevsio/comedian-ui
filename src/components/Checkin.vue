@@ -4,6 +4,7 @@
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12">
+              <v-form v-on:submit.prevent="onSubmit">
               <v-toolbar dark color="primary">
                 <v-toolbar-title>Login</v-toolbar-title>
                 <v-spacer></v-spacer>
@@ -11,24 +12,21 @@
                   <v-btn
                     icon
                     large
-                    :href="source"
                     target="_blank"
                     slot="activator"
                   >                  
-                  </v-btn>
-                  <span>Source</span>
+                  </v-btn>                 
                 </v-tooltip>
               </v-toolbar>
               <v-card-text>
-                <v-form>
                   <v-text-field prepend-icon="person" name="login" label="Login" type="text"></v-text-field>
                   <v-text-field prepend-icon="lock" name="password" label="Password" id="password" type="password"></v-text-field>
-                </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Login</v-btn>
+                <v-btn type="submit" color="primary">Login</v-btn>
               </v-card-actions>
+               </v-form>
             </v-card>
           </v-flex>
         </v-layout>
@@ -37,7 +35,35 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Checkin',
+methods: {
+  clear () {
+    this.$refs.login.reset()
+  },
+  onSubmit: async function () {
+    console.log('?>>>>>>>>>>>>>>>>>>>>>>>.')
+    try {
+      const resp = await Axios.post('https://staging.comedian.maddevs.co/login', {
+        login: this.teamname,
+        password: this.password
+      })
+      console.log('Ответ сервера:', res)
+      this.$router.replace(this.$route.query.redirect || '/tamam')
+    } catch (err) {
+      console.log('err', err)
+    }
+  },
+}
+
+  //  computed: mapState({
+  //       checkin: state => state.login.checkin
+  //   }),
+    
+  // beforeCreate() {
+  //   this.$store.dispatch('CREATE_CHECKIN')
+  //   }
 }
 </script>

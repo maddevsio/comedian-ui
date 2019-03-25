@@ -23,7 +23,7 @@ export default new Router({
       component: () => import('./views/Comedian.vue')
     },
     {
-      path: '/about',
+      path: '/checkin',
       name: 'checkin',
       component: () => import('./views/About.vue')
     },

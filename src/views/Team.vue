@@ -1,11 +1,10 @@
 <template>
- <div class="checkIn">
+ <div>
     <Checkin />     
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import Checkin from '@/components/Checkin.vue'
 
 export default {
