@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
   <TeamProjects />
-  </div>
 </template>
 
 <script>
