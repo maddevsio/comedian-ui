@@ -15,40 +15,9 @@ import Settings from '@/components/comedian/Settings.vue'
 
 export default {
   name: 'comedian',
-  data() {
-    return {
-      links: [
-        {
-          id: 0,
-          text: 'Comedian',
-          page:'/#'
-        },
-        {
-          id: 1,
-          text: 'Collector',
-          page:'/#'
-        },
-        {
-          id: 2,
-          text: 'Reporter',
-          page:'/#'
-        },
-        {
-          id: 3,
-          text: 'Sprint Reporter',
-          page:'/#'
-        },
-        {
-          id: 4,
-          text: 'On Duty Service',
-          page:'/#'
-        },
-        {
-          id: 5,
-          text: 'Other Service',
-          page:'/#'
-        }        
-      ]
+  computed: {
+    links () {
+      return this.$store.state.links.linksComedian
     }
   },
   components: {
