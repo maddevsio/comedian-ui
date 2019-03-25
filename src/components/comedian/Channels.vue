@@ -13,7 +13,7 @@
       <td class="text-xs-left">{{ props.item.channel_id }}</td>
       <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
       <td class="text-xs-left">
-      <router-link :to="{ name: 'edit', params: { id: props.item.id } }"><i class="material-icons option-btn">edit</i>    <i class="material-icons option-btn" @click="deleteChannel(props.item.id)">delete</i></router-link></td>
+      <router-link :to="{ name: 'edit', params: { id: props.item.id } }" target="_blank"><i class="material-icons option-btn">edit</i> </router-link>   <i class="material-icons option-btn" @click="deleteChannel(props.item.id)">delete</i></td>
     </template>   
   </v-data-table>
 </div>  
