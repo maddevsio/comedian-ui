@@ -112,8 +112,10 @@ export default {
          reminder_time: 'int',
        })
   
-      axios.post(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`, {
+      axios.patch(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`, {
         ...transformedValues,
+      }).then(()=> {
+        alert("Изменения сохранены")
       });      
     }   
   },
