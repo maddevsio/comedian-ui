@@ -1,35 +1,35 @@
 <template>
   <div class="about">
-    <Header title="Settings" :links="this.links"/>
-    <SideNav/>
-    <div class ="content">
-      <Settings/>  
-    </div>
+    <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
+    <v-content fluid fill-height>
+      <Settings/> 
+    </v-content>
   </div>
 </template>
 
 <script>
 import Header from '@/components/navigation/Header.vue'
-import SideNav from '@/components/navigation/SideNav.vue'
 import Settings from '@/components/comedian/Settings.vue'
 
 export default {
   name: 'comedian',
+  
   computed: {
     links () {
       return this.$store.state.links.linksComedian
+    },
+    navLinks () {
+      return this.$store.state.links.comedianSideLinks
     }
   },
   components: {
-    SideNav,
     Header,
     Settings
   }
 }
 </script>
-<style lang="scss" scoped>
-.content {
-  margin-left:120px;
-}
+<style>
+ aside {
+   margin-top: 64px!important;
+ } 
 </style>
-

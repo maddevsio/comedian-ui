@@ -43,7 +43,7 @@ export default {
       })
       console.log(this.teams)
     } catch (e) {
-      console.log(e)
+      console.log('<<<<<<<<<<<<<<', e)
     }
   }
 }
