@@ -40,6 +40,8 @@ export default {
        }) 
       axios.patch(`https://staging.comedian.maddevs.co/v1/channels/${this.$route.params.id}`, {
         ...transformedValues,
+      }).then(()=> {
+        alert("Изменения сохранены")
       });      
     }   
   },
