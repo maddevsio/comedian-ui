@@ -13,7 +13,7 @@
       <td >{{ props.item.role_in_channel }}</td>
       <td >{{ props.item.submitted_standup_today }}</td>
       <td >{{ props.item.created }}</td>   
-   
+   <div>
   <div class="text-xs-center">
       <v-dialog
         v-model="dialog"
@@ -63,7 +63,8 @@
       </v-icon>
     </td>
       </div>      
-</div>
+  </div>
+ </div>
 
     </template>
   </v-data-table>
@@ -98,8 +99,13 @@ import { mapState } from 'vuex'
   }
 </script>
 <style>
-td {
-  text-align: left;
+.text-xs-center {
+  display: flex;
+  margin-left: 27px;
+} 
+
+.theme--light.v-datatable thead th.column.sortable.active, .theme--light.v-datatable thead th.column.sortable.active .v-icon, .theme--light.v-datatable thead th.column.sortable:hover {
+  color: rgba(10, 7, 32, 0.87);
+  font-size: 15px;
 }
-  
 </style>

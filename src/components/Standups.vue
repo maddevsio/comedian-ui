@@ -110,7 +110,13 @@
 </script>    
 
 <style>
-  .theme--light.v-btn:not(.v-btn--icon):not(.v-btn--flat) {
-    background-color: rgb(186, 186, 201);
+.text-xs-center {
+  display: flex;
+  margin-left: 27px;
+}
+
+.theme--light.v-datatable thead th.column.sortable.active, .theme--light.v-datatable thead th.column.sortable.active .v-icon, .theme--light.v-datatable thead th.column.sortable:hover {
+  color: rgba(10, 7, 32, 0.87);
+  font-size: 15px;
 }
 </style>
