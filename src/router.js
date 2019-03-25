@@ -13,12 +13,12 @@ export default new Router({
       component: Home
     },
     {
-      path: '/team',
-      name: 'team',
+      path: '/login',
+      name: 'login',
       component: () => import('./views/Team.vue')
      },
     {
-      path: '/comedian',
+      path: '/teams/:id',
       name: 'comedian',
       component: () => import('./views/Comedian.vue')
     },
@@ -46,6 +46,16 @@ export default new Router({
       path: '/users',
       name: 'users',
       component: () => import('./views/Users.vue')
+    },
+    {
+      path: '/users/:id',
+      name: 'users_edit',
+      component: () => import('./components/comedian/UsersEdit.vue')
+    },
+    {
+      path: '/channels/:id',
+      name: 'edit',
+      component: () => import('./components/comedian/EditChannels.vue')
     }
   ]
 })

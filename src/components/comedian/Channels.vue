@@ -12,10 +12,10 @@
       <td class="text-xs-left">{{ props.item.channel_name }}</td>
       <td class="text-xs-left">{{ props.item.channel_id }}</td>
       <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
-      <td class="text-xs-left"><span> Edit /</span><span> Delete</span></td>
+      <td class="text-xs-left">
+      <router-link :to="{ name: 'edit', params: { id: props.item.id } }" target="_blank"><i class="material-icons option-btn">edit</i> </router-link>   <i class="material-icons option-btn" @click="deleteChannel(props.item.id)">delete</i></td>
     </template>   
   </v-data-table>
-  <p>{{ errors }}</p>
 </div>  
 </template>
 
@@ -40,7 +40,21 @@ import axios from  'axios'
         channels:[],
       }
     },
-    beforeCreate() {  
+    methods: {
+      deleteChannel(id) {
+        const url='https://staging.comedian.maddevs.co/v1/channels/'+id;
+        axios.delete(url)
+        .then((response)=>{
+          console.log(response);
+          alert('Удаление прошло успешно')
+          location.reload();
+        })
+         .catch((error) =>{
+          console.log(error);
+        });
+      }
+    },
+    beforeCreate() {
      axios.get('https://staging.comedian.maddevs.co/v1/channels').then((response) => {
       this.channels = response.data
     })
@@ -50,3 +64,13 @@ import axios from  'axios'
     }
   }
 </script>
+<style lang="scss" scoped>
+.option-btn {
+  color:grey;
+  font-size: 18px;
+  &:hover {
+    color:#42b983;
+    cursor: pointer;
+  }
+}
+</style>

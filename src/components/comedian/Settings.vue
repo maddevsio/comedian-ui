@@ -9,7 +9,6 @@
         >
           <v-text-field
             v-model="bot.team_name"
-            :value="bot.team_name"
             label="Team Name"
             required
           />
@@ -48,6 +47,7 @@
           <v-text-field
             v-model="bot.notifier_interval"
             label="Notifier Interval"
+            type="number"
             required
           />
         </v-flex>
@@ -58,6 +58,7 @@
           <v-text-field
             v-model="bot.reminder_time"
             label="Reminder Time"
+            type="number"
             required
           />
         </v-flex>
@@ -68,6 +69,7 @@
           <v-text-field
             v-model="bot.reminder_repeats_max"
             label="Reminder Repeats"
+            type="number"
             required
           />
         </v-flex>
@@ -78,14 +80,12 @@
      Save
     </v-btn>
   </v-form>
-
- <p>{{bot}}</p>
- <p>{{errors}}</p>
   </div>
 </template>
 
 <script>
 import axios from  'axios'
+import transform from '../../helpers/transform'
 export default {
   data () {
     return {
@@ -93,57 +93,38 @@ export default {
         'ru_RU',
         'en_EN'
       ],
-      errors:[],
         bot: {
         team_name: '',
         password: '',
         language:'en_US',
         notifier_interval:'2',
-        reminder_time:'2',
-        reminder_repeat_max:'1',
+        reminder_time:'10',
+        reminder_repeat_max:'3',
         }
       }
     },
   methods: {
+
      Save() {
-      /*axios.post('https://staging.comedian.maddevs.co/v1/bots/6', {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-        body: {  
-          "id": 6,
-          "user_id": "",
-          "notifier_interval":this.bot.notifier_interval,
-          "language": this.bot.language,
-          "reminder_repeats_max": this.bot.reminder_repeats_max,
-          "reminder_time": this.bot.reminder_time,
-          "bot_access_token": "",
-          "team_id": "TFREGJ268",
-          "team_name": this.bot.team_name,
-          "password": this.bot.password }
-      });*/
-       const body= {  
-          "id": 6,
-          "user_id": "",
-          "notifier_interval":this.bot.notifier_interval,
-          "language": this.bot.language,
-          "reminder_repeats_max": this.bot.reminder_repeats_max,
-          "reminder_time": this.bot.reminder_time,
-          "bot_access_token": "",
-          "team_id": "TFREGJ268",
-          "team_name": this.bot.team_name,
-          "password": this.bot.password 
-          }
-       this.errors.pop()
-       this.errors.push(body)
+       const transformedValues = transform(this.bot, {
+         notifier_interval: 'int',
+         reminder_repeats_max: 'int',
+         reminder_time: 'int',
+       })
+  
+      axios.patch(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`, {
+        ...transformedValues,
+      }).then(()=> {
+        alert("Изменения сохранены")
+      });      
     }   
   },
   created() {
-    axios.get('https://staging.comedian.maddevs.co/v1/bots/6').then((response) => {
+    axios.get(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`).then((response) => {
       this.bot = response.data
     })
     .catch((e) => {
-      this.errors.push(e);
+      console.log(e);
     })
   }
 }

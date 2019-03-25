@@ -1,89 +1,49 @@
 <template>
-<div class= "team">
-  <h2 class="teamPage">{{ title }}</h2> 
-  <div class="team_container">
-    <div>
-      <span class="team_name"><a href="#">{{ madDevs }}</a></span> 
-       <div class="imgLogo" v-for="item in items" :key="item.id">
-         <img :src="item.img"/>
-    </div>        
-    </div>
-    <div>
-      <span class="team_name"><a href="#">{{ goDee }}</a></span> 
-       <div class="imgLogo" v-for="icon in icons" :key="icon.id">
-         <img :src="icon.img"/>
-      </div>
-      </div>
-    <div>
-       <span class="team_name"><a href="#">{{ slackTeam}}</a></span>
-       <div class="imgLogo" v-for="img in imgs" :key="img.id">
-         <img :src="img.img"/>
-      </div>
-      </div>
-    <div>
-      <span class="team_name"><a href="#">{{ nappy }}</a></span>  
-       <div class="imgLogo" v-for="link in links" :key="link.id">
-         <img :src="link.img"/>
-      </div>         
-    </div>
-    <div>
-      <span class="team_name"><a href="#">{{ choko }}</a></span>  
-    <div class="imgLogo" v-for="choko in chokos" :key="choko.id">
-      <img :src="choko.img"/>
-     </div>       
-    </div>
-    <div>
-      <span class="team_name"><a href="#">{{ anotherTeam }}</a></span>  
-     <div class="imgLogo" v-for="photo in photos" :key="photo.id">
-       <img :src="photo.img"/>
-    </div>        
-     </div>        
-   </div>
+  <div class= "team">
+    <h2 class="teamPage">{{ title }}</h2> 
+    <v-layout justify-center>
+      <v-flex xs12 sm6>
+        <v-container fluid grid-list-md>
+          <v-layout row wrap>
+            <v-flex v-for="team in teams" :key="team.id">
+              <router-link :to="{ name: 'comedian', params: {id: team.id }}">
+              <v-card class="team-image">
+                <v-img :src="team.img" />
+                <v-card-title>
+                  <span>{{ team.team_name }}</span>
+                </v-card-title>
+              </v-card>
+              </router-link>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-flex>
+    </v-layout>
   </div>
+
 </template>
 
 <script>
+import axios from  'axios'
+
 export default {
   name: 'Team',
   data() {
     return {
-        title: 'Choose your Comedian to enter/login',
-        madDevs: 'Mad Devs',
-        goDee: 'GoDee',
-        slackTeam: 'Another Slack Team',
-        nappy: 'Nappy',
-        choko:'Choko',
-        anotherTeam:'Yet Another Slack Team',
-     items: [
-       {
-        img:require('../assets/logo/madLogo.png')
-       }
-     ],
-     icons:[
-      {
-        img:require('../assets/logo/choco.png')
-      }
-     ],
-     imgs: [
-       {
-        img:require('../assets/logo/images.png')
-        }
-     ],
-     links:[
-        {
-        img:require('../assets/logo/nappy.png')
-        }
-     ],
-     chokos: [
-        {
-        img:require('../assets/logo/choco.png')
-        },
-     ],
-     photos: [
-        {
-        img:require('../assets/logo/madLogo.png')        
-       }
-     ]
+      title: 'Choose your Comedian to enter/login',
+      teams: [],
+    }
+  },
+  async created () {
+    try {
+      const response = await axios.get('https://staging.comedian.maddevs.co/v1/bots')
+      this.teams = response.data.map(team => {
+        team.img = require('../assets/logo/madLogo.png')
+        return team
+      })
+      console.log(this.teams)
+    } catch (e) {
+      console.log(e)
     }
   }
 }
@@ -91,43 +51,12 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-.team {
-  font-family: 'Roboto', sans-serif;
+.team-image {
+  width: 220px;
+  cursor: pointer; 
 }
-
-.teamPage {
-  color: #333333;
-  font-size: 24px;
-  font-weight: 600;  
-  padding: 10px 58px 17px 0;
-  margin: 6px 58px 24px 0;
-}
-
-.team_container {  
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 15px;  
-}
-
-.imgLogo {
-  width: 550px;
-  height: 110px;
-  padding-bottom: 18px;
-}
-
-img {
-  width: 86px;
-}
-
-.team_name a {
+a {
+  display: inline-block;
   text-decoration: none;
-  font-weight: 700;
-  color: #333333;   
 }
-
-.team_name {
-  position: absolute;
-  margin: 22px 46px;
-  padding: 9px 28px;
- }
 </style>

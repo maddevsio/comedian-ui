@@ -1,8 +1,7 @@
 <template>
   <div class="about">
-    <Header/>
+    <Header title="Settings" :links="this.links"/>
     <SideNav/>
-    <h1>Settings</h1>
     <div class ="content">
       <Settings/>  
     </div>
@@ -16,6 +15,11 @@ import Settings from '@/components/comedian/Settings.vue'
 
 export default {
   name: 'comedian',
+  computed: {
+    links () {
+      return this.$store.state.links.linksComedian
+    }
+  },
   components: {
     SideNav,
     Header,
