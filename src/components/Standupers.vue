@@ -12,49 +12,11 @@
       <td >{{ props.item.channel_id }}</td>
       <td >{{ props.item.role_in_channel }}</td>
       <td >{{ props.item.submitted_standup_today }}</td>
-      <td >{{ props.item.created }}</td>   
+      <td >{{ props.item.created }}</td>      
+     
    <div>
-  <div class="text-xs-center">
-      <v-dialog
-        v-model="dialog"
-        width="500"
-      >
-        <template v-slot:activator="{ on }">          
-          <v-icon
-        small
-        class="mr-2"
-        v-on="on"
-        @click="editStandup(props.item)"
-      >
-        edit
-      </v-icon>
-        </template>
-        <v-card>
-          <v-card-title
-            class="headline grey lighten-2"
-            primary-title
-          >
-            Privacy Policy
-          </v-card-title>  
-          <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </v-card-text>  
-          <v-divider></v-divider>  
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="primary"
-              flat
-              @click="dialog = false"
-            >
-              I accept
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    
-    <div>
-      <td class="justify-center layout px-0">     
+      <td class="justify-center layout px-0"> 
+           <router-link :to="{ name:'users_edit', params: { id: props.item.id } }"><i class="material-icons option-btn">edit</i></router-link>    
       <v-icon
         small
         @click="deleteStandup(props.item)"
@@ -62,9 +24,7 @@
         delete
       </v-icon>
     </td>
-      </div>      
-  </div>
- </div>
+   </div> 
 
     </template>
   </v-data-table>
