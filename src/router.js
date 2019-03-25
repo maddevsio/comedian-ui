@@ -38,6 +38,11 @@ export default new Router({
       component: () => import('./views/Users.vue')
     },
     {
+      path: '/users/:id',
+      name: 'users_edit',
+      component: () => import('./components/comedian/UsersEdit.vue')
+    },
+    {
       path: '/channels/:id',
       name: 'edit',
       component: () => import('./components/comedian/EditChannels.vue')

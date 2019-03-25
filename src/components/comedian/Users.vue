@@ -13,10 +13,11 @@
       <td class="text-xs-left">{{ props.item.user_id }}</td>
       <td class="text-xs-left">{{ props.item.role }}</td>
       <td class="text-xs-left">{{ props.item.real_name }}</td>
-      <td class="text-xs-left">Edit</td>
+      <td class="text-xs-left"> 
+        <router-link :to="{ name:'users_edit', params: { id: props.item.id } }"><i class="material-icons option-btn">edit</i></router-link>
+      </td>
     </template>   
   </v-data-table>
-  <p>{{ errors }}</p>
 </div>  
 </template>
   
@@ -25,7 +26,6 @@ import axios from  'axios'
   export default {   
     data () {
       return {
-        errors:[],
          headers: [
           { 
             text:'Users',
@@ -47,8 +47,18 @@ import axios from  'axios'
       this.users = response.data
     })
       .catch((e) => {
-        this.errors.push(e);
+       console.log(e);
       })
     }
   }
 </script>
+<style lang="scss" scoped>
+.option-btn {
+  color:grey;
+  font-size: 18px;
+  &:hover {
+    color:#42b983;
+    cursor: pointer;
+  }
+}
+</style>
