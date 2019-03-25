@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header title="Users" :links="this.links"/>
+    <Header title="Users" :links="this.links" :navLinks="this.navLinks"/>
     <Users />
   </div>
 </template>
@@ -14,6 +14,9 @@ export default {
   computed: {
     links () {
       return this.$store.state.links.linksComedian
+    },
+    navLinks () {
+      return this.$store.state.links.comedianSideLinks
     }
   },
   components: {

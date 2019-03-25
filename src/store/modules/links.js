@@ -38,6 +38,32 @@ const state = {
       text: 'Other Service',
       page: '/#'
     }
+  ],
+  comedianSideLinks: [{
+      id: 0,
+      text: 'Settings',
+      page: '/teams/:id'
+    },
+    {
+      id: 1,
+      text: 'Channels',
+      page: '/channels'
+    },
+    {
+      id: 2,
+      text: 'Standupers',
+      page: '/standupers'
+    },
+    {
+      id: 3,
+      text: 'StandUp',
+      page: '/#'
+    },
+    {
+      id: 4,
+      text: 'Users',
+      page: '/users'
+    }
   ]
 }
 const links = {

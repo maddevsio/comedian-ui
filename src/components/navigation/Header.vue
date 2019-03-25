@@ -51,5 +51,7 @@ export default {
 }
 </script>
 <style>
-
+aside {
+   margin-top: 64px!important;
+ } 
 </style>
