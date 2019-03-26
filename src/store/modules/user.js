@@ -36,7 +36,7 @@ const actions = {
       const params = new URLSearchParams();
       params.append('teamname', payload.teamname);
       params.append('password', payload.password);
-      axios.post(`${URL}login/`, params, config)
+      axios.post(`${URL}login`, params, config)
         .then((response) => {
           commit('LOGIN', response.data.token)
           resolve()

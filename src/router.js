@@ -33,8 +33,8 @@ const router = new Router({
       component: () => import('./views/Comedian.vue')
     },
     {
-      path: '/checkin',
-      name: 'checkin',
+      path: '/login',
+      name: 'login',
       meta: {
         middleware: log,
       },

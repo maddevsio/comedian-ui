@@ -65,14 +65,6 @@ export default {
           this.error = 'User not authenticated'
         })
     }
-}
-
-  //  computed: mapState({
-  //       checkin: state => state.login.checkin
-  //   }),
-    
-  // beforeCreate() {
-  //   this.$store.dispatch('CREATE_CHECKIN')
-  //   }
+  } 
 }
 </script>

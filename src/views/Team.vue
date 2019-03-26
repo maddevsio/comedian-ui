@@ -1,17 +1,17 @@
 <template>
  <div>
-    <Checkin />     
+    <Login />     
   </div>
 </template>
 
 <script>
-import Checkin from '@/components/Checkin.vue'
+import Login from '@/components/Login.vue'
 
 export default {
   name: 'about',
   components: {
-   Checkin
+   Login
   
   }
 }
-</script>
+</script>-->
