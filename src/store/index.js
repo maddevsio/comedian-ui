@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import standuper from './modules/standuper'
 import standups from './modules/standups'
-import bot from './modules/bot'
+import bots from './modules/bots'
 import links from './modules/links'
+import tokens from './modules/token'
 import getters from './getters'
 
 
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
     standuper,
     standups,
     links,
-    bot,
+    bots,
+    tokens
   },
   getters
 })

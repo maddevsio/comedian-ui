@@ -9,7 +9,7 @@ const getFullUrl = url => `${baseApiUrl}/${url}`
 
 const addToken = headers => {
   // const token = this.$store.tokens.tokenAuth
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOjE1NTM3NjE4MDcsInRlYW1uYW1lIjoiYmVlaGl2ZSJ9.9nGv6UZQ4DiZdh-fXuX7G6hrchZe42aEovBlwKMda1o'
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RfaWQiOjEwLCJleHBpcmUiOjE1NTM4NTc2NDYsInRlYW1faWQiOiJUSDEwQkhQREYifQ.AqpVxl8m0YoAuNGMuZbZk9t9C5Cuu6CBZnTLrskD8RU'
   if (!token) {
     throw new Error('Unauthorized')
   }

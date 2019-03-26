@@ -23,7 +23,7 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: () => import('./views/Team.vue')
-     },
+    },
     {
       path: '/teams/:id',
       name: 'comedian',
@@ -42,7 +42,7 @@ const router = new Router({
 
     },
     {
-      path: '/standupers',
+      path: '/teams/:id/standupers',
       name: 'standupers',
       meta: {
         middleware: [middleware2, log],
@@ -51,7 +51,7 @@ const router = new Router({
     },
     {
       path: '/option',
-      name: 'option',   
+      name: 'option',
       component: () => import('./views/Option.vue')
     },
     {
@@ -129,6 +129,5 @@ router.beforeEach((to, from, next) => {
 
   return next();
 });
-
 
 export default router;

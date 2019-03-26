@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const state = {
   // tokenAuth:localStorage.getState('jwt')
-  tokenAuth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RfaWQiOjEwLCJleHBpcmUiOjE1NTM4NDU4MDksInRlYW1faWQiOiJUSDEwQkhQREYifQ.vQoFoEAnMrjN7vvItVM60qylAQbNEPvIONNhJDCVKxc'
+  tokenAuth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RfaWQiOjEwLCJleHBpcmUiOjE1NTM4NTI0MDgsInRlYW1faWQiOiJUSDEwQkhQREYifQ.WYWwLDfXflPy3WN3GulAIyYd18f1CmbB4nCRBuMrzxQ'
 }
 
 // const getters = {

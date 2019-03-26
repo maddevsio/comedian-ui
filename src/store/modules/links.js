@@ -6,7 +6,6 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-
 const state = {
   linksComedian: [{
       id: 0,
@@ -31,11 +30,6 @@ const state = {
     {
       id: 4,
       text: 'On Duty Service',
-      page: '/#'
-    },
-    {
-      id: 5,
-      text: 'Other Service',
       page: '/#'
     }
   ],
