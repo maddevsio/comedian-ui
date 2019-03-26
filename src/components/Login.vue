@@ -59,7 +59,7 @@ export default {
       this.$store
         .dispatch('LOGIN', payload)
         .then(() => {
-          this.$router.push({ path: '/home' })
+          this.$router.push({ path: '/home/teams/:id'})
         })
         .catch(() => {
           this.error = 'User not authenticated'
