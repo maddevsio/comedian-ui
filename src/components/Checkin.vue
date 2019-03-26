@@ -44,7 +44,7 @@ methods: {
     this.$refs.login.reset()
   },
   onSubmit: async function () {
-    console.log('?>>>>>>>>>>>>>>>>>>>>>>>.')
+    console.log('?>>>>>>>>>>>>>>.')
     try {
       const resp = await Axios.post('https://staging.comedian.maddevs.co/login', {
         login: this.teamname,
