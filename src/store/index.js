@@ -18,7 +18,6 @@ const store = new Vuex.Store({
     links,
     bots,
     tokens,
-    bot,
     user
   },
   getters

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import auth from './middleware/auth';
+// import auth from './middleware/auth';
 import middleware1 from './middleware/middleware1';
 import middleware2 from './middleware/middleware2';
 import log from './middleware/log';
@@ -16,11 +16,7 @@ const router = new Router({
       name: 'login',
       meta: {
         middleware: log,
-      }
-    },
-    {
-      path: '/login',
-      name: 'login',
+      },
       component: () => import('./views/About.vue')
     },   
     {

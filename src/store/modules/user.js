@@ -34,7 +34,7 @@ const actions = {
     const url = 'https://staging.comedian.maddevs.co/login'
     const data = new URLSearchParams()
     Object.entries(payload).forEach(([ key, value ]) => {
-      console.log(key, value)
+      // console.log(key, value)
       data.append(key, value)
     })
     const { data: { token } } = await axios.post(url, data, config)
