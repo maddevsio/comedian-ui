@@ -2,14 +2,16 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
+import {
+  fetch,
+  patch
+} from '../../helpers/requests'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-URL = "https://staging.comedian.maddevs.co"
-
 const state = {
-  bot: []
+  bot: null,
 }
 
 const mutations = {
@@ -19,19 +21,21 @@ const mutations = {
 }
 
 const actions = {
-  GET_BOT: ({
-    commit
+  GET_BOT: async ({
+    commit,
+  }, url) => {
+    const response = await fetch(url)
+    commit('SET_BOT', response.data)
+  },
+
+  UPDATE_BOT: async ({
+    commit,
+  }, {
+    url,
+    data
   }) => {
-    return new Promise((resolve, reject) => {
-      axios.get(`${URL}/v1/bots/2`)
-        .then((response) => {
-          commit('SET_BOT', response.data)
-          resolve()
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
+    const response = await patch(url, data)
+    commit('SET_BOT', response.data)
   }
 }
 

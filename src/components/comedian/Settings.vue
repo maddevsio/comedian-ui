@@ -84,48 +84,36 @@
 </template>
 
 <script>
-import axios from  'axios'
 import transform from '../../helpers/transform'
+import { mapState } from 'vuex'
+
 export default {
+  computed: mapState({
+    bot: state => state.bots.bot
+  }),
   data () {
     return {
       languages: [
         'ru_RU',
         'en_EN'
-      ],
-        bot: {
-        team_name: '',
-        password: '',
-        language:'en_US',
-        notifier_interval:'2',
-        reminder_time:'10',
-        reminder_repeat_max:'3',
-        }
-      }
-    },
+      ]      
+    }
+  },
   methods: {
+     async Save() {
+      const url=`bots/${this.$route.params.id}`
+      const transformedValues = transform(this.bot, {
+        notifier_interval: 'int',
+        reminder_repeats_max: 'int',
+        reminder_time: 'int',
+      })
 
-     Save() {
-       const transformedValues = transform(this.bot, {
-         notifier_interval: 'int',
-         reminder_repeats_max: 'int',
-         reminder_time: 'int',
-       })
-  
-      axios.patch(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`, {
-        ...transformedValues,
-      }).then(()=> {
-        alert("Изменения сохранены")
-      });      
+      await this.$store.dispatch('UPDATE_BOT', { url, data: transformedValues })
     }   
   },
-  created() {
-    axios.get(`https://staging.comedian.maddevs.co/v1/bots/${this.$route.params.id}`).then((response) => {
-      this.bot = response.data
-    })
-    .catch((e) => {
-      console.log('>>>', e);
-    })
+   beforeCreate() {
+    const url=`bots/${this.$route.params.id}`
+    this.$store.dispatch('GET_BOT', url)
   }
 }
 </script>
@@ -133,5 +121,3 @@ export default {
 <style lang="scss" scoped>
 
 </style>
-
-
