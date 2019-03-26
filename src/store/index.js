@@ -4,6 +4,7 @@ import standuper from './modules/standuper'
 import standups from './modules/standups'
 import bot from './modules/bot'
 import links from './modules/links'
+import user from './modules/user'
 import getters from './getters'
 
 
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
     standups,
     links,
     bot,
+    user
   },
   getters
 })
