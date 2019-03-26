@@ -32,15 +32,15 @@ export default {
     }
   },
   methods: {
-     Save() {
+     async Save() {
        const transformedValues = transform(this.standupers, {
          member_standup_time: 'int'
-       }) 
-      axios.patch(`https://staging.comedian.maddevs.co/v1/standupers/${this.$route.params.id}`, {
+       })
+
+      await axios.patch(`https://staging.comedian.maddevs.co/v1/standupers/${this.$route.params.id}`, {
         ...transformedValues,
-      }).then(()=> {
-        alert("Изменения сохранены")
-      });        
+      });
+      console.log('Saved')
     }   
   }  
 }

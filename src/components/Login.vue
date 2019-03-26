@@ -37,7 +37,7 @@
 <script>
 
 export default {
-  name: 'Checkin',
+  name: 'Login',
   data() {
     return {
         teamname: '',

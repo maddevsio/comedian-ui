@@ -11,7 +11,6 @@ const config = {
   }
 }
 
-URL = "https://staging.comedian.maddevs.co/"
 
 const TOKEN = 'token'
 
@@ -31,20 +30,15 @@ const mutations = {
 }
 
 const actions = {
-  LOGIN: ({ commit }, payload) => {
-    return new Promise((resolve, reject) => {
-      const params = new URLSearchParams();
-      params.append('teamname', payload.teamname);
-      params.append('password', payload.password);
-      axios.post(`${URL}login`, params, config)
-        .then((response) => {
-          commit('LOGIN', response.data.token)
-          resolve()
-        })
-        .catch((error) => {
-          reject(error)
-        })
+  LOGIN: async ({ commit }, payload) => {
+    const url = 'https://staging.comedian.maddevs.co/login'
+    const data = new URLSearchParams()
+    Object.entries(payload).forEach(([ key, value ]) => {
+      console.log(key, value)
+      data.append(key, value)
     })
+    const { data: { token } } = await axios.post(url, data, config)
+    commit('LOGIN', token)
   }
 }
 

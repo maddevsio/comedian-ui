@@ -18,12 +18,7 @@ const router = new Router({
       meta: {
         middleware: log,
       }
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('./views/Team.vue')
-     },
+    },    
     {
       path: '/teams/:id',
       name: 'comedian',
