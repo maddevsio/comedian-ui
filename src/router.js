@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import auth from './middleware/auth';
 import middleware1 from './middleware/middleware1';
 import middleware2 from './middleware/middleware2';
@@ -11,10 +10,10 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [{
+  routes: [ 
+    {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'login',
       meta: {
         middleware: log,
       }
@@ -22,8 +21,8 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import('./views/Team.vue')
-    },
+      component: () => import('./views/About.vue')
+    },   
     {
       path: '/teams/:id',
       name: 'comedian',
@@ -31,16 +30,7 @@ const router = new Router({
         middleware: [middleware2, log],
       },
       component: () => import('./views/Comedian.vue')
-    },
-    {
-      path: '/about',
-      name: 'checkin',
-      meta: {
-        middleware: log,
-      },
-      component: () => import('./views/About.vue'),
-
-    },
+    },   
     {
       path: '/teams/:id/standupers',
       name: 'standupers',
