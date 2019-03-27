@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import auth from './middleware/auth';
+import auth from './middleware/auth';
 import middleware1 from './middleware/middleware1';
 import middleware2 from './middleware/middleware2';
 import log from './middleware/log';
@@ -10,7 +10,7 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [ 
+  routes: [
     {
       path: '/',
       name: 'login',
@@ -18,20 +18,20 @@ const router = new Router({
         middleware: log,
       },
       component: () => import('./views/About.vue')
-    },   
+    },
     {
       path: '/teams/:id',
       name: 'comedian',
       meta: {
-        middleware: [middleware2, log],
+        middleware: [auth, log],
       },
       component: () => import('./views/Comedian.vue')
-    },   
+    },
     {
-      path: '/teams/:id/standupers',
+      path: '/standupers',
       name: 'standupers',
       meta: {
-        middleware: [middleware2, log],
+        middleware: [auth, log],
       },
       component: () => import('./views/Standupers.vue')
     },
@@ -44,7 +44,7 @@ const router = new Router({
       path: '/channels',
       name: 'channels',
       meta: {
-        middleware: [middleware2, log],
+        middleware: [auth, log],
       },
       component: () => import('./views/Channels.vue')
     },
@@ -52,7 +52,7 @@ const router = new Router({
       path: '/users',
       name: 'users',
       meta: {
-        middleware: [middleware2, middleware1, log],
+        middleware: [auth, log],
       },
       component: () => import('./views/Users.vue')
     },
@@ -60,7 +60,7 @@ const router = new Router({
       path: '/users/:id',
       name: 'users_edit',
       meta: {
-        middleware: [middleware1, log],
+        middleware: [auth, log],
       },
       component: () => import('./components/comedian/UsersEdit.vue')
     },
@@ -68,7 +68,7 @@ const router = new Router({
       path: '/channels/:id',
       name: 'edit',
       meta: {
-        middleware: [middleware1, log],
+        middleware: [auth, log],
       },
       component: () => import('./components/comedian/EditChannels.vue')
     }

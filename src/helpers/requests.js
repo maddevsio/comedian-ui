@@ -1,15 +1,12 @@
 import axios from 'axios'
-// import {
-//   store
-// } from '../store'
+import store from '../store'
 
 const baseApiUrl = 'https://staging.comedian.maddevs.co/v1'
 
 const getFullUrl = url => `${baseApiUrl}/${url}`
 
 const addToken = headers => {
-  // const token = this.$store.tokens.tokenAuth
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RfaWQiOjEwLCJleHBpcmUiOjE1NTM4NTc2NDYsInRlYW1faWQiOiJUSDEwQkhQREYifQ.AqpVxl8m0YoAuNGMuZbZk9t9C5Cuu6CBZnTLrskD8RU'
+  const token = store.state.user.token
   if (!token) {
     throw new Error('Unauthorized')
   }
