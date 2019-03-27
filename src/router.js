@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './middleware/auth';
-import middleware1 from './middleware/middleware1';
-import middleware2 from './middleware/middleware2';
 import log from './middleware/log';
 
 Vue.use(Router)
@@ -23,7 +21,7 @@ const router = new Router({
       path: '/teams/:id',
       name: 'comedian',
       meta: {
-        middleware: [auth, log],
+        middleware: [auth, log]
       },
       component: () => import('./views/Comedian.vue')
     },

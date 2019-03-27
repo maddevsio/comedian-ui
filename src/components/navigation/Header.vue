@@ -10,7 +10,7 @@
       <v-list-tile
         v-for="(item) in navLinks"
         :key="item.title"
-        :href="item.page"
+        :to="item.page"
       >
         <v-list-tile-content>          
           <v-list-tile-title>
