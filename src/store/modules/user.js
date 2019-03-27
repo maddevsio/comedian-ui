@@ -11,21 +11,20 @@ const config = {
   }
 }
 
-
-const TOKEN = 'token'
-
 const state = {
-  token: localStorage.getItem(TOKEN)
+  token: null,
+  bot: null,
 }
 
 const mutations = {
-  LOGIN: (state, newToken) => {
-    localStorage.setItem(TOKEN, newToken)
-    state.token = newToken
+  LOGIN: (state, payload) => {
+    console.log('LOGIN>>', payload)
+    state.token = payload.token
+    state.bot = payload.bot
   },
   LOGOUT: (state) => {
-    localStorage.removeItem(TOKEN)
     state.token = null
+    state.bot = null
   }
 }
 
@@ -33,12 +32,12 @@ const actions = {
   LOGIN: async ({ commit }, payload) => {
     const url = 'https://staging.comedian.maddevs.co/login'
     const data = new URLSearchParams()
-    Object.entries(payload).forEach(([ key, value ]) => {
-      // console.log(key, value)
+    Object.entries(payload).forEach(([key, value]) => {
       data.append(key, value)
     })
-    const { data: { token } } = await axios.post(url, data, config)
-    commit('LOGIN', token)
+    const { data: { bot, token } } = await axios.post(url, data, config)
+    commit('LOGIN', { token, bot })
+    return bot
   }
 }
 
