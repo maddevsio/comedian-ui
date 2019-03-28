@@ -1,6 +1,6 @@
 <template lang="html">
 <div> 
-  <v-form  method="post">
+  <v-form method="post">
     <v-container>
       <v-layout>
         <v-flex
@@ -84,40 +84,39 @@
 </template>
 
 <script>
-import transform from '../../helpers/transform'
-import { mapState } from 'vuex'
+import transform from "../../helpers/transform";
+import { mapState } from "vuex";
 
 export default {
   computed: mapState({
-    bot: state => state.bots.bot
+    bot: state => state.bots.bot || {}
   }),
-  data () {
+  data() {
     return {
-      languages: [
-        'ru_RU',
-        'en_EN'
-      ]      
-    }
+      languages: ["ru_RU", "en_EN"]
+    };
   },
   methods: {
-     async Save() {
-      const url=`bots/${this.$route.params.id}`
+    async Save() {
+      const url = `bots/${this.$route.params.id}`;
       const transformedValues = transform(this.bot, {
-        notifier_interval: 'int',
-        reminder_repeats_max: 'int',
-        reminder_time: 'int',
-      })
+        notifier_interval: "int",
+        reminder_repeats_max: "int",
+        reminder_time: "int"
+      });
 
-      await this.$store.dispatch('UPDATE_BOT', { url, data: transformedValues })
-    }   
+      await this.$store.dispatch("UPDATE_BOT", {
+        url,
+        data: transformedValues
+      });
+    }
   },
-   beforeCreate() {
-    const url=`bots/${this.$route.params.id}`
-    this.$store.dispatch('GET_BOT', url)
+  beforeCreate() {
+    const url = `bots/${this.$route.params.id}`;
+    this.$store.dispatch("GET_BOT", url);
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
