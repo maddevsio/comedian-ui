@@ -2,6 +2,11 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
+import {
+  fetch,
+  patch,
+  remove
+} from '../../helpers/requests'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
@@ -19,19 +24,29 @@ const mutations = {
 }
 
 const actions = {
-  GET_STANDUPERS: ({
-    commit
+  GET_STANDUPERS: async ({
+    commit,
+  }, url) => {
+    const response = await fetch(url)
+    commit('SET_STANDUPERS', response.data)
+  },
+
+  UPDATE_STANDUPERS: async ({
+    commit,
+  }, {
+    url,
+    data
   }) => {
-    return new Promise((resolve, reject) => {
-      axios.get(`${URL}/v1/standupers`)
-        .then((response) => {
-          commit('SET_STANDUPERS', response.data)
-          resolve()
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
+    const response = await patch(url, data)
+    commit('SET_STANDUPERS', response.data)
+  },
+
+  REMOVE_STANDUPER: async ({
+    commit,
+  }, {
+    url
+  }) => {
+    const response = await remove(url)
   }
 }
 

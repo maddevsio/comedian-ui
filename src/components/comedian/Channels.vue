@@ -50,8 +50,9 @@ export default {
     this.$store.dispatch("GET_CHANNELS", url);
   },
   methods: {
-    deleteChannel(id) {
+    async deleteChannel(id) {
       const url = "channels/" + id;
+      console.log(url);
       this.$store.dispatch("REMOVE_CHANNEL", url);
     }
   }
