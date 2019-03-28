@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import standuper from './modules/standuper'
 import standups from './modules/standups'
 import bots from './modules/bots'
+import users from './modules/users'
 import channels from './modules/channels'
 import links from './modules/links'
 import tokens from './modules/token'
@@ -18,6 +19,7 @@ const store = new Vuex.Store({
     standups,
     links,
     bots,
+    users,
     channels,
     tokens,
     user

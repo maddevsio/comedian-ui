@@ -34,11 +34,6 @@ const router = new Router({
       component: () => import('./views/Standupers.vue')
     },
     {
-      path: '/option',
-      name: 'option',
-      component: () => import('./views/Option.vue')
-    },
-    {
       path: '/channels',
       name: 'channels',
       meta: {
