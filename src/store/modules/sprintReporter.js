@@ -28,7 +28,7 @@ const actions = {
     GET_SPRINTREPORTERS: async ({
         commit,
     }, url) => {
-        const response = await fetch(url, {}, 'sprintReporter')
+        const response = await fetch(url, {}, {}, 'sprintReporter')
         commit('SET_SPRINTREPORTERS', response.data)
     },
 
@@ -56,7 +56,7 @@ const actions = {
     }, {
         url
     }) => {
-        return await remove(url, {}, 'sprintReporter')
+        return await remove(url, {}, {}, 'sprintReporter')
     }
 }
 
