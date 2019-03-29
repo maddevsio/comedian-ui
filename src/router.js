@@ -51,7 +51,7 @@ const router = new Router({
     },
     {
       path: '/users/:id',
-      name: 'users_edit',
+      name: 'usersEdit',
       meta: {
         middleware: [auth, log],
       },
@@ -64,6 +64,14 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./components/comedian/EditChannels.vue')
+    },
+    {
+      path: '/standupers/:id',
+      name: 'standuperEdit',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/comedian/StandupersEdit.vue')
     },
     {
       path: '/sprint-reporter',

@@ -1,7 +1,9 @@
 <template>
   <div class="standupers">
-    <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
-    <Standupers/>
+    <Header title="Standupers" :links="this.links" :navLinks="this.navLinks"/>
+    <v-content fluid fill-height>
+      <Standupers/>
+    </v-content>
   </div>
 </template>
 

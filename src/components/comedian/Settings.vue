@@ -74,11 +74,8 @@
           />
         </v-flex>
         </v-layout>
-    </v-container>
-    <v-btn @click='Save'
-    >
-     Save
-    </v-btn>
+        <v-btn @click='Save'>Save</v-btn>
+    </v-container>   
   </v-form>
   </v-card>
 </template>

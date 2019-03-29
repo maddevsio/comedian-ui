@@ -44,7 +44,7 @@ const actions = {
   }, {
     url
   }) => {
-    const response = await remove(url)
+    return await remove(url)
   }
 }
 
