@@ -15,7 +15,7 @@ export default {
   name: "users",
   computed: {
     links() {
-      return this.$store.state.links.linksComedian;
+      return this.$store.state.links.linksHeader;
     },
     navLinks() {
       return this.$store.state.links.comedianSideLinks;

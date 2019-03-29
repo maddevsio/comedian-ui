@@ -1,23 +1,17 @@
 <template>
   <div class="standupers">
-    <Header title="Standupers" :links="this.links" :navLinks="this.navLinks"/>
+    <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
-      <Standupers/>
+      <SprintReporter/>
     </v-content>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import Standupers from "@/components/Standupers.vue";
+import SprintReporter from "@/components/SprintReporter.vue";
 import Header from "@/components/navigation/Header.vue";
 
 export default {
-  name: "standupers",
-  components: {
-    Standupers,
-    Header
-  },
+  name: "sprint-reporter",
   computed: {
     links() {
       return this.$store.state.links.linksHeader;
@@ -25,6 +19,15 @@ export default {
     navLinks() {
       return this.$store.state.links.comedianSideLinks;
     }
+  },
+  components: {
+    Header,
+    SprintReporter
   }
 };
 </script>
+<style>
+aside {
+  margin-top: 64px !important;
+}
+</style>

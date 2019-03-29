@@ -3,20 +3,34 @@
     <v-form  method="post">
       <v-container>
         <v-layout row justify-center>
-          <v-flex
+          <v-dialog
+            ref="dialog"
+            v-model="modal2"
+            :return-value.sync="channel.channel_standup_time"
+            persistent
+            lazy
+            full-width
+            width="290px"
           >
-            <v-text-field
-              v-model="channel.channel_standup_time"
-              label="Channel Standup Time"
-              type="number"
-              required
-            />
-          </v-flex>       
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                v-model="channel.channel_standup_time"
+                label="Channel Standup Time"
+                append-icon="access_time"
+                readonly
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-time-picker v-if="modal2" v-model="channel.channel_standup_time" full-width>
+              <v-spacer></v-spacer>
+              <v-btn flat color="primary" @click="$refs.dialog.save(channel.channel_standup_time)">OK</v-btn>
+            </v-time-picker>
+          </v-dialog>
         </v-layout>
-      </v-container>
-      <v-btn @click='Save'>
-      Save
-      </v-btn>
+        <v-btn @click='Save'>
+        Save
+        </v-btn>
+      </v-container>      
     </v-form>
   </v-card>
 </template>
@@ -42,6 +56,11 @@ export default {
         data: transformedValues
       });
     }
+  },
+  data() {
+    return {
+      modal2: false
+    };
   },
   beforeCreate() {
     const url = `channels/${this.$route.params.id}`;
