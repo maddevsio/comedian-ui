@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs11 sm5>
+    <v-flex>
       <v-menu
         ref="menu"
         v-model="menu2"
@@ -16,6 +16,7 @@
       >
         <template v-slot:activator="{ on }">
           <v-text-field
+            :value="time"
             v-model="time"
             label="Picker in menu"
             prepend-icon="access_time"
@@ -26,8 +27,7 @@
         <v-time-picker v-if="menu2" v-model="time" full-width @click:minute="$refs.menu.save(time)"></v-time-picker>
       </v-menu>
     </v-flex>
-    <v-spacer></v-spacer>
-    <v-flex xs11 sm5>
+    <!-- <v-flex xs11 sm5>
       <v-dialog
         ref="dialog"
         v-model="modal2"
@@ -44,6 +44,7 @@
             prepend-icon="access_time"
             readonly
             v-on="on"
+            @input="triggerEvant"
           ></v-text-field>
         </template>
         <v-time-picker v-if="modal2" v-model="time" full-width>
@@ -52,18 +53,23 @@
           <v-btn flat color="primary" @click="$refs.dialog.save(time)">OK</v-btn>
         </v-time-picker>
       </v-dialog>
-    </v-flex>
+    </v-flex>-->
   </v-layout>
 </template>
 
 <script>
 export default {
+  props: ["time"],
   data() {
     return {
-      time: null,
       menu2: false,
       modal2: false
     };
+  },
+  method: {
+    triggerEvant(event) {
+      this.$emit("input", event.target.value);
+    }
   }
 };
 </script>
