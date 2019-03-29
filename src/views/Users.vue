@@ -8,7 +8,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Users from "@/components/comedian/Users.vue";
 import Header from "@/components/navigation/Header.vue";
 export default {

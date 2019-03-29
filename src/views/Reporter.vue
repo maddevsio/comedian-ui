@@ -1,5 +1,5 @@
 <template>
-  <div class="standupers">
+  <div>
     <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
       <Reporter/>
