@@ -51,14 +51,8 @@ export default {
   },
   methods: {
     deleteChannel(id) {
-      const url = `https://staging.comedian.maddevs.co/v1/channels/${id}`;
-      const token = this.$store.state.token;
-      const headers = `Authorization: Bearer ${token}`;
-      axios.delete(url, {
-        headers: {
-          Authorization: `'Bearer' ${token}`
-        }
-      });
+      const url = `channels/${id}`;
+      this.$store.dispatch("REMOVE_CHANNEL", { url });
     }
   }
 };

@@ -47,6 +47,15 @@
           </v-dialog>
         </v-flex>
         <v-flex xs12 md12>
+          <v-select
+            v-model="sprintReporter.language"
+            :items="languages"
+            label="Language"
+            data-vv-name="select"
+            required
+          />
+        </v-flex>
+        <v-flex xs12 md12>
           <v-text-field
             v-model="sprintReporter.task_done_status"
             label="Task Done Status"
@@ -65,24 +74,24 @@
     </v-form>
   </v-card>
 </template>
+
 <script>
-import transform from "../helpers/transform";
-import { patch } from "../helpers/requests";
-import store from "../store";
 import axios from "axios";
 
 export default {
   data() {
     return {
       sprintReporter: {
+        language: "en_US",
+        report_time: "",
         service_enabled: true,
         report_days: [],
         report_channel: null,
-        task_done_status: "done",
-        channels: ["general", "channel1", "channel2"],
-        report_time: ""
+        task_done_status: "done"
       },
       modal2: false,
+      channels: ["general", "channel1", "channel2"],
+      languages: ["en_EN", "ru_RU"],
       days: [
         "Sunday",
         "Monday",
@@ -91,23 +100,12 @@ export default {
         "Thursday",
         "Friday",
         "Saturday"
-      ],
-      channels: ["general"]
+      ]
     };
   },
   methods: {
     async Save() {
-      const team_id = store.state.user.bot.team_id;
-      const url = `https://staging-sprint-reporter.maddevs.co/v1/configurations/${team_id}`;
-      const transformedValues = transform(this.sprintReporter, {});
-      const token = store.state.user.token;
-      const header = `Authorization: Bearer ${token}`;
-      axios.patch(url, {
-        headers: {
-          header
-        },
-        body: this.sprintReporter
-      });
+      this.$store.dispatch("ADD_SPRINTREPORTER", this.sprintReporter);
     }
   }
 };
