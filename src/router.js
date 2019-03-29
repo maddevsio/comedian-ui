@@ -96,6 +96,22 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./views/Standups.vue')
+    },
+    {
+      path: '/sprintreporter/add',
+      name: 'sprintreporterAdd',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/SprintReporterAdd.vue')
+    },
+    {
+      path: '/sprintreporter/list',
+      name: 'sprintreporterList',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/sprint-reporter/ListSprintReporter.vue')
     }
   ]
 })

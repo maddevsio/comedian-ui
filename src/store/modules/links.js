@@ -58,7 +58,24 @@ const state = {
     text: 'Users',
     page: '/users'
   }
+  ],
+  sprintReporterSideLinks: [{
+    id: 0,
+    text: 'Settings',
+    page: '/sprint-reporter'
+  },
+  {
+    id: 1,
+    text: 'Add Sprint Reporter',
+    page: '/sprintreporter/add'
+  },
+  {
+    id: 2,
+    text: 'List Sprint Reporters',
+    page: '/sprintreporter/list'
+  }
   ]
+
 }
 const links = {
   state
