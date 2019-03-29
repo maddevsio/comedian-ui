@@ -2,12 +2,12 @@
   <div class="standupers">
     <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
-      <SprintReporter/>
+      <Reporter/>
     </v-content>
   </div>
 </template>
 <script>
-import SprintReporter from "@/components/SprintReporter.vue";
+import Reporter from "@/components/Reporter.vue";
 import Header from "@/components/navigation/Header.vue";
 
 export default {
@@ -22,7 +22,7 @@ export default {
   },
   components: {
     Header,
-    SprintReporter
+    Reporter
   }
 };
 </script>

@@ -4,19 +4,9 @@
       <v-container>
         <v-flex xs12 md12>
           <v-select
-            v-model="sprintReporter.report_channel"
+            v-model="reporter.reporting_channel"
             :items="channels"
             label="Channels"
-            data-vv-name="select"
-            required
-          />
-        </v-flex>
-        <v-flex xs12 md12>
-          <v-select
-            v-model="sprintReporter.report_days"
-            :items="days"
-            label="Days"
-            multiple
             data-vv-name="select"
             required
           />
@@ -25,7 +15,7 @@
           <v-dialog
             ref="dialog"
             v-model="modal2"
-            :return-value.sync="sprintReporter.report_time"
+            :return-value.sync="reporter.report_time"
             persistent
             lazy
             full-width
@@ -33,31 +23,38 @@
           >
             <template v-slot:activator="{ on }">
               <v-text-field
-                v-model="sprintReporter.report_time"
+                v-model="reporter.report_time"
                 label="Time"
                 append-icon="access_time"
                 readonly
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-time-picker v-if="modal2" v-model="sprintReporter.report_time" full-width>
+            <v-time-picker v-if="modal2" v-model="reporter.report_time" full-width>
               <v-spacer></v-spacer>
-              <v-btn flat color="primary" @click="$refs.dialog.save(sprintReporter.report_time)">OK</v-btn>
+              <v-btn flat color="primary" @click="$refs.dialog.save(reporter.report_time)">OK</v-btn>
             </v-time-picker>
           </v-dialog>
         </v-flex>
         <v-flex xs12 md12>
-          <v-text-field
-            v-model="sprintReporter.task_done_status"
-            label="Task Done Status"
-            type="string"
+          <v-select
+            v-model="reporter.language"
+            :items="languages"
+            label="Language"
+            data-vv-name="select"
             required
           />
         </v-flex>
         <v-flex xs12 md12>
           <v-switch
-            v-model="sprintReporter.service_enabled"
-            :label="`${sprintReporter.service_enabled ? ' Service Enabled': 'Service Disabled' }`"
+            v-model="reporter.individual_report_status"
+            :label="`Individual Report Status ${reporter.individual_report_status ? 'True': 'False' }`"
+          />
+        </v-flex>
+        <v-flex xs12 md12>
+          <v-switch
+            v-model="reporter.collector_enabled"
+            :label="`${reporter.collector_enabled ? 'Collector Enabled ': 'Collector Disabled' }`"
           />
         </v-flex>
         <v-btn block color="primary" @click="Save">Save</v-btn>
@@ -74,39 +71,30 @@ import axios from "axios";
 export default {
   data() {
     return {
-      sprintReporter: {
-        service_enabled: true,
-        report_days: [],
+      reporter: {
+        collector_enabled: true,
         report_channel: null,
-        task_done_status: "done",
-        channels: ["general", "channel1", "channel2"],
+        individual_report_status: true,
+        language: "en_US",
         report_time: ""
       },
       modal2: false,
-      days: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      channels: ["general"]
+      channels: ["general"],
+      languages: ["en_EN", "ru_RU"]
     };
   },
   methods: {
     async Save() {
       const team_id = store.state.user.bot.team_id;
-      const url = `https://staging-sprint-reporter.maddevs.co/v1/configurations/${team_id}`;
-      const transformedValues = transform(this.sprintReporter, {});
+      const url = `https://staging-reporter.maddevs.co/v1/configurations/${team_id}`;
+      const transformedValues = transform(this.reporter, {});
       const token = store.state.user.token;
       const header = `Authorization: Bearer ${token}`;
       axios.patch(url, {
         headers: {
           header
         },
-        body: this.sprintReporter
+        body: this.reporter
       });
     }
   }

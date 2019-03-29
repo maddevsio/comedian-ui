@@ -7,7 +7,7 @@ Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
 const state = {
-  linksComedian: [{
+  linksHeader: [{
     id: 0,
     text: 'Comedian',
     page: '/#'
@@ -20,7 +20,7 @@ const state = {
   {
     id: 2,
     text: 'Reporter',
-    page: '/#'
+    page: '/reporter'
   },
   {
     id: 3,
