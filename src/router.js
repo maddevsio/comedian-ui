@@ -88,6 +88,14 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./views/Reporter.vue')
+    },
+    {
+      path: '/standups',
+      name: 'standups',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./views/Standups.vue')
     }
   ]
 })

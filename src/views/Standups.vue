@@ -1,21 +1,20 @@
 <template>
   <div>
-    <Header title="Standupers" :links="this.links" :navLinks="this.navLinks"/>
+    <Header title="Standups" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
-      <Standupers/>
+      <Standups/>
     </v-content>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Standupers from "@/components/Standupers.vue";
+import Standups from "@/components/Standups.vue";
 import Header from "@/components/navigation/Header.vue";
 
 export default {
   name: "standupers",
   components: {
-    Standupers,
+    Standups,
     Header
   },
   computed: {

@@ -51,7 +51,7 @@ const state = {
   {
     id: 3,
     text: 'StandUp',
-    page: '/#'
+    page: '/standups'
   },
   {
     id: 4,
