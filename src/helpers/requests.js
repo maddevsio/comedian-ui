@@ -1,8 +1,8 @@
 import axios from 'axios'
 import store from '../store'
 
-const baseApiUrl = 'https://staging.comedian.maddevs.co/v1'
-const sprintReporterBaseUrl = 'https://staging-sprint-reporter.comedian.maddevs.co/v1'
+const baseApiUrl = 'https://staging.comedian.maddevs.co'
+const sprintReporterBaseUrl = 'https://staging-sprint-reporter.comedian.maddevs.co'
 
 const getFullUrl = (service, url) => {
   let baseUrl
@@ -31,7 +31,7 @@ const addToken = headers => {
   }
 }
 
-export async function fetch(path, { }, headers = {}, service = 'comedian', withAuth = true) {
+export async function fetch(path, params, headers = {}, service = 'comedian', withAuth = true) {
   const url = getFullUrl(service, path)
 
   if (withAuth) {
@@ -68,7 +68,7 @@ export async function patch(path, data, headers = {}, service = 'comedian', with
   });
 }
 
-export async function remove(path, { }, headers = {}, service = 'comedian', withAuth = true) {
+export async function remove(path, headers = {}, service = 'comedian', withAuth = true) {
   const url = getFullUrl(service, path)
 
   if (withAuth) {
