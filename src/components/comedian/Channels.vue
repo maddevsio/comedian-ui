@@ -22,7 +22,7 @@
 <script>
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
-
+import axios from "axios";
 export default {
   computed: mapState({
     channels: state => state.channels.channels
@@ -50,10 +50,15 @@ export default {
     this.$store.dispatch("GET_CHANNELS", url);
   },
   methods: {
-    async deleteChannel(id) {
-      const url = `channels/${id}`;
-      console.log(url);
-      this.$store.dispatch("REMOVE_CHANNEL", url);
+    deleteChannel(id) {
+      const url = `https://staging.comedian.maddevs.co/v1/channels/${id}`;
+      const token = this.$store.state.token;
+      const headers = `Authorization: Bearer ${token}`;
+      axios.delete(url, {
+        headers: {
+          Authorization: `'Bearer' ${token}`
+        }
+      });
     }
   }
 };
