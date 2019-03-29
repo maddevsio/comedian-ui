@@ -1,5 +1,5 @@
 <template lang="html">
-<div> 
+  <v-card class="mt-3 mx-auto" max-width="900">
   <v-form method="post">
     <v-container>
       <v-layout>
@@ -19,7 +19,7 @@
           md4
         >
           <v-text-field
-            v-model="bot.password"
+            v-model="newPassword"
             label="Password"
             type="password"
             required
@@ -80,7 +80,7 @@
      Save
     </v-btn>
   </v-form>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -93,12 +93,14 @@ export default {
   }),
   data() {
     return {
-      languages: ["ru_RU", "en_EN"]
+      languages: ["ru_RU", "en_EN"],
+      newPassword: ""
     };
   },
   methods: {
     async Save() {
       const url = `bots/${this.$route.params.id}`;
+      this.bot.password = this.newPassword;
       const transformedValues = transform(this.bot, {
         notifier_interval: "int",
         reminder_repeats_max: "int",

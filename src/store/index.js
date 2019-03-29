@@ -6,7 +6,6 @@ import bots from './modules/bots'
 import users from './modules/users'
 import channels from './modules/channels'
 import links from './modules/links'
-import tokens from './modules/token'
 import user from './modules/user'
 import getters from './getters'
 
@@ -21,7 +20,6 @@ const store = new Vuex.Store({
     bots,
     users,
     channels,
-    tokens,
     user
   },
   getters

@@ -64,6 +64,14 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./components/comedian/EditChannels.vue')
+    },
+    {
+      path: '/sprint-reporter',
+      name: 'sprint-reporter',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./views/SprintReporter.vue')
     }
   ]
 })
