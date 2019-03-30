@@ -8,6 +8,7 @@ services:
 
   comedian-ui:
     build:
+      context: .
       args:
         - VUE_APP_COMEDIAN_API_BASE_URL=https://staging.comedian.maddevs.co
         - VUE_APP_SPRINT_REPORTER_API_BASE_URL=https://staging-sprint-reporter.comedian.maddevs.co
