@@ -14,6 +14,8 @@ services:
       - VIRTUAL_HOST=admin-staging.comedian.maddevs.co
       - LETSENCRYPT_HOST=admin-staging.comedian.maddevs.co
       - LETSENCRYPT_EMAIL=fedorenko.tolik@gmail.com
+      - VUE_APP_COMEDIAN_API_BASE_URL=https://staging.comedian.maddevs.co
+      - VUE_APP_SPRINT_REPORTER_API_BASE_URL=hhttps://staging-sprint-reporter.comedian.maddevs.co
     expose:
       - 80
     networks: 
