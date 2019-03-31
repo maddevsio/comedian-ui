@@ -83,7 +83,7 @@ export default {
   methods: {
     async Save() {
       const botId = this.bot.id;
-      const url = `bots/${botId}`;
+      const url = `v1/bots/${botId}`;
       this.bot.password = this.newPassword;
       const transformedValues = transform(this.bot, {
         notifier_interval: "int",
@@ -99,7 +99,7 @@ export default {
   },
   beforeCreate() {
     const botId = this.$store.state.user.bot.id;
-    const url = `bots/${botId}`;
+    const url = `v1/bots/${botId}`;
     this.$store.dispatch("GET_BOT", url);
   }
 };
