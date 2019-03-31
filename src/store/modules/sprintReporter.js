@@ -12,7 +12,6 @@ import {
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-URL = "https://staging-sprint-reporter.maddevs.co"
 
 const state = {
     sprintReporters: []
