@@ -1,17 +1,16 @@
 <template>
   <div>
-    <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
+    <Header title="Add Sprint Report" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
-      <SprintReporter/>
+      <AddSprintReport/>
     </v-content>
   </div>
 </template>
 <script>
-import SprintReporter from "@/components/SprintReporter.vue";
+import AddSprintReport from "@/components/sprint-reporter/AddSprintReport.vue";
 import Header from "@/components/navigation/Header.vue";
 
 export default {
-  name: "sprint-reporter",
   computed: {
     links() {
       return this.$store.state.links.linksHeader;
@@ -22,7 +21,7 @@ export default {
   },
   components: {
     Header,
-    SprintReporter
+    AddSprintReport
   }
 };
 </script>

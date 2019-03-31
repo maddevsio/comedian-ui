@@ -1,9 +1,23 @@
 import axios from 'axios'
 import store from '../store'
 
-const baseApiUrl = 'https://staging.comedian.maddevs.co/v1'
+const baseApiUrl = process.env.VUE_APP_COMEDIAN_API_BASE_URL // 'https://staging.comedian.maddevs.co'
+const sprintReporterBaseUrl = process.env.VUE_APP_SPRINT_REPORTER_API_BASE_URL // 'https://staging-sprint-reporter.comedian.maddevs.co'
 
-const getFullUrl = url => `${baseApiUrl}/${url}`
+const getFullUrl = (service, url) => {
+  let baseUrl
+
+  switch (service) {
+    case 'sprintReporter':
+      baseUrl = sprintReporterBaseUrl
+      break;
+    default:
+      baseUrl = baseApiUrl
+      break;
+  }
+
+  return `${baseUrl}/${url}`
+}
 
 const addToken = headers => {
   const token = store.state.user.token
@@ -17,8 +31,8 @@ const addToken = headers => {
   }
 }
 
-export async function fetch(path, params, headers = {}, withAuth = true) {
-  const url = getFullUrl(path)
+export async function fetch(path, params, headers = {}, service = 'comedian', withAuth = true) {
+  const url = getFullUrl(service, path)
 
   if (withAuth) {
     headers = addToken(headers)
@@ -30,8 +44,8 @@ export async function fetch(path, params, headers = {}, withAuth = true) {
   });
 }
 
-export async function post(path, data, headers = {}, withAuth = true) {
-  const url = getFullUrl(path)
+export async function post(path, data, headers = {}, service = 'comedian', withAuth = true) {
+  const url = getFullUrl(service, path)
 
   if (withAuth) {
     headers = addToken(headers)
@@ -42,8 +56,8 @@ export async function post(path, data, headers = {}, withAuth = true) {
   });
 }
 
-export async function patch(path, data, headers = {}, withAuth = true) {
-  const url = getFullUrl(path)
+export async function patch(path, data, headers = {}, service = 'comedian', withAuth = true) {
+  const url = getFullUrl(service, path)
 
   if (withAuth) {
     headers = addToken(headers)
@@ -54,8 +68,8 @@ export async function patch(path, data, headers = {}, withAuth = true) {
   });
 }
 
-export async function remove(path, headers = {}, withAuth = true) {
-  const url = getFullUrl(path)
+export async function remove(path, headers = {}, service = 'comedian', withAuth = true) {
+  const url = getFullUrl(service, path)
 
   if (withAuth) {
     headers = addToken(headers)

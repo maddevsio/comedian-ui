@@ -1,6 +1,6 @@
 stages:
   - build
-  - staging_deploy
+  - deploy
 services:
   - docker:dind
   
@@ -22,7 +22,7 @@ build:
 
 
 staging_deploy:
-  stage: staging_deploy
+  stage: deploy
   image: halfb00t/alpine:3.7
   before_script:
     - eval "$(ssh-agent -s)"
@@ -39,3 +39,21 @@ staging_deploy:
     - master
   #when:
   #  manual
+
+prod_deploy:
+  stage: deploy
+  image: halfb00t/alpine:3.7
+  before_script:
+    - eval "$(ssh-agent -s)"
+    - echo "$DEPLOY_SERVER_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - scp -r docker-compose-prod.yml gitlab@$DEPLOY_SERVER_IP:/opt/docker/comedian-ui-prod/docker-compose.yml
+    - ssh gitlab@$DEPLOY_SERVER_IP "$DEPLOY_COMMAND"
+    - ssh-agent -k
+  only:
+    - master
+  when: manual
