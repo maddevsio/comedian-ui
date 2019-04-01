@@ -10,7 +10,7 @@ import {
 Vue.use(Vuex)
 
 const state = {
-    sprintReporters: []
+    configurations: []
 }
 
 const mutations = {
@@ -33,7 +33,7 @@ const actions = {
         url,
         data
     }) => {
-        const response = await post(url, data, 'sprintReporter')
+        const response = await post(url, data, {}, 'sprintReporter')
         commit('SET_SPRINTREPORTERS', response.data)
     },
     UPDATE_SPRINTREPORTERS: async ({
@@ -42,7 +42,7 @@ const actions = {
         url,
         data
     }) => {
-        const response = await patch(url, data, 'sprintReporter')
+        const response = await patch(url, data, {}, 'sprintReporter')
         commit('SET_SPRINTREPORTERS', response.data)
     },
 
@@ -55,9 +55,9 @@ const actions = {
     }
 }
 
-const sprintReporters = {
+const configurations = {
     state,
     mutations,
     actions
 }
-export default sprintReporters
+export default configurations

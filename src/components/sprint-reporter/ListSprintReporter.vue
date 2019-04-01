@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-card class="mt-3 mx-auto" max-width="1200">
-      <v-data-table :headers="headers" :items="sprintReporters">
+    <v-card class="mt-3 mx-auto" max-width="1200" v-if="configurations">
+      <v-data-table :headers="headers" :items="configurations" class="elevation-1">
         <template v-slot:items="props">
           <td class="text-xs-left">{{ props.item.id }}</td>
           <td class="text-xs-left">{{ props.item.service_enabled }}</td>
@@ -12,30 +12,41 @@
           <td class="text-xs-left">{{ props.item.task_done_status}}</td>
           <td class="text-xs-left">{{ props.item.language}}</td>
           <td class="text-xs-left">
-            <router-link :to="{ name: 'sprintReporterEdit', params: { id: props.item.id } }">
-              <i class="material-icons option-btn">edit</i>
-            </router-link>
+            <!-- <router-link :to="{ name: 'sprintReporterEdit', params: { id: props.item.id } }"> -->
+            <i class="material-icons option-btn">edit</i>
+            <!-- </router-link> -->
             <i class="material-icons option-btn" @click="deleteSprintReporter(props.item.id)">delete</i>
           </td>
         </template>
       </v-data-table>
+      <div class="link">
+        <router-link :to="{ path: '/sprintreporter/add'}">
+          <i class="material-icons option-btn option-btn--add">add</i>
+        </router-link>
+      </div>
     </v-card>
-    <router-link :to="{ path: '/sprintreporter/add'}" class="link link--right">
-      <i class="material-icons option-btn option-btn--add">add</i>
-    </router-link>
+    <v-card class="mt-3 mx-auto" max-width="400" v-else>
+      <v-alert
+        :value="true"
+        color="warning"
+        icon="priority_high"
+        outline
+      >There is no such sprint reporter.</v-alert>
+    </v-card>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import store from "../../store";
 export default {
   computed: mapState({
-    sprintReporters: state => state.sprintReporters
+    configurations: state => {
+      return state.configurations.sprintReporters;
+    }
   }),
   data() {
     return {
-      dialog: false,
-      title: "Sprint Reporters",
       headers: [
         { text: "ID", value: "id" },
         { text: "Service Enabled", value: "service_enabled" },
@@ -67,22 +78,9 @@ export default {
   font-size: 18px;
   text-decoration: none;
   text-transform: none;
-
-  &--add {
-    background: #42b983;
-    color: white;
-    font-style: 1rem;
-    font-weight: bold;
-    border-radius: 50%;
-    text-align: center;
-    padding: 0.5rem;
-  }
   &:hover {
-    background: darken(#42b983, 10%);
+    color: #42b983;
     cursor: pointer;
-  }
-  .link {
-    margin: 0.5rem;
   }
 }
 </style>

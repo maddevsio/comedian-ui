@@ -111,7 +111,7 @@ const router = new Router({
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./components/sprint-reporter/ListSprintReporter.vue')
+      component: () => import('./views/SprintReporter.vue')
     }
   ]
 })
