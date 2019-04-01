@@ -3,7 +3,8 @@ import store from '../store'
 
 const baseApiUrl = process.env.VUE_APP_COMEDIAN_API_BASE_URL // 'https://staging.comedian.maddevs.co'
 const sprintReporterBaseUrl = process.env.VUE_APP_SPRINT_REPORTER_API_BASE_URL // 'https://staging-sprint-reporter.comedian.maddevs.co'
-
+console.log("baseApiUrl>>>>>>>", baseApiUrl)
+console.log("sprintReporterBaseUrl>>>>>>>", sprintReporterBaseUrl)
 const getFullUrl = (service, url) => {
   let baseUrl
 
