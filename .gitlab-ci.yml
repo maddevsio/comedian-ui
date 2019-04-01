@@ -3,21 +3,34 @@ stages:
   - deploy
 services:
   - docker:dind
-  
-build:
+
+
+build_staging:
   image: docker:latest
   stage: build
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
-    - docker build --pull -t registry.gitlab.com/team-monitoring/comedian-ui .
-    - docker tag registry.gitlab.com/team-monitoring/comedian-ui registry.gitlab.com/team-monitoring/comedian-ui:staging
-    - docker push registry.gitlab.com/team-monitoring/comedian-ui
+    - docker build --build-arg VUE_APP_COMEDIAN_API_BASE_URL=$STAGING_COMEDIAN_API_BASE_URL --build-arg VUE_APP_SPRINT_REPORTER_API_BASE_URL=$STAGING_SPRINT_REPORTER_API_BASE_URL --build-arg VUE_APP_REPORTER_API_BASE_URL=$STAGING_REPORTER_API_BASE_URL --build-arg VUE_APP_ON_DUTY_BASE_URL=$STAGING_ON_DUTY_BASE_URL --pull -t registry.gitlab.com/team-monitoring/comedian-ui .
+    - docker tag registry.gitlab.com/team-monitoring/comedian-ui:staging
     - docker push registry.gitlab.com/team-monitoring/comedian-ui:staging
   only:
     - master
-  #when:
-  #  manual
+  allow_failure: false
+
+
+build_prod:
+  image: docker:latest
+  stage: build
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+    - docker build --build-arg VUE_APP_COMEDIAN_API_BASE_URL=$PROD_COMEDIAN_API_BASE_URL --build-arg VUE_APP_SPRINT_REPORTER_API_BASE_URL=$PROD_SPRINT_REPORTER_API_BASE_URL --build-arg VUE_APP_REPORTER_API_BASE_URL=$PROD_REPORTER_API_BASE_URL --build-arg VUE_APP_ON_DUTY_BASE_URL=$PROD_ON_DUTY_BASE_URL --pull -t registry.gitlab.com/team-monitoring/comedian-ui .
+    - docker tag registry.gitlab.com/team-monitoring/comedian-ui
+    - docker push registry.gitlab.com/team-monitoring/comedian-ui
+  only:
+    - master
+  when: manual
   allow_failure: false
 
 
@@ -51,7 +64,7 @@ prod_deploy:
     - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - scp -r docker-compose-prod.yml gitlab@$DEPLOY_SERVER_IP:/opt/docker/comedian-ui-prod/docker-compose.yml
+    - scp -r docker-compose.yml gitlab@$DEPLOY_SERVER_IP:/opt/docker/comedian-ui-prod/docker-compose.yml
     - ssh gitlab@$DEPLOY_SERVER_IP "$DEPLOY_COMMAND"
     - ssh-agent -k
   only:
