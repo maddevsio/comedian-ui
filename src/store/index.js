@@ -7,7 +7,7 @@ import users from './modules/users'
 import channels from './modules/channels'
 import links from './modules/links'
 import user from './modules/user'
-import sprintReporter from './modules/sprintReporter'
+import configurations from './modules/sprintReporter'
 import getters from './getters'
 
 
@@ -21,7 +21,7 @@ const store = new Vuex.Store({
     bots,
     users,
     channels,
-    sprintReporter,
+    configurations,
     user
   },
   getters

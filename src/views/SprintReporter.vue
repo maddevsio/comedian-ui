@@ -2,12 +2,12 @@
   <div>
     <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
-      <SprintReporter/>
+      <SprintReporterList/>
     </v-content>
   </div>
 </template>
 <script>
-import SprintReporter from "@/components/SprintReporter.vue";
+import SprintReporterList from "@/components/sprint-reporter/ListSprintReporter.vue";
 import Header from "@/components/navigation/Header.vue";
 
 export default {
@@ -22,7 +22,7 @@ export default {
   },
   components: {
     Header,
-    SprintReporter
+    SprintReporterList
   }
 };
 </script>
