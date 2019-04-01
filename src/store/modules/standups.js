@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import {
+  post,
+  fetch,
+  patch
+} from '../../helpers/requests'
 Vue.use(Vuex)
 
 const state = {

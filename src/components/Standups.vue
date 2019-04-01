@@ -42,12 +42,13 @@ export default {
 
   methods: {
     deleteStandup(id) {
-      const url = `standups/${id}`;
+      const url = `v1/standups/${id}`;
       this.$store.dispatch("REMOVE_STANDUP", url);
     }
   },
   beforeCreate() {
-    this.$store.dispatch("GET_STANDUPS");
+    const url = "v1/standups";
+    this.$store.dispatch("GET_STANDUPS", url);
   }
 };
 </script>    

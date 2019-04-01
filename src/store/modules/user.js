@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {
-  post
+  post,
+  fetch,
+  patch
 } from '../../helpers/requests'
 
 Vue.use(Vuex)
