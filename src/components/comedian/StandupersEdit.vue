@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
 
@@ -36,7 +35,7 @@ export default {
   },
   methods: {
     async Save() {
-      const url = `standupers/${this.$route.params.id}`;
+      const url = `v1/standupers/${this.$route.params.id}`;
       await this.$store.dispatch("UPDATE_STANDUPERS", {
         url,
         data: this.standuper.role_in_channel
@@ -44,7 +43,7 @@ export default {
     }
   },
   beforeCreate() {
-    const url = `standupers/${this.$route.params.id}`;
+    const url = `v1/standupers/${this.$route.params.id}`;
     this.$store.dispatch("GET_STANDUPERS", url);
   }
 };

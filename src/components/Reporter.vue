@@ -66,7 +66,6 @@
 import transform from "../helpers/transform";
 import { patch } from "../helpers/requests";
 import store from "../store";
-import axios from "axios";
 
 export default {
   data() {
@@ -86,16 +85,8 @@ export default {
   methods: {
     async Save() {
       const team_id = store.state.user.bot.team_id;
-      const url = `https://staging-reporter.maddevs.co/v1/configurations/${team_id}`;
-      const transformedValues = transform(this.reporter, {});
-      const token = store.state.user.token;
-      const header = `Authorization: Bearer ${token}`;
-      axios.patch(url, {
-        headers: {
-          header
-        },
-        body: this.reporter
-      });
+      const url = `configurations/${team_id}`;
+      this.$store.dispatch("GET_REPORTER");
     }
   }
 };

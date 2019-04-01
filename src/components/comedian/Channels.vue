@@ -22,7 +22,6 @@
 <script>
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
-import axios from "axios";
 export default {
   computed: mapState({
     channels: state => state.channels.channels
@@ -46,12 +45,12 @@ export default {
     };
   },
   beforeCreate() {
-    const url = "channels";
+    const url = "v1/channels";
     this.$store.dispatch("GET_CHANNELS", url);
   },
   methods: {
     deleteChannel(id) {
-      const url = `channels/${id}`;
+      const url = `v1/channels/${id}`;
       this.$store.dispatch("REMOVE_CHANNEL", { url });
     }
   }
