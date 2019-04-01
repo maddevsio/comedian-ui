@@ -46,9 +46,7 @@ export default {
   methods: {
     async Save() {
       const url = `v1/channels/${this.$route.params.id}`;
-      const transformedValues = transform(this.channel, {
-        channel_standup_time: "int"
-      });
+      const transformedValues = transform(this.channel, {});
 
       await this.$store.dispatch("UPDATE_CHANNEL", {
         url,
