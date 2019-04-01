@@ -1,6 +1,4 @@
 import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
 import {
   fetch,
@@ -9,7 +7,6 @@ import {
 } from '../../helpers/requests'
 
 Vue.use(Vuex)
-Vue.use(VueAxios, axios)
 
 const state = {
   channels: [],
