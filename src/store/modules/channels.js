@@ -41,9 +41,9 @@ const actions = {
 
   REMOVE_CHANNEL: async ({
     commit,
-  }, {
+  },
     url
-  }) => {
+  ) => {
     return await remove(url)
   }
 }

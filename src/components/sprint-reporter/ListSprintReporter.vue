@@ -50,12 +50,12 @@ export default {
   },
   methods: {
     async deleteSprintReporter(id) {
-      const url = `configurations/${id}`;
+      const url = `v1/configurations/${id}`;
       this.$store.dispatch("REMOVE_SPRINTREPORTER", url);
     }
   },
   beforeCreate() {
-    const url = `configuration`;
+    const url = `v1/configurations`;
     this.$store.dispatch("GET_SPRINTREPORTERS", url);
   }
 };

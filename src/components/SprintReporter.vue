@@ -69,19 +69,21 @@
 import transform from "../helpers/transform";
 import { patch } from "../helpers/requests";
 import store from "../store";
-import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
+  computed: mapState({
+    sprintReporter: state => state.sprintReporter.sprintReporter || {}
+  }),
   data() {
     return {
-      sprintReporter: {
-        service_enabled: true,
-        report_days: [],
-        report_channel: null,
-        task_done_status: "done",
-        channels: ["general", "channel1", "channel2"],
-        report_time: ""
-      },
+      // sprintReporter: {
+      //   service_enabled: true,
+      //   report_days: [],
+      //   report_channel: null,
+      //   task_done_status: "done",
+      //   report_time: ""
+      // },
       modal2: false,
       days: [
         "Sunday",
@@ -92,23 +94,22 @@ export default {
         "Friday",
         "Saturday"
       ],
-      channels: ["general"]
+      channels: ["general", "channel1", "channel2"]
     };
   },
   methods: {
     async Save() {
-      const team_id = store.state.user.bot.team_id;
-      const url = `https://staging-sprint-reporter.maddevs.co/v1/configurations/${team_id}`;
       const transformedValues = transform(this.sprintReporter, {});
-      const token = store.state.user.token;
-      const header = `Authorization: Bearer ${token}`;
-      axios.patch(url, {
-        headers: {
-          header
-        },
-        body: this.sprintReporter
+      await this.$store.dispatch("UPDATE_SPRINTREPORTERS", {
+        url,
+        data: transformedValues
       });
     }
+  },
+  beforeCreate() {
+    const team_id = store.state.user.bot.team_id;
+    const url = `v1/configurations/${team_id}`;
+    this.$store.dispatch("GET_SPRINTREPORTERS", url);
   }
 };
 </script>

@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
 
@@ -46,7 +45,7 @@ export default {
   }),
   methods: {
     async Save() {
-      const url = `channels/${this.$route.params.id}`;
+      const url = `v1/channels/${this.$route.params.id}`;
       const transformedValues = transform(this.channel, {
         channel_standup_time: "int"
       });
@@ -63,7 +62,7 @@ export default {
     };
   },
   beforeCreate() {
-    const url = `channels/${this.$route.params.id}`;
+    const url = `v1/channels/${this.$route.params.id}`;
     this.$store.dispatch("GET_CHANNELS", url);
   }
 };

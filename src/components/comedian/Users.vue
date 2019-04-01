@@ -10,9 +10,9 @@
         <td class="text-xs-left">{{ props.item.role }}</td>
         <td class="text-xs-left">{{ props.item.real_name }}</td>
         <td class="text-xs-left">
-          <!-- <router-link :to="{ name:'users_edit', params: { id: props.item.id } }"> -->
-          <i class="material-icons option-btn">edit</i>
-          <!-- </router-link> -->
+          <router-link :to="{ name:'users_edit', params: { id: props.item.id } }">
+            <i class="material-icons option-btn">edit</i>
+          </router-link>
         </td>
       </template>
     </v-data-table>
@@ -20,7 +20,6 @@
 </template>
   
 <script>
-import axios from "axios";
 import { mapState } from "vuex";
 export default {
   computed: mapState({
@@ -44,7 +43,7 @@ export default {
     };
   },
   beforeCreate() {
-    const url = "users";
+    const url = "v1/users";
     this.$store.dispatch("GET_USERS", url);
   }
 };
