@@ -44,7 +44,7 @@
         color="warning"
         icon="priority_high"
         outline
-      >If this is your first time login, please, use your team name as username and password. Change your password immediately for security reasons.</v-alert>
+      >If this is your first time login, please, use your team name as username and password.</v-alert>
     </v-card>
   </v-content>
 </template>
