@@ -13,7 +13,7 @@
       <v-toolbar-side-icon @click.stop="isNavShown=!isNavShown"></v-toolbar-side-icon>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <!-- <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items class="hidden-sm-and-down">
         <router-link
           class="v-btn v-btn--flat theme--light"
           v-for="routes in links"
@@ -21,7 +21,7 @@
           :to="`${routes.page}`"
           flat
         >{{routes.text}}</router-link>
-      </v-toolbar-items>-->
+      </v-toolbar-items>
     </v-toolbar>
   </div>
 </template>
