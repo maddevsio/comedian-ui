@@ -1,6 +1,6 @@
 <template>
-  <v-card class="mt-3 mx-auto" max-width="900">
-    <v-data-table :headers="headers" :items="users">
+  <v-card class="mt-3 mx-auto" max-width="1200">
+    <v-data-table :headers="headers" :items="users" class="elevation-1">
       <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
         <td class="text-xs-left">{{ props.item.id }}</td>
@@ -29,6 +29,7 @@ export default {
     return {
       headers: [
         {
+          dialog: false,
           text: "Users",
           align: "center"
         },

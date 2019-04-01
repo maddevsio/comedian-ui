@@ -1,6 +1,6 @@
 <template>
-  <v-card class="mt-3 mx-auto" max-width="900">
-    <v-data-table :headers="this.headers" :items="channels" class="elevation-1">
+  <v-card class="mt-3 mx-auto" max-width="1200">
+    <v-data-table :headers="headers" :items="channels" class="elevation-1">
       <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
         <td class="text-xs-left">{{ props.item.id }}</td>
@@ -28,10 +28,10 @@ export default {
   }),
   data() {
     return {
-      dialog: false,
       title: "Channels",
       headers: [
         {
+          dialog: false,
           text: "Channels",
           align: "center"
         },

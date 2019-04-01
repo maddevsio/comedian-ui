@@ -3,24 +3,23 @@
     <v-form method="post">
       <v-container>
         <v-layout>
-          <v-flex xs12 md4>
+          <v-flex xs12 md6>
             <v-text-field
               v-model="bot.team_name"
               label="Team Name"
-              required
+              readonly
             />
           </v-flex>
 
-          <v-flex xs12 md4>
+          <!-- <v-flex xs12 md4>
             <v-text-field
               v-model="newPassword"
               label="Password"
               type="password"
-              required
             />
-          </v-flex>
+          </v-flex> -->
 
-          <v-flex xs12 md4>
+          <v-flex xs12 md6>
             <v-select
               v-model="bot.language"
               :items="languages"
@@ -32,13 +31,13 @@
         </v-layout>
         
         <v-layout>
-          <v-flex xs12 md4>
-              <v-text-field
-                v-model="bot.notifier_interval"
-                label="Notifier Interval"
-                type="number"
-                required
-              />
+          <v-flex xs12 md4>            
+            <v-text-field
+              v-model="bot.notifier_interval"
+              label="Notifier Interval"
+              type="number" 
+              required
+            />
           </v-flex>
 
           <v-flex xs12 md4>
@@ -93,7 +92,16 @@ export default {
 
       await this.$store.dispatch("UPDATE_BOT", {
         url,
-        data: transformedValues
+        data: {
+          bot_access_token: transformedValues.bot_access_token,
+          team_name: transformedValues.team_name,
+          team_id: transformedValues.team_id,
+          // password:transformedValues.password,
+          language: transformedValues.language,
+          notifier_interval: transformedValues.notifier_interval,
+          reminder_repeats_max: transformedValues.reminder_repeats_max,
+          reminder_time: transformedValues.reminder_time
+        }
       });
     }
   },
