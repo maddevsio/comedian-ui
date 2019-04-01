@@ -4,31 +4,32 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  linksHeader: [{
-    id: 0,
-    text: 'Comedian',
-    page: '/#'
-  },
-  {
-    id: 1,
-    text: 'Collector',
-    page: '/#'
-  },
-  {
-    id: 2,
-    text: 'Reporter',
-    page: '/reporter'
-  },
-  {
-    id: 3,
-    text: 'Sprint Reporter',
-    page: '/sprint-reporter'
-  },
-  {
-    id: 4,
-    text: 'On Duty Service',
-    page: '/#'
-  }
+  linksHeader: [
+    // {
+    //   id: 0,
+    //   text: 'Comedian',
+    //   page: '/#'
+    // },
+    // {
+    //   id: 1,
+    //   text: 'Collector',
+    //   page: '/#'
+    // },
+    // {
+    //   id: 2,
+    //   text: 'Reporter',
+    //   page: '/reporter'
+    // },
+    {
+      id: 3,
+      text: 'Sprint Reporter',
+      page: '/sprintreporter/list'
+    },
+    // {
+    //   id: 4,
+    //   text: 'On Duty Service',
+    //   page: '/#'
+    // }
   ],
   comedianSideLinks: [{
     id: 0,
