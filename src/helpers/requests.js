@@ -22,7 +22,7 @@ const getFullUrl = (service, url) => {
 const addToken = headers => {
   const token = store.state.user.token
   if (!token) {
-    throw new Error('Unauthorized')
+    throw new Error('Access token is required.')
   }
 
   return {

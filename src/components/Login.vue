@@ -61,16 +61,9 @@ export default {
         teamname: this.teamname,
         password: this.password
       };
-
       this.$store
         .dispatch("LOGIN", payload)
-        .then(bot => {
-          console.log(this.$router.push);
-          this.$router.push({ path: `/teams/${bot.id}` });
-        })
-        .catch(() => {
-          this.error = "User not authenticated";
-        });
+        .then(bot => this.$router.push({ path: `/teams/${bot.id}` }));
     }
   }
 };
