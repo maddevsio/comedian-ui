@@ -53,16 +53,13 @@ export default {
 };
 </script>    
 
-<style>
-.text-xs-center {
-  display: flex;
-  margin-left: 27px;
-}
-
-.theme--light.v-datatable thead th.column.sortable.active,
-.theme--light.v-datatable thead th.column.sortable.active .v-icon,
-.theme--light.v-datatable thead th.column.sortable:hover {
-  color: rgba(10, 7, 32, 0.87);
-  font-size: 15px;
+<style lang="scss" scoped>
+.option-btn {
+  color: grey;
+  font-size: 18px;
+  &:hover {
+    color: #42b983;
+    cursor: pointer;
+  }
 }
 </style>
