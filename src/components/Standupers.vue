@@ -1,6 +1,6 @@
 <template>
   <v-card class="mt-3 mx-auto" max-width="1200">
-    <v-data-table :headers="headers" :items="standupers">
+    <v-data-table :headers="headers" :items="standupers" class="elevation-1">
       <template v-slot:items="props">
         <td class="text-xs-left">{{ props.item.id }}</td>
         <td class="text-xs-left">{{ props.item.user_id }}</td>
