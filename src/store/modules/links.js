@@ -23,7 +23,7 @@ const state = {
     {
       id: 3,
       text: 'Sprint Reporter',
-      page: '/sprintreporter/list'
+      page: '/sprintreporter'
     },
     // {
     //   id: 4,

@@ -10,12 +10,12 @@ import {
 Vue.use(Vuex)
 
 const state = {
-    configurations: []
+    sprintReporters: []
 }
 
 const mutations = {
     SET_SPRINTREPORTERS: (state, sprintReporters) => {
-        state.sprintReporters = sprintReporters
+        state.configurations = sprintReporters
     }
 }
 
@@ -29,11 +29,9 @@ const actions = {
 
     ADD_SPRINTREPORTER: async ({
         commit,
-    }, {
-        url,
-        data
-    }) => {
-        const response = await post(url, data, {}, 'sprintReporter')
+    },
+        data) => {
+        const response = await post('v1/configurations', data, {}, 'sprintReporter')
         commit('SET_SPRINTREPORTERS', response.data)
     },
     UPDATE_SPRINTREPORTERS: async ({
