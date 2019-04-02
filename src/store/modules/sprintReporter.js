@@ -10,12 +10,12 @@ import {
 Vue.use(Vuex)
 
 const state = {
-    sprintReporters: []
+    entities: []
 }
 
 const mutations = {
     SET_SPRINTREPORTERS: (state, sprintReporters) => {
-        state.configurations = sprintReporters
+        state.entities = sprintReporters
     }
 }
 
@@ -53,9 +53,8 @@ const actions = {
     }
 }
 
-const configurations = {
+export default {
     state,
     mutations,
     actions
 }
-export default configurations

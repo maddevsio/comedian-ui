@@ -35,10 +35,7 @@ import store from "../../store";
 export default {
   computed: mapState({
     configurations: state => {
-      return state.configurations.configurations;
-    },
-    config: state => {
-      return state.configurations;
+      return state.sprintReporters.entities;
     }
   }),
   data() {
@@ -57,7 +54,7 @@ export default {
     };
   },
   methods: {
-    async deleteSprintReporter(id) {     
+    async deleteSprintReporter(id) {
       const url = `v1/configurations/${id}`;
       this.$store.dispatch("REMOVE_SPRINTREPORTER", url);
     }
