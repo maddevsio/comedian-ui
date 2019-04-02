@@ -88,7 +88,15 @@ import { mapState } from "vuex";
 
 export default {
   computed: mapState({
-    sprintReporter: state => state.configurations.configurations
+    sprintReporter: state => {
+      if (!state.sprintReporter) {
+        console.log("NOT FOUND", state);
+        return null;
+      }
+      console.log("AAAAA>>>>>>", state);
+      const entities = state.sprintReporter.entities;
+      return entities;
+    }
   }),
   data() {
     return {
