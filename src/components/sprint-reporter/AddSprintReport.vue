@@ -77,11 +77,13 @@
 
 <script>
 import axios from "axios";
+import store from "../../store";
 
 export default {
   data() {
     return {
       sprintReporter: {
+        team_id: "",
         language: "en_US",
         report_time: "",
         service_enabled: true,
@@ -105,6 +107,13 @@ export default {
   },
   methods: {
     async Save() {
+      const team_id = store.state.user.bot.team_id;
+      this.sprintReporter.team_name = store.state.user.bot.team_name;
+      this.sprintReporter.team_id = team_id;
+      console.log(this.sprintReporter.team_id);
+      this.sprintReporter.report_days = this.sprintReporter.report_days.join(
+        ","
+      );
       this.$store.dispatch("ADD_SPRINTREPORTER", this.sprintReporter);
     }
   }

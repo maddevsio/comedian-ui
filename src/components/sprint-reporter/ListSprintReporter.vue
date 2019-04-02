@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-card class="mt-3 mx-auto" max-width="1200" v-if="config">
-      <v-data-table :headers="headers" :items="config.sprintReporters" class="elevation-1">
+    <v-card class="mt-3 mx-auto" max-width="1200">
+      <v-data-table :headers="headers" :items="configurations" class="elevation-1">
         <template v-slot:items="props">
           <td class="text-xs-left">{{ props.item.id }}</td>
           <td class="text-xs-left">{{ props.item.service_enabled }}</td>
@@ -26,14 +26,6 @@
         </router-link>
       </div>
     </v-card>
-    <v-card class="mt-3 mx-auto" max-width="400" v-else>
-      <v-alert
-        :value="true"
-        color="warning"
-        icon="priority_high"
-        outline
-      >There is no such sprint reporter.</v-alert>
-    </v-card>
   </div>
 </template>
 
@@ -43,7 +35,7 @@ import store from "../../store";
 export default {
   computed: mapState({
     configurations: state => {
-      return state.configurations.sprintReporters;
+      return state.configurations.configurations;
     },
     config: state => {
       return state.configurations;
@@ -65,7 +57,7 @@ export default {
     };
   },
   methods: {
-    async deleteSprintReporter(id) {
+    async deleteSprintReporter(id) {     
       const url = `v1/configurations/${id}`;
       this.$store.dispatch("REMOVE_SPRINTREPORTER", url);
     }

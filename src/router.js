@@ -74,12 +74,12 @@ const router = new Router({
       component: () => import('./components/comedian/StandupersEdit.vue')
     },
     {
-      path: '/sprint-reporter',
-      name: 'sprint-reporter',
+      path: '/sprintreporter',
+      name: 'sprintreporter',
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./views/SprintReporter.vue')
+      component: () => import('./views/SprintReporterSettings.vue')
     },
     {
       path: '/reporter',
