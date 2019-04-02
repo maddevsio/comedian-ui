@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 const state = {
   linksHeader: [
-    // {
-    //   id: 0,
-    //   text: 'Comedian',
-    //   page: '/#'
-    // },
+    {
+      id: 0,
+      text: 'Comedian',
+      page: '/comedian'
+    },
     // {
     //   id: 1,
     //   text: 'Collector',
