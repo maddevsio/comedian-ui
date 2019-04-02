@@ -77,7 +77,6 @@
         outline
       >There is no such sprint reporter.</v-alert>
     </v-card>
-    <p>{{ sprintReporter}}</p>
   </div>
 </template>
 <script>
@@ -90,11 +89,14 @@ export default {
   computed: mapState({
     sprintReporter: state => {
       if (!state.sprintReporter) {
-        console.log("NOT FOUND", state);
         return null;
       }
-      console.log("AAAAA>>>>>>", state);
+      // FIXME
       const entities = state.sprintReporter.entities;
+      if (typeof entities.report_days === "string") {
+        console.log(">>>>>>", entities.report_days);
+        entities.report_days = entities.report_days.split(",");
+      }
       return entities;
     }
   }),
@@ -117,6 +119,21 @@ export default {
     async Save() {
       const id = this.sprintReporter.id;
       const url = `v1/configurations/${id}`;
+      var report_days = "";
+      // this.sprintReporter.report_days.forEach(element => {
+      //   report_days = report_days + "," + element;
+      // });
+      // for (
+      //   var i = 0, len = this.sprintReporter.report_days.length;
+      //   i < len;
+      //   i++
+      // ) {
+      //   report_days = report_days + "," + this.sprintReporter.report_days[i];
+      //   console.log(report_days);
+      // }
+      // this.sprintReporter.report_days = Object.values(
+      //   this.sprintReporter.report_days
+      // ).join(",");
       this.sprintReporter.report_days = this.sprintReporter.report_days.join(
         ","
       );
