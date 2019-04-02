@@ -64,7 +64,7 @@ prod_deploy:
     - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - scp -r docker-compose.yml gitlab@$DEPLOY_SERVER_IP:/opt/docker/comedian-ui-prod/docker-compose.yml
+    - scp -r docker-compose-prod.yml gitlab@$DEPLOY_SERVER_IP:/opt/docker/comedian-ui-prod/docker-compose.yml
     - ssh gitlab@$DEPLOY_SERVER_IP "$DEPLOY_COMMAND"
     - ssh-agent -k
   only:
