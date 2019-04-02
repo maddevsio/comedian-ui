@@ -5,15 +5,14 @@ networks:
 
 services:
   comedian-ui:
-    image: registry.gitlab.com/team-monitoring/comedian-ui:$TAG
+    container_name: comedian-ui
+    image: registry.gitlab.com/team-monitoring/comedian-ui:staging
     restart: always
     environment:
-      - VIRTUAL_HOST=$VIRTUAL_HOST
-      - LETSENCRYPT_HOST=$LETSENCRYPT_HOST
+      - VIRTUAL_HOST=admin-staging.comedian.maddevs.co
+      - LETSENCRYPT_HOST=admin-staging.comedian.maddevs.co
       - LETSENCRYPT_EMAIL=fedorenko.tolik@gmail.com
     expose:
       - 80
     networks: 
       - comedian_comedian
-
-

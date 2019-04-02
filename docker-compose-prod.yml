@@ -7,13 +7,6 @@ services:
 
 
   comedian-ui:
-    build:
-      context: .
-      args:
-        - VUE_APP_COMEDIAN_API_BASE_URL=https://comedian-new.maddevs.co
-        - VUE_APP_SPRINT_REPORTER_API_BASE_URL=https://staging-sprint-reporter.comedian.maddevs.co
-        - VUE_APP_REPORTER_API_BASE_URL=https://staging-reporter.comedian.maddevs.co
-        - VUE_APP_ON_DUTY_BASE_URL=https://staging-onduty-service.comedian.maddevs.co
     container_name: comedian-ui-prod
     image: registry.gitlab.com/team-monitoring/comedian-ui:latest
     restart: always
