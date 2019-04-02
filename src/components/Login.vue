@@ -71,7 +71,7 @@ export default {
       };
       this.$store
         .dispatch("LOGIN", payload)
-        .then(bot => this.$router.push({ path: `/teams/${bot.id}` }));
+        .then(bot => this.$router.push({ path: `/comedian` }));
     }
   }
 };

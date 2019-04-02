@@ -18,7 +18,7 @@ const router = new Router({
       component: () => import('./views/About.vue')
     },
     {
-      path: '/teams/:id',
+      path: '/comedian',
       name: 'comedian',
       meta: {
         middleware: [auth, log]

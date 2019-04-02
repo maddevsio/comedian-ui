@@ -21,6 +21,7 @@
       </v-data-table>
       <div class="link">
         <router-link :to="{ path: '/sprintreporter/add'}">
+          <i class="option-btn option-btn--small">Add sprint reporter</i>
           <i class="material-icons option-btn option-btn--add">add</i>
         </router-link>
       </div>
@@ -78,9 +79,30 @@ export default {
   font-size: 18px;
   text-decoration: none;
   text-transform: none;
+  &--small {
+    font-size: 14px;
+  }
+
   &:hover {
     color: #42b983;
     cursor: pointer;
   }
+
+  &--add {
+    border-radius: 50%;
+    padding: 0.5rem;
+    margin: 1rem;
+    color: white;
+    background: #42b983;
+
+    &:hover {
+      color: white;
+      background: darken(#42b983, 10%);
+    }
+  }
+}
+.link {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
