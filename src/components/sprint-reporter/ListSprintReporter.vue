@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-card class="mt-3 mx-auto" max-width="1200" v-if="configurations">
-      <v-data-table :headers="headers" :items="configurations" class="elevation-1">
+    <v-card class="mt-3 mx-auto" max-width="1200" v-if="config">
+      <v-data-table :headers="headers" :items="config.sprintReporters" class="elevation-1">
         <template v-slot:items="props">
           <td class="text-xs-left">{{ props.item.id }}</td>
           <td class="text-xs-left">{{ props.item.service_enabled }}</td>
@@ -44,6 +44,9 @@ export default {
   computed: mapState({
     configurations: state => {
       return state.configurations.sprintReporters;
+    },
+    config: state => {
+      return state.configurations;
     }
   }),
   data() {
