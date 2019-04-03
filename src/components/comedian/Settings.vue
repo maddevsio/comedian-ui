@@ -3,7 +3,7 @@
     <v-form method="post">
       <v-container>
         <v-layout>
-          <v-flex xs12 md6>
+          <v-flex xs12 md4>
             <v-text-field
               v-model="bot.team_name"
               label="Team Name"
@@ -11,15 +11,15 @@
             />
           </v-flex>
 
-          <!-- <v-flex xs12 md4>
+          <v-flex xs12 md4>
             <v-text-field
               v-model="newPassword"
               label="Password"
               type="password"
             />
-          </v-flex> -->
+          </v-flex>
 
-          <v-flex xs12 md6>
+          <v-flex xs12 md4>
             <v-select
               v-model="bot.language"
               :items="languages"
@@ -31,31 +31,38 @@
         </v-layout>
         
         <v-layout>
-          <v-flex xs12 md4>            
+          <v-flex xs12 md4> 
+            <abbr title="Update notifier interval of the bot">           
             <v-text-field
               v-model="bot.notifier_interval"
               label="Notifier Interval"
+              
               type="number" 
               required
             />
+            </abbr>
           </v-flex>
 
           <v-flex xs12 md4>
+          <abbr title="Update reminder time (in minutes) of the bot">     
           <v-text-field
             v-model="bot.reminder_time"
             label="Reminder Time"
             type="number"
             required
           />
+          </abbr>
           </v-flex>
 
           <v-flex xs12 md4>
+            <abbr title="Update maximum reminder attempts of the bot">  
             <v-text-field
               v-model="bot.reminder_repeats_max"
               label="Reminder Repeats"
               type="number"
               required
             />
+            </abbr>
           </v-flex>
         </v-layout>
         <v-btn color="primary white--text" @click='Save'>Save</v-btn>
@@ -90,19 +97,21 @@ export default {
         reminder_time: "int"
       });
 
-      await this.$store.dispatch("UPDATE_BOT", {
-        url,
-        data: {
-          bot_access_token: transformedValues.bot_access_token,
-          team_name: transformedValues.team_name,
-          team_id: transformedValues.team_id,
-          password: transformedValues.password,
-          language: transformedValues.language,
-          notifier_interval: transformedValues.notifier_interval,
-          reminder_repeats_max: transformedValues.reminder_repeats_max,
-          reminder_time: transformedValues.reminder_time
-        }
-      });
+      await this.$store
+        .dispatch("UPDATE_BOT", {
+          url,
+          data: {
+            bot_access_token: transformedValues.bot_access_token,
+            team_name: transformedValues.team_name,
+            team_id: transformedValues.team_id,
+            password: transformedValues.password,
+            language: transformedValues.language,
+            notifier_interval: transformedValues.notifier_interval,
+            reminder_repeats_max: transformedValues.reminder_repeats_max,
+            reminder_time: transformedValues.reminder_time
+          }
+        })
+        .then(alert("successfully saved"));
     }
   },
   beforeCreate() {
