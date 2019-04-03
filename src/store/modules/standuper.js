@@ -38,9 +38,7 @@ const actions = {
 
   REMOVE_STANDUPER: async ({
     commit,
-  }, {
-    url
-  }) => {
+  }, url) => {
     return await remove(url)
   }
 }

@@ -38,7 +38,9 @@ export default {
       const url = `v1/standupers/${this.$route.params.id}`;
       await this.$store.dispatch("UPDATE_STANDUPERS", {
         url,
-        data: this.standuper.role_in_channel
+        data: {
+          role_in_channel: this.standuper.role_in_channel
+        }
       });
     }
   },
