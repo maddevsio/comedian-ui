@@ -20,11 +20,11 @@ const state = {
     //   text: 'Reporter',
     //   page: '/reporter'
     // },
-    {
-      id: 3,
-      text: 'Sprint Reporter',
-      page: '/sprintreporter'
-    },
+    // {
+    //   id: 3,
+    //   text: 'Sprint Reporter',
+    //   page: '/sprintreporter'
+    // },
     // {
     //   id: 4,
     //   text: 'On Duty Service',
