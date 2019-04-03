@@ -38,14 +38,9 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-card class="mx-auto" max-width="500">
-      <v-alert
-        :value="true"
-        color="warning"
-        icon="priority_high"
-        outline
-      >If this is your first time login, please, use your team name as username and password.</v-alert>
-    </v-card>
+    <v-layout>
+      <v-alert v-model="errorStatus" dismissible type="error">{{errorText}}</v-alert>
+    </v-layout>
   </v-content>
 </template>
 
@@ -56,7 +51,9 @@ export default {
     return {
       teamname: "",
       password: "",
-      error: ""
+      error: "",
+      errorStatus: false,
+      errorText: ""
     };
   },
 
@@ -71,7 +68,11 @@ export default {
       };
       this.$store
         .dispatch("LOGIN", payload)
-        .then(bot => this.$router.push({ path: `/comedian` }));
+        .then(bot => this.$router.push({ path: `/comedian` }))
+        .catch(err => {
+          this.errorStatus = true;
+          this.errorText = err.message;
+        });
     }
   }
 };

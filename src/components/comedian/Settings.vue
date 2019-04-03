@@ -68,6 +68,24 @@
         <v-btn color="primary white--text" @click='Save'>Save</v-btn>
       </v-container>   
     </v-form>
+    <v-layout> 
+      <v-alert
+        v-model="alert"
+        dismissible
+        type="success"
+      >
+        Successfully saved
+      </v-alert>
+    </v-layout> 
+    <v-layout> 
+      <v-alert
+        v-model="errorStatus"
+        dismissible
+        type="error"
+      >
+        {{errorText}}
+      </v-alert>
+    </v-layout> 
   </v-card>
 </template>
 
@@ -75,6 +93,7 @@
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
 import store from "../../store";
+import { error } from "util";
 
 export default {
   computed: mapState({
@@ -83,7 +102,10 @@ export default {
   data() {
     return {
       languages: ["ru_RU", "en_EN"],
-      newPassword: ""
+      newPassword: "",
+      alert: false,
+      errorStatus: false,
+      errorText: ""
     };
   },
   methods: {
@@ -111,7 +133,12 @@ export default {
             reminder_time: transformedValues.reminder_time
           }
         })
-        .then(alert("successfully saved"));
+        .then(() => {
+          this.alert = true;
+        })
+        .catch(error => {
+          (this.errorStatus = true), (this.errorText = error.message);
+        });
     }
   },
   beforeCreate() {
