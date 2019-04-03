@@ -96,7 +96,7 @@ export default {
           bot_access_token: transformedValues.bot_access_token,
           team_name: transformedValues.team_name,
           team_id: transformedValues.team_id,
-          // password:transformedValues.password,
+          password: transformedValues.password,
           language: transformedValues.language,
           notifier_interval: transformedValues.notifier_interval,
           reminder_repeats_max: transformedValues.reminder_repeats_max,
