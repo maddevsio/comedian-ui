@@ -34,7 +34,7 @@ const state = {
   comedianSideLinks: [{
     id: 0,
     text: 'Settings',
-    page: '/teams/:id'
+    page: '/comedian'
   },
   {
     id: 1,
@@ -60,7 +60,7 @@ const state = {
   sprintReporterSideLinks: [{
     id: 0,
     text: 'Settings',
-    page: '/sprint-reporter'
+    page: '/sprintreporter'
   },
   {
     id: 1,
