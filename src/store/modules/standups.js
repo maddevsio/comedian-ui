@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 import {
   post,
   fetch,
-  patch
+  patch,
+  remove
 } from '../../helpers/requests'
 Vue.use(Vuex)
 
@@ -31,9 +32,9 @@ const actions = {
 
   REMOVE_STANDUP: async ({
     commit,
-  }, {
+  },
     url
-  }) => {
+  ) => {
     return await remove(url)
   },
 
@@ -42,7 +43,7 @@ const actions = {
     commit('SET_STANDUPS', response.data)
   },
 
-  UPDATE_STANDUP: async ({ commit }, { url, data }) => {
+  UPDATE_STANDUPS: async ({ commit }, { url, data }) => {
     const response = await patch(url, data)
     commit('SET_STANDUPS', response.data)
   }

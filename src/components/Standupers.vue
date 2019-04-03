@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     async deleteStanduper(id) {
-      const url = "v1/standupers/" + id;
+      const url = `v1/standupers/${id}`;
       this.$store.dispatch("REMOVE_STANDUPER", url);
     }
   },
