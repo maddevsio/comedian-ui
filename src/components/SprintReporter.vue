@@ -137,10 +137,25 @@ export default {
       this.sprintReporter.report_days = this.sprintReporter.report_days.join(
         ","
       );
+      console.log(typeof this.sprintReporter.report_days);
+      const days = this.sprintReporter.report_days.join(",");
+      this.sprintReporter.report_days = days;
+      console.log("uyfdghj", days, "lkjhg", this.sprintReporter.report_days);
+
       const transformedValues = transform(this.sprintReporter, {});
+      transformedValues.report_days = days;
       await this.$store.dispatch("UPDATE_SPRINTREPORTERS", {
         url,
-        data: transformedValues
+        data: {
+          id: this.sprintReporter.id,
+          service_enabled: this.sprintReporter.service_enabled,
+          team_name: this.sprintReporter.team_name,
+          report_time: this.sprintReporter.report_time,
+          report_channel: this.sprintReporter.report_channel,
+          report_days: days,
+          task_done_status: this.sprintReporter.task_done_status,
+          language: this.sprintReporter.language
+        }
       });
     }
   },

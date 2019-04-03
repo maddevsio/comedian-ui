@@ -58,7 +58,7 @@
             />
           </v-flex>
         </v-layout>
-        <v-btn @click='Save'>Save</v-btn>
+        <v-btn color="primary white--text" @click='Save'>Save</v-btn>
       </v-container>   
     </v-form>
   </v-card>

@@ -1,6 +1,20 @@
 <template>
   <div>
-    <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
+    <!-- <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/> -->
+    <v-toolbar app fixed clipped-left>
+      <v-toolbar-side-icon @click.stop="isNavShown=!isNavShown"></v-toolbar-side-icon>
+      <v-toolbar-title>SprintReporter</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <router-link
+          class="v-btn v-btn--flat theme--light"
+          v-for="routes in links"
+          v-bind:key="routes.id"
+          :to="`${routes.page}`"
+          flat
+        >{{routes.text}}</router-link>
+      </v-toolbar-items>
+    </v-toolbar>
     <v-content fluid fill-height>
       <SprintReporter/>
     </v-content>
