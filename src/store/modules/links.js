@@ -29,7 +29,12 @@ const state = {
     //   id: 4,
     //   text: 'On Duty Service',
     //   page: '/#'
-    // }
+    // },
+    {
+      id: 5,
+      text: 'Logout',
+      page: '/login'
+    }
   ],
   comedianSideLinks: [{
     id: 0,
