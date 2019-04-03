@@ -15,16 +15,16 @@ const state = {
     //   text: 'Collector',
     //   page: '/#'
     // },
-    // {
-    //   id: 2,
-    //   text: 'Reporter',
-    //   page: '/reporter'
-    // },
-    // {
-    //   id: 3,
-    //   text: 'Sprint Reporter',
-    //   page: '/sprintreporter'
-    // },
+    {
+      id: 2,
+      text: 'Reporter',
+      page: '/reporter'
+    },
+    {
+      id: 3,
+      text: 'Sprint Reporter',
+      page: '/sprintreporter'
+    },
     // {
     //   id: 4,
     //   text: 'On Duty Service',
