@@ -91,12 +91,33 @@ export default {
       if (!state.sprintReporter) {
         return null;
       }
+      const formatTime = time => {
+        if (!time) {
+          return null;
+        }
+        if (time.length !== 5) {
+          return null;
+        }
+
+        const splitted = time.split(":");
+        if (
+          splitted.length !== 2 ||
+          splitted[0].length !== 2 ||
+          splitted[1].length !== 2
+        ) {
+          return null;
+        }
+
+        return time;
+      };
       // FIXME
       const entities = state.sprintReporter.entities;
+      console.log(">>>>>>", entities.report_time);
       if (typeof entities.report_days === "string") {
         console.log(">>>>>>", entities.report_days);
         entities.report_days = entities.report_days.split(",");
       }
+      entities.report_time = formatTime(entities.report_time);
       return entities;
     }
   }),

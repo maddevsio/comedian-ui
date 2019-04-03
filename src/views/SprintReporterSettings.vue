@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/> -->
     <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="isNavShown=!isNavShown"></v-toolbar-side-icon>
       <v-toolbar-title>SprintReporter</v-toolbar-title>
