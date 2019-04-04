@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-toolbar app fixed clipped-left>
+    <v-toolbar app fixed clipped-left dark color="primary">
       <v-toolbar-side-icon @click.stop="isNavShown=!isNavShown"></v-toolbar-side-icon>
       <v-toolbar-title>SprintReporter</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <router-link
-          class="v-btn v-btn--flat theme--light"
+          class="v-btn v-btn--flat theme--light white--text"
           v-for="routes in links"
           v-bind:key="routes.id"
           :to="`${routes.page}`"

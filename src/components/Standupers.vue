@@ -2,13 +2,12 @@
   <v-card class="mt-3 mx-auto" max-width="1200">
     <v-data-table :headers="headers" :items="standupers" class="elevation-1">
       <template v-slot:items="props">
-        <td class="text-xs-left">{{ props.item.id }}</td>
         <td class="text-xs-left">{{ props.item.user_id }}</td>
         <td class="text-xs-left">{{ props.item.channel_id }}</td>
         <td class="text-xs-left">{{ props.item.role_in_channel }}</td>
         <td class="text-xs-left">{{ props.item.submitted_standup_today }}</td>
         <td class="text-xs-left">{{ props.item.created }}</td>
-        <td class="text-xs-left">
+        <!-- <td class="text-xs-left">
           <router-link
             class="isDisabled"
             :to="{ name: 'standuperEdit', params: { id: props.item.id } }"
@@ -16,7 +15,7 @@
             <i class="material-icons option-btn">edit</i>
           </router-link>
           <i class="material-icons option-btn" @click="deleteStanduper(props.item.id)">delete</i>
-        </td>
+        </td>-->
       </template>
     </v-data-table>
   </v-card>
@@ -33,13 +32,12 @@ export default {
       dialog: false,
       title: "Standupers",
       headers: [
-        { text: "ID", value: "id" },
         { text: "Slack ID", value: "user_id" },
         { text: "Channel ID", value: "channel_id" },
         { text: "Role in channel", value: "role_in_channel" },
         { text: "Submitted Standup", value: "submitted_standup_today" },
-        { text: "Created", value: "created" },
-        { text: "Options" }
+        { text: "Created", value: "created" }
+        // { text: "Options" }
       ]
     };
   },
