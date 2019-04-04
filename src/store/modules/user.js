@@ -32,7 +32,10 @@ const actions = {
     commit('LOGIN', { token, bot })
     return bot
   },
-
+  LOGOUT: async ({ commit }) => {
+    const response = await post('v1/logout')
+    commit('LOGOUT')
+  },
   UPDATE_PASSWORD: async ({ commit }, { url, data }) => {
     const response = await post(url, data)
     return response
