@@ -137,7 +137,7 @@ export default {
           this.alert = true;
         })
         .catch(error => {
-          (this.errorStatus = true), (this.errorText = error.message);
+          (this.errorStatus = true), (this.errorText = error.response.data);
         });
     }
   },

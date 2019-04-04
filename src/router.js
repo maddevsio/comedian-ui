@@ -121,7 +121,14 @@ const router = new Router({
       },
       component: () => import('./components/comedian/StandupEdit.vue')
     },
-
+    {
+      path: '/password_reset',
+      name: 'passwordReset',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/comedian/PasswordReset.vue')
+    }
   ]
 })
 

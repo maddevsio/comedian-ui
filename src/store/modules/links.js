@@ -43,21 +43,26 @@ const state = {
   },
   {
     id: 1,
+    text: 'Peassword Reset',
+    page: '/password_reset'
+  },
+  {
+    id: 2,
     text: 'Channels',
     page: '/channels'
   },
   {
-    id: 2,
+    id: 3,
     text: 'Standupers',
     page: '/standupers'
   },
   {
-    id: 3,
+    id: 4,
     text: 'StandUp',
     page: '/standups'
   },
   {
-    id: 4,
+    id: 5,
     text: 'Users',
     page: '/users'
   }
