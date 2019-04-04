@@ -31,6 +31,11 @@ const actions = {
     console.log(bot)
     commit('LOGIN', { token, bot })
     return bot
+  },
+
+  UPDATE_PASSWORD: async ({ commit }, { url, data }) => {
+    const response = await post(url, data)
+    return response
   }
 }
 

@@ -71,7 +71,7 @@ export default {
         .then(bot => this.$router.push({ path: `/comedian` }))
         .catch(err => {
           this.errorStatus = true;
-          this.errorText = err.message;
+          this.errorText = err.response.data;
         });
     }
   }
