@@ -21,6 +21,7 @@
           :to="`${routes.page}`"
           flat
         >{{routes.text}}</router-link>
+        <span class="v-btn v-btn--flat theme--light white--text" @click="logout()">LOG OUT</span>
       </v-toolbar-items>
     </v-toolbar>
   </div>
@@ -34,6 +35,13 @@ export default {
     return {
       isNavShown: false
     };
+  },
+  methods: {
+    logout() {
+      this.$store
+        .dispatch("LOGOUT")
+        .then(() => this.$router.push({ path: `/` }));
+    }
   }
 };
 </script>
