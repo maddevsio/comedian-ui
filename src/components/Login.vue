@@ -16,7 +16,7 @@
                 <v-text-field
                   prepend-icon="person"
                   name="login"
-                  label="Login"
+                  label="User Name"
                   type="text"
                   v-model="teamname"
                 ></v-text-field>

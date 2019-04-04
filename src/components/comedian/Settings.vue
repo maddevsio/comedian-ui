@@ -3,23 +3,14 @@
     <v-form method="post">
       <v-container>
         <v-layout>
-          <v-flex xs12 md4>
+          <v-flex xs12 md6>
             <v-text-field
               v-model="bot.team_name"
               label="Team Name"
               readonly
             />
           </v-flex>
-
-          <v-flex xs12 md4>
-            <v-text-field
-              v-model="newPassword"
-              label="Password"
-              type="password"
-            />
-          </v-flex>
-
-          <v-flex xs12 md4>
+          <v-flex xs12 md6>
             <v-select
               v-model="bot.language"
               :items="languages"
