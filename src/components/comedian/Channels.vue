@@ -9,7 +9,7 @@
         <td class="text-xs-left">{{ props.item.channel_id }}</td>
         <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
         <td class="text-xs-left">
-          <router-link :to="{ name: 'edit', params: { id: props.item.id } }">
+          <router-link class="isDisabled" :to="{ name: 'edit', params: { id: props.item.id } }">
             <i class="material-icons option-btn">edit</i>
           </router-link>
           <i class="material-icons option-btn" @click="deleteChannel(props.item.id)">delete</i>
@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     deleteChannel(id) {
+      return;
       const url = `v1/channels/${id}`;
       this.$store.dispatch("REMOVE_CHANNEL", { url });
     }
@@ -64,5 +65,9 @@ export default {
     color: #42b983;
     cursor: pointer;
   }
+}
+.isDisabled {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 </style>

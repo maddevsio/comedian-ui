@@ -9,7 +9,10 @@
         <td class="text-xs-left">{{ props.item.modified}}</td>
         <td class="text-xs-left">{{ props.item.comment }}</td>
         <td class="text-xs-left">
-          <router-link :to="{ name: 'standupEdit', params: { id: props.item.id } }">
+          <router-link
+            class="isDisabled"
+            :to="{ name: 'standupEdit', params: { id: props.item.id } }"
+          >
             <i class="material-icons option-btn">edit</i>
           </router-link>
           <i class="material-icons option-btn" @click="deleteStandup(props.item.id)">delete</i>
@@ -42,6 +45,7 @@ export default {
 
   methods: {
     deleteStandup(id) {
+      return;
       const url = `v1/standups/${id}`;
       this.$store.dispatch("REMOVE_STANDUP", url);
     }
@@ -61,5 +65,9 @@ export default {
     color: #42b983;
     cursor: pointer;
   }
+}
+.isDisabled {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 </style>

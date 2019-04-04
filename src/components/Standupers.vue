@@ -9,7 +9,10 @@
         <td class="text-xs-left">{{ props.item.submitted_standup_today }}</td>
         <td class="text-xs-left">{{ props.item.created }}</td>
         <td class="text-xs-left">
-          <router-link :to="{ name: 'standuperEdit', params: { id: props.item.id } }">
+          <router-link
+            class="isDisabled"
+            :to="{ name: 'standuperEdit', params: { id: props.item.id } }"
+          >
             <i class="material-icons option-btn">edit</i>
           </router-link>
           <i class="material-icons option-btn" @click="deleteStanduper(props.item.id)">delete</i>
@@ -42,6 +45,7 @@ export default {
   },
   methods: {
     async deleteStanduper(id) {
+      return;
       const url = `v1/standupers/${id}`;
       this.$store.dispatch("REMOVE_STANDUPER", url);
     }
@@ -60,5 +64,9 @@ export default {
     color: #42b983;
     cursor: pointer;
   }
+}
+.isDisabled {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 </style>

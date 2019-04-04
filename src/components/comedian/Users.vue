@@ -10,7 +10,10 @@
         <td class="text-xs-left">{{ props.item.role }}</td>
         <td class="text-xs-left">{{ props.item.real_name }}</td>
         <td class="text-xs-left">
-          <router-link :to="{ name:'users_edit', params: { id: props.item.id } }">
+          <router-link
+            class="isDisabled"
+            :to="{ name:'users_edit', params: { id: props.item.id } }"
+          >
             <i class="material-icons option-btn">edit</i>
           </router-link>
         </td>
@@ -57,5 +60,9 @@ export default {
     color: #42b983;
     cursor: pointer;
   }
+}
+.isDisabled {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 </style>

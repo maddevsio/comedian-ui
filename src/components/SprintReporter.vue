@@ -10,6 +10,7 @@
               label="Channels"
               data-vv-name="select"
               required
+              readonly
             />
           </v-flex>
           <v-flex xs12 md12>
@@ -20,6 +21,7 @@
               multiple
               data-vv-name="select"
               required
+              readonly
             />
           </v-flex>
           <v-flex xs12 md12>
@@ -138,23 +140,10 @@ export default {
   },
   methods: {
     async Save() {
+      return;
       const id = this.sprintReporter.id;
       const url = `v1/configurations/${id}`;
       var report_days = "";
-      // this.sprintReporter.report_days.forEach(element => {
-      //   report_days = report_days + "," + element;
-      // });
-      // for (
-      //   var i = 0, len = this.sprintReporter.report_days.length;
-      //   i < len;
-      //   i++
-      // ) {
-      //   report_days = report_days + "," + this.sprintReporter.report_days[i];
-      //   console.log(report_days);
-      // }
-      // this.sprintReporter.report_days = Object.values(
-      //   this.sprintReporter.report_days
-      // ).join(",");
       this.sprintReporter.report_days = this.sprintReporter.report_days.join(
         ","
       );
