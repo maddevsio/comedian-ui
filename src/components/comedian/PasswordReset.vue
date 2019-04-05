@@ -45,16 +45,13 @@
 
 <script>
 import transform from "../../helpers/transform";
-import { mapState } from "vuex";
 import store from "../../store";
-import { error } from "util";
 
 export default {
   data() {
     return {
       oldPassword: "",
       newPassword: "",
-      errorStatus: false,
       alert: false,
       errorStatus: false,
       errorText: ""
