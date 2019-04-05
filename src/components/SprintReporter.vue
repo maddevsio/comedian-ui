@@ -10,7 +10,6 @@
               label="Channels"
               data-vv-name="select"
               required
-              readonly
             />
           </v-flex>
           <v-flex xs12 md12>
@@ -21,7 +20,6 @@
               multiple
               data-vv-name="select"
               required
-              readonly
             />
           </v-flex>
           <v-flex xs12 md12>
@@ -39,7 +37,6 @@
                   v-model="sprintReporter.report_time"
                   label="Time"
                   append-icon="access_time"
-                  readonly
                   v-on="on"
                 ></v-text-field>
               </template>
@@ -67,17 +64,12 @@
               :label="`${sprintReporter.service_enabled ? ' Service Enabled': 'Service Disabled' }`"
             />
           </v-flex>
-          <v-btn block color="primary" @click="Save">Save</v-btn>
+          <!-- <v-btn block color="primary" @click="Save">Save</v-btn> -->
         </v-container>
       </v-form>
     </v-card>
     <v-card class="mt-3 mx-auto" max-width="400" v-else>
-      <v-alert
-        :value="true"
-        color="warning"
-        icon="priority_high"
-        outline
-      >There is no such sprint reporter.</v-alert>
+      <v-alert :value="true" color="warning" icon="priority_high" outline>Service is disabled</v-alert>
     </v-card>
   </div>
 </template>
@@ -114,9 +106,7 @@ export default {
       };
       // FIXME
       const entities = state.sprintReporter.entities;
-      console.log(">>>>>>", entities.report_time);
       if (typeof entities.report_days === "string") {
-        console.log(">>>>>>", entities.report_days);
         entities.report_days = entities.report_days.split(",");
       }
       entities.report_time = formatTime(entities.report_time);
@@ -140,31 +130,29 @@ export default {
   },
   methods: {
     async Save() {
-      return;
       const id = this.sprintReporter.id;
       const url = `v1/configurations/${id}`;
       var report_days = "";
       this.sprintReporter.report_days = this.sprintReporter.report_days.join(
         ","
       );
-      console.log(typeof this.sprintReporter.report_days);
       const days = this.sprintReporter.report_days.join(",");
       this.sprintReporter.report_days = days;
-      console.log("uyfdghj", days, "lkjhg", this.sprintReporter.report_days);
 
       const transformedValues = transform(this.sprintReporter, {});
       transformedValues.report_days = days;
       await this.$store.dispatch("UPDATE_SPRINTREPORTERS", {
         url,
         data: {
-          id: this.sprintReporter.id,
-          service_enabled: this.sprintReporter.service_enabled,
-          team_name: this.sprintReporter.team_name,
-          report_time: this.sprintReporter.report_time,
-          report_channel: this.sprintReporter.report_channel,
+          id: transformedValues.id,
+          service_enabled: transformedValues.service_enabled,
+          team_name: transformedValues.team_name,
+          report_time: transformedValues.report_time,
+          report_channel: transformedValues.report_channel,
           report_days: days,
-          task_done_status: this.sprintReporter.task_done_status,
-          language: this.sprintReporter.language
+          task_done_status: transformedValues.task_done_status,
+          language: transformedValues.language,
+          bot_access_token: store.state.user.bot.bot_access_token
         }
       });
     }

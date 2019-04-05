@@ -1,7 +1,16 @@
 <template>
-  <v-card class="mt-3 mx-auto" max-width="500">
+  <v-card class="mt-3 mx-auto" max-width="500" v-if="false">
     <v-form method="post">
       <v-container>
+        <v-flex xs12 md12>
+          <v-select
+            v-model="reporter.team_name"
+            :items="channels"
+            label="Channels"
+            data-vv-name="select"
+            required
+          />
+        </v-flex>
         <v-flex xs12 md12>
           <v-select
             v-model="reporter.reporting_channel"
@@ -61,6 +70,9 @@
       </v-container>
     </v-form>
   </v-card>
+  <v-card class="mt-3 mx-auto" max-width="400" v-else>
+    <v-alert :value="true" color="warning" icon="priority_high" outline>Service is disabled</v-alert>
+  </v-card>
 </template>
 <script>
 import transform from "../helpers/transform";
@@ -88,6 +100,10 @@ export default {
       const url = `configurations/${team_id}`;
       this.$store.dispatch("GET_REPORTER");
     }
+  },
+  beforeCreate() {
+    const url = `settings`;
+    this.$store.dispatch("GET_ONDUTY", url);
   }
 };
 </script>

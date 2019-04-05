@@ -74,9 +74,11 @@ export default {
         })
         .then(() => {
           this.alert = true;
+          this.errorStatus = false;
         })
         .catch(error => {
           this.errorStatus = true;
+          this.alert = false;
           this.errorText = error.response.data;
         });
     }

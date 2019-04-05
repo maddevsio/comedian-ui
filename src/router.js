@@ -127,7 +127,15 @@ const router = new Router({
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./components/comedian/PasswordReset.vue')
+      component: () => import('./components/PasswordReset.vue')
+    },
+    {
+      path: '/onduty',
+      name: 'onduty',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./views/OnDuty.vue')
     }
   ]
 })

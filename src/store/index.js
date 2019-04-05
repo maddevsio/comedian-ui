@@ -8,6 +8,7 @@ import channels from './modules/channels'
 import links from './modules/links'
 import user from './modules/user'
 import sprintReporter from './modules/sprintReporter'
+import onduty from './modules/onduty'
 import getters from './getters'
 
 
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
     users,
     channels,
     sprintReporter,
+    onduty,
     user
   },
   getters

@@ -1,28 +1,28 @@
 <template>
-  <div>
-    <Header title="Sprint Reporter" :links="this.links" :navLinks="this.navLinks"/>
+  <div class="about">
+    <Header title="On Duty" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
-      <SprintReporter/>
+      <OnDuty/>
     </v-content>
   </div>
 </template>
+
 <script>
-import SprintReporter from "@/components/SprintReporter.vue";
 import Header from "@/components/navigation/Header.vue";
+import OnDuty from "@/components/OnDuty.vue";
 
 export default {
-  name: "sprintreporter",
   computed: {
     links() {
       return this.$store.state.links.linksHeader;
     },
     navLinks() {
-      return this.$store.state.links.sprintReporterSideLinks;
+      return this.$store.state.links.onDutySideLinks;
     }
   },
   components: {
     Header,
-    SprintReporter
+    OnDuty
   }
 };
 </script>
