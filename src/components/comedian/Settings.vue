@@ -103,7 +103,6 @@ export default {
     async Save() {
       const botId = this.bot.id;
       const url = `v1/bots/${botId}`;
-      this.bot.password = this.newPassword;
       const transformedValues = transform(this.bot, {
         notifier_interval: "int",
         reminder_repeats_max: "int",
@@ -114,21 +113,17 @@ export default {
         .dispatch("UPDATE_BOT", {
           url,
           data: {
-            bot_access_token: transformedValues.bot_access_token,
-            team_name: transformedValues.team_name,
-            team_id: transformedValues.team_id,
-            password: transformedValues.password,
-            language: transformedValues.language,
-            notifier_interval: transformedValues.notifier_interval,
-            reminder_repeats_max: transformedValues.reminder_repeats_max,
-            reminder_time: transformedValues.reminder_time
+            transformedValues
           }
         })
         .then(() => {
           this.alert = true;
+          this.errorStatus = false;
         })
         .catch(error => {
-          (this.errorStatus = true), (this.errorText = error.response.data);
+          this.errorStatus = true;
+          this.alert = false;
+          this.errorText = error.response.data;
         });
     }
   },
