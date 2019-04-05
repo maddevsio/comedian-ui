@@ -10,12 +10,12 @@ import {
 Vue.use(Vuex)
 
 const state = {
-    entities: []
+    onduty: []
 }
 
 const mutations = {
-    SET_ONDUTY: (state, configurations) => {
-        state.entities = configurations
+    SET_ONDUTY: (state, settings) => {
+        state.onduty = settings
     }
 }
 
@@ -31,7 +31,7 @@ const actions = {
         commit,
     },
         data) => {
-        const response = await post('configurations', data, {}, 'onDuty')
+        const response = await post('settings', data, {}, 'onDuty')
         commit('SET_ONDUTY', response.data)
     },
 

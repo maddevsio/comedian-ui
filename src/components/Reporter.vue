@@ -1,16 +1,7 @@
 <template>
-  <v-card class="mt-3 mx-auto" max-width="500" v-if="false">
+  <v-card class="mt-3 mx-auto" max-width="500" v-if="reporter">
     <v-form method="post">
       <v-container>
-        <v-flex xs12 md12>
-          <v-select
-            v-model="reporter.team_name"
-            :items="channels"
-            label="Channels"
-            data-vv-name="select"
-            required
-          />
-        </v-flex>
         <v-flex xs12 md12>
           <v-select
             v-model="reporter.reporting_channel"
@@ -66,8 +57,16 @@
             :label="`${reporter.collector_enabled ? 'Collector Enabled ': 'Collector Disabled' }`"
           />
         </v-flex>
-        <v-btn block color="primary" @click="Save">Save</v-btn>
+        <!-- <v-btn block color="primary" @click="Save">Save</v-btn> -->
       </v-container>
+      <v-card>
+        <v-layout>
+          <v-alert v-model="alert" dismissible type="success">Successfully saved</v-alert>
+        </v-layout>
+        <v-layout>
+          <v-alert v-model="errorStatus" dismissible type="error">{{errorText}}</v-alert>
+        </v-layout>
+      </v-card>
     </v-form>
   </v-card>
   <v-card class="mt-3 mx-auto" max-width="400" v-else>
@@ -76,34 +75,43 @@
 </template>
 <script>
 import transform from "../helpers/transform";
-import { patch } from "../helpers/requests";
 import store from "../store";
-
+import { mapState } from "vuex";
 export default {
+  computed: mapState({
+    reporter: state => state.reporter.reporters[0]
+  }),
   data() {
     return {
-      reporter: {
-        collector_enabled: true,
-        report_channel: null,
-        individual_report_status: true,
-        language: "en_US",
-        report_time: ""
-      },
       modal2: false,
-      channels: ["general"],
-      languages: ["en_EN", "ru_RU"]
+      channels: ["general", "channel1", "channel2"],
+      languages: ["en_EN", "ru_RU"],
+      alert: false,
+      errorStatus: false,
+      errorText: ""
     };
   },
   methods: {
     async Save() {
-      const team_id = store.state.user.bot.team_id;
-      const url = `configurations/${team_id}`;
-      this.$store.dispatch("GET_REPORTER");
+      const report_id = this.reporter.id;
+      const url = `reports/${report_id}`;
+      this.$store
+        .dispatch("UPDATE_REPORTERS", { url, data: this.reporter })
+        .then(() => {
+          this.alert = true;
+          this.errorStatus = false;
+        })
+        .catch(error => {
+          this.errorStatus = true;
+          this.alert = false;
+          this.errorText = error.response.data;
+        });
     }
   },
   beforeCreate() {
-    const url = `settings`;
-    this.$store.dispatch("GET_ONDUTY", url);
+    const url = `reports`;
+    //  const url = `v1/settings`;
+    this.$store.dispatch("GET_REPORTERS", url);
   }
 };
 </script>
