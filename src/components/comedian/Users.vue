@@ -22,9 +22,16 @@
   
 <script>
 import { mapState } from "vuex";
+import { getItems } from "../../my-getters";
+import store from "../../store";
+
 export default {
   computed: mapState({
-    users: state => state.users.users
+    users: state => {
+      const items = getItems(state, "users");
+      console.log("USERS>>>>", items);
+      return items;
+    }
   }),
   data() {
     return {
@@ -38,7 +45,7 @@ export default {
       ]
     };
   },
-  beforeCreate() {
+  created() {
     const url = "v1/users";
     this.$store.dispatch("GET_USERS", url);
   }

@@ -59,6 +59,7 @@
         <v-btn color="primary white--text" @click='Save'>Save</v-btn>
       </v-container>   
     </v-form>
+    {{ state }}
     <v-layout> 
       <v-alert
         v-model="alert"
@@ -84,11 +85,11 @@
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
 import store from "../../store";
-import { error } from "util";
 
 export default {
   computed: mapState({
-    bot: state => state.bots.bot || {}
+    bot: state => state.bots.bot || {},
+    state: state => state
   }),
   data() {
     return {
