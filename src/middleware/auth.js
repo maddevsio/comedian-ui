@@ -5,7 +5,6 @@ export default function auth({
   router,
   to,
 }) {
-  console.log('>>>>>>>>>', to.name)
   if (!getters.token(store.state)) {
     return router.push({
       name: `login`

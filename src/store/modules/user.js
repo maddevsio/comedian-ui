@@ -26,9 +26,7 @@ const mutations = {
 
 const actions = {
   LOGIN: async ({ commit }, payload) => {
-    console.log(payload)
     const { data: { bot, token } } = await post('login', payload, {}, 'comedian', false)
-    console.log(bot)
     commit('LOGIN', { token, bot })
     return bot
   },
