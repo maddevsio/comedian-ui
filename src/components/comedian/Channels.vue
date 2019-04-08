@@ -18,11 +18,15 @@
 </template>
 
 <script>
-import transform from "../../helpers/transform";
 import { mapState } from "vuex";
+import { getItems } from "../../my-getters";
+
 export default {
   computed: mapState({
-    channels: state => state.channels.channels
+    channels: state => {
+      const items = getItems(state, "channels");
+      return items;
+    }
   }),
   data() {
     return {
