@@ -1,13 +1,9 @@
-const getters = {
-  // avatar: state => state.user.avatar,
-  token: state => state.user.token,
-  isAuthenticated: state => !!state.user.token,
-  getItems: (state, mod) => {
-    return []
-  },
-  getItem: (state, mod, id) => state[mod].entities[id]
+export const getItems = (state, mod) => {
+  const entities = state[mod].entities
+  return Object.values(entities);
 }
-export default getters
+
+export const getItem = (state, mod, id) => state[mod].entities[id]
 
 /*
 const arrayToMap = arr => {

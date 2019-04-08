@@ -11,7 +11,7 @@ import sprintReporter from './modules/sprintReporter'
 import onduty from './modules/onduty'
 import reporter from './modules/reporter'
 import getters from './getters'
-
+import mutations from './mutations'
 
 Vue.use(Vuex)
 
@@ -28,7 +28,8 @@ const store = new Vuex.Store({
     reporter,
     user
   },
-  getters
+  getters,
+  mutations,
 })
 
 export default store

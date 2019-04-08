@@ -1,21 +1,12 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import {
     fetch,
     patch,
     remove
 } from '../../helpers/requests'
 
-Vue.use(Vuex)
 
 const state = {
-    users: [],
-}
-
-const mutations = {
-    SET_USERS: (state, users) => {
-        state.users = users
-    }
+    entities: {},
 }
 
 const actions = {
@@ -23,7 +14,7 @@ const actions = {
         commit,
     }, url) => {
         const response = await fetch(url)
-        commit('SET_USERS', response.data)
+        commit('ADD_ITEMS', { store: 'users', payload: response.data })
     },
 
     UPDATE_USERS: async ({
@@ -33,7 +24,7 @@ const actions = {
         data
     }) => {
         const response = await patch(url, data)
-        commit('SET_USERS', response.data)
+        commit('ADD_ITEM', response.data)
     },
 
     REMOVE_CHANNEL: async ({
@@ -41,13 +32,13 @@ const actions = {
     }, {
         url
     }) => {
+        // commit('REMOVE_ITEM', item)
         return await remove(url)
     }
 }
 
 const users = {
     state,
-    mutations,
     actions
 }
 

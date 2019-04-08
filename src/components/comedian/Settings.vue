@@ -84,11 +84,11 @@
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
 import store from "../../store";
-import { error } from "util";
 
 export default {
   computed: mapState({
-    bot: state => state.bots.bot || {}
+    bot: state => state.bots.bot || {},
+    state: state => state
   }),
   data() {
     return {
