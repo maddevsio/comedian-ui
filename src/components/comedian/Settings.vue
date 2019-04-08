@@ -112,9 +112,7 @@ export default {
       await this.$store
         .dispatch("UPDATE_BOT", {
           url,
-          data: {
-            transformedValues
-          }
+          data: transformedValues
         })
         .then(() => {
           this.alert = true;
