@@ -110,7 +110,6 @@ export default {
       const team_id = store.state.user.bot.team_id;
       this.sprintReporter.team_name = store.state.user.bot.team_name;
       this.sprintReporter.team_id = team_id;
-      console.log(this.sprintReporter.team_id);
       this.sprintReporter.report_days = this.sprintReporter.report_days.join(
         ","
       );

@@ -59,7 +59,6 @@
         <v-btn color="primary white--text" @click='Save'>Save</v-btn>
       </v-container>   
     </v-form>
-    {{ state }}
     <v-layout> 
       <v-alert
         v-model="alert"
@@ -113,9 +112,7 @@ export default {
       await this.$store
         .dispatch("UPDATE_BOT", {
           url,
-          data: {
-            transformedValues
-          }
+          data: transformedValues
         })
         .then(() => {
           this.alert = true;

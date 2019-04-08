@@ -160,7 +160,6 @@ export default {
   beforeCreate() {
     const team_id = store.state.user.bot.team_id;
     const url = `v1/configurations/${team_id}`;
-    console.log(url);
     this.$store.dispatch("GET_SPRINTREPORTERS", url);
   }
 };

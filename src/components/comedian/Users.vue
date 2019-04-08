@@ -29,7 +29,6 @@ export default {
   computed: mapState({
     users: state => {
       const items = getItems(state, "users");
-      console.log("USERS>>>>", items);
       return items;
     }
   }),
