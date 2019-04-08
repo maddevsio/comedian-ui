@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import standuper from './modules/standuper'
+import standupers from './modules/standuper'
 import standups from './modules/standups'
 import bots from './modules/bots'
 import users from './modules/users'
@@ -17,7 +17,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    standuper,
+    standupers,
     standups,
     links,
     bots,

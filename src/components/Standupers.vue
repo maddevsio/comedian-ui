@@ -23,14 +23,18 @@
 
 <script>
 import { mapState } from "vuex";
+import { getItems } from "../my-getters";
+import store from "../store";
 export default {
   computed: mapState({
-    standupers: state => state.standuper.standupers
+    standupers: state => {
+      const items = getItems(state, "standupers");
+      return items;
+    }
   }),
   data() {
     return {
       dialog: false,
-      title: "Standupers",
       headers: [
         { text: "Slack ID", value: "user_id" },
         { text: "Channel ID", value: "channel_id" },
