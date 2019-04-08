@@ -23,9 +23,13 @@
 
 <script>
 import { mapState } from "vuex";
+import { getItems } from "../my-getters";
 export default {
   computed: mapState({
-    standups: state => state.standups.standups
+    standups: state => {
+      const items = getItems(state, "standups");
+      return items;
+    }
   }),
 
   data() {

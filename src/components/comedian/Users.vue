@@ -23,7 +23,6 @@
 <script>
 import { mapState } from "vuex";
 import { getItems } from "../../my-getters";
-import store from "../../store";
 
 export default {
   computed: mapState({

@@ -1,21 +1,11 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import {
   fetch,
   patch,
   remove
 } from '../../helpers/requests'
 
-Vue.use(Vuex)
-
 const state = {
-  standupers: []
-}
-
-const mutations = {
-  SET_STANDUPERS: (state, standupers) => {
-    state.standupers = standupers
-  }
+  entities: {},
 }
 
 const actions = {
@@ -23,17 +13,12 @@ const actions = {
     commit,
   }, url) => {
     const response = await fetch(url)
-    commit('SET_STANDUPERS', response.data)
+    commit('ADD_ITEMS', { store: 'standupers', payload: response.data })
   },
 
-  UPDATE_STANDUPERS: async ({
-    commit,
-  }, {
-    url,
-    data
-  }) => {
+  UPDATE_STANDUPERS: async ({ commit }, { url, data }) => {
     const response = await patch(url, data)
-    commit('SET_STANDUPERS', response.data)
+    commit('ADD_ITEMS', { store: 'standupers', payload: response.data })
   },
 
   REMOVE_STANDUPER: async ({
@@ -43,10 +28,9 @@ const actions = {
   }
 }
 
-const standuper = {
+const standupers = {
   state,
-  mutations,
   actions
 }
 
-export default standuper
+export default standupers

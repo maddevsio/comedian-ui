@@ -27,7 +27,7 @@ const actions = {
         commit('ADD_ITEM', response.data)
     },
 
-    REMOVE_CHANNEL: async ({
+    REMOVE_USER: async ({
         commit,
     }, {
         url
