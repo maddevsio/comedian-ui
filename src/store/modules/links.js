@@ -10,11 +10,11 @@ const state = {
       text: 'Comedian',
       page: '/comedian'
     },
-    {
-      id: 1,
-      text: 'Collector',
-      page: '/#'
-    },
+    // {
+    //   id: 1,
+    //   text: 'Collector',
+    //   page: '/#'
+    // },
     {
       id: 2,
       text: 'Reporter',
