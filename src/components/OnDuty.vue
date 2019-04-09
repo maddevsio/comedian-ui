@@ -18,12 +18,17 @@
   </v-card>
 </template>		
 <script>
-import transform from "../helpers/transform";
-import store from "../store";
 import { mapState } from "vuex";
+import transform from "../helpers/transform";
+import { getItems } from "../my-getters";
+import store from "../store";
+
 export default {
   computed: mapState({
-    onduty: state => state.onduty.onduty
+    onduty: state => {
+      const items = getItems(state, "onduty");
+      return items;
+    }
   }),
   data() {
     return {
@@ -39,7 +44,8 @@ export default {
     };
   },
   beforeCreate() {
-    const url = `onduty`;
+    const teamId = store.state.user.bot.team_id;
+    const url = `v1/settings/team/${teamId}`;
     this.$store.dispatch("GET_ONDUTY", url);
   }
 };

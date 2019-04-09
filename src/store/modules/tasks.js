@@ -10,22 +10,22 @@ const state = {
 }
 
 const actions = {
-    GET_ONDUTY: async ({
+    GET_TASKS: async ({
         commit,
     }, url) => {
         const response = await fetch(url, {}, {}, 'onDuty')
-        commit('ADD_ITEMS', { store: 'onduty', payload: response.data })
+        commit('ADD_ITEMS', { store: 'tasks', payload: response.data })
     },
 
-    ADD_ONDUTY: async ({
+    ADD_TASK: async ({
         commit,
     },
         data) => {
-        const response = await post('settings', data, {}, 'onDuty')
-        commit('ADD_ITEMS', { store: 'onduty', payload: response.data })
+        const response = await post('tasks', data, {}, 'onDuty')
+        commit('ADD_ITEMS', { store: 'tasks', payload: response.data })
     },
 
-    UPDATE_ONDUTY: async ({
+    UPDATE_TASK: async ({
         commit,
     }, {
         url,
@@ -35,7 +35,7 @@ const actions = {
         commit('ADD_ITEM', { store: 'tasks', payload: response.data })
     },
 
-    REMOVE_ONDUTY: async ({
+    REMOVE_TASK: async ({
         commit,
     },
         url
@@ -44,7 +44,9 @@ const actions = {
     }
 }
 
-export default {
+const tasks = {
     state,
     actions
 }
+
+export default tasks

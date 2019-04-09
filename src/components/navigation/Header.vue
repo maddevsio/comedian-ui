@@ -40,8 +40,7 @@ export default {
     logout() {
       this.$store
         .dispatch("LOGOUT")
-        .then(() => this.$router.push({ path: `/` }))
-        .catch(() => this.$router.push({ path: `/` }));
+        .then(() => this.$router.push({ path: `/` }));
     }
   }
 };

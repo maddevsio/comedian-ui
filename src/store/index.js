@@ -9,6 +9,7 @@ import links from './modules/links'
 import user from './modules/user'
 import sprintReporter from './modules/sprintReporter'
 import onduty from './modules/onduty'
+import tasks from './modules/tasks'
 import reporter from './modules/reporter'
 import getters from './getters'
 import mutations from './mutations'
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
     channels,
     sprintReporter,
     onduty,
+    tasks,
     reporter,
     user
   },
@@ -35,12 +37,11 @@ const store = new Vuex.Store({
 
 const initialUser = LocalStorage.get('user')
 
-console.log('lllll', initialUser)
 if (initialUser) {
   store.state.user = initialUser
 }
 
-store.subscribe((mutation, state) => {
+store.subscribe((mutation) => {
   switch (mutation.type) {
     case 'LOGIN':
     case 'LOGOUT':

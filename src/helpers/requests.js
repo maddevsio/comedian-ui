@@ -3,8 +3,7 @@ import store from '../store'
 
 const baseApiUrl = process.env.VUE_APP_COMEDIAN_API_BASE_URL // 'https://staging.comedian.maddevs.co'
 const sprintReporterBaseUrl = process.env.VUE_APP_SPRINT_REPORTER_API_BASE_URL // 'https://staging-sprint-reporter.comedian.maddevs.co'
-// const onDutyBaseUrl = process.env.VUE_APP_ON_DUTY_BASE_URL // 'https://staging-onduty-service.comedian.maddevs.co'
-const onDutyBaseUrl = process.env.VUE_APP_TEST
+const onDutyBaseUrl = process.env.VUE_APP_ON_DUTY_BASE_URL // 'https://staging-onduty-service.comedian.maddevs.co'
 const reporterBaseUrl = process.env.VUE_APP_TEST
 
 console.log('baseApiUrl : ', baseApiUrl)

@@ -10,27 +10,26 @@ const state = {
       text: 'Comedian',
       page: '/comedian'
     },
-    // {
-    //   id: 1,
-    //   text: 'Collector',
-    //   page: '/#'
-    // },
-    // {
-    //   id: 2,
-    //   text: 'Reporter',
-    //   page: '/reporter'
-    // },
-    // {
-    //   id: 3,
-    //   text: 'Sprint Reporter',
-    //   page: '/sprintreporter'
-    // },
-    // {
-    //   id: 4,
-    //   text: 'On Duty',
-    //   page: '/onduty'
-    // },
-
+    {
+      id: 1,
+      text: 'Collector',
+      page: '/#'
+    },
+    {
+      id: 2,
+      text: 'Reporter',
+      page: '/reporter'
+    },
+    {
+      id: 3,
+      text: 'Sprint Reporter',
+      page: '/sprintreporter'
+    },
+    {
+      id: 4,
+      text: 'On Duty',
+      page: '/onduty'
+    }
   ],
   comedianSideLinks: [{
     id: 0,
@@ -86,11 +85,11 @@ const state = {
       text: 'Settings',
       page: '/onduty'
     },
-    // {
-    //   id: 1,
-    //   text: 'Tasks',
-    //   page: '/onduty/tasks'
-    // }
+    {
+      id: 1,
+      text: 'Tasks',
+      page: '/onduty/tasks'
+    }
   ],
   reporterSideLinks: [
     {
