@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './middleware/auth';
+import anonymous from './middleware/anonymous';
 import log from './middleware/log';
 
 Vue.use(Router)
@@ -13,7 +14,7 @@ const router = new Router({
       path: '/',
       name: 'login',
       meta: {
-        middleware: log,
+        middleware: [anonymous, log],
       },
       component: () => import('./views/About.vue')
     },

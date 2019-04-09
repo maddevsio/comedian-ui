@@ -12,6 +12,7 @@ import onduty from './modules/onduty'
 import reporter from './modules/reporter'
 import getters from './getters'
 import mutations from './mutations'
+import * as LocalStorage from './localStorage'
 
 Vue.use(Vuex)
 
@@ -30,6 +31,24 @@ const store = new Vuex.Store({
   },
   getters,
   mutations,
+})
+
+const initialUser = LocalStorage.get('user')
+
+console.log('lllll', initialUser)
+if (initialUser) {
+  store.state.user = initialUser
+}
+
+store.subscribe((mutation, state) => {
+  switch (mutation.type) {
+    case 'LOGIN':
+    case 'LOGOUT':
+      LocalStorage.save('user', mutation.payload)
+      break;
+    default:
+      break
+  }
 })
 
 export default store
