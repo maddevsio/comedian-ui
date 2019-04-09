@@ -137,6 +137,14 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./views/OnDuty.vue')
+    },
+    {
+      path: '/onduty/tasks',
+      name: 'ondutyTasks',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./views/Tasks.vue')
     }
   ]
 })
