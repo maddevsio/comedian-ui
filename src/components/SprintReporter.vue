@@ -64,7 +64,7 @@
               :label="`${sprintReporter.service_enabled ? ' Service Enabled': 'Service Disabled' }`"
             />
           </v-flex>
-          <!-- <v-btn block color="primary" @click="Save">Save</v-btn> -->
+          <v-btn block color="primary" @click="Save">Save</v-btn>
         </v-container>
       </v-form>
     </v-card>
@@ -130,8 +130,8 @@ export default {
   },
   methods: {
     async Save() {
-      const id = this.sprintReporter.id;
-      const url = `v1/configurations/${id}`;
+      const teamId = store.state.user.bot.team_id;
+      const url = `v1/configurations/${teamId}`;
       var report_days = "";
       this.sprintReporter.report_days = this.sprintReporter.report_days.join(
         ","
@@ -143,23 +143,13 @@ export default {
       transformedValues.report_days = days;
       await this.$store.dispatch("UPDATE_SPRINTREPORTERS", {
         url,
-        data: {
-          id: transformedValues.id,
-          service_enabled: transformedValues.service_enabled,
-          team_name: transformedValues.team_name,
-          report_time: transformedValues.report_time,
-          report_channel: transformedValues.report_channel,
-          report_days: days,
-          task_done_status: transformedValues.task_done_status,
-          language: transformedValues.language,
-          bot_access_token: store.state.user.bot.bot_access_token
-        }
+        data: transformedValues
       });
     }
   },
   beforeCreate() {
-    const team_id = store.state.user.bot.team_id;
-    const url = `v1/configurations/${team_id}`;
+    const teamId = store.state.user.bot.team_id;
+    const url = `v1/configurations/${teamId}`;
     this.$store.dispatch("GET_SPRINTREPORTERS", url);
   }
 };
