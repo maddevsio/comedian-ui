@@ -14,17 +14,17 @@ const state = {
 }
 
 const mutations = {
-    SET_SPRINTREPORTERS: (state, sprintReporters) => {
+    SET_SPRINTREPORTER: (state, sprintReporters) => {
         state.entities = sprintReporters
     }
 }
 
 const actions = {
-    GET_SPRINTREPORTERS: async ({
+    GET_SPRINTREPORTER: async ({
         commit,
     }, url) => {
         const response = await fetch(url, {}, {}, 'sprintReporter')
-        commit('SET_SPRINTREPORTERS', response.data)
+        commit('SET_SPRINTREPORTER', response.data)
     },
 
     ADD_SPRINTREPORTER: async ({
@@ -32,16 +32,16 @@ const actions = {
     },
         data) => {
         const response = await post('v1/configurations', data, {}, 'sprintReporter')
-        commit('SET_SPRINTREPORTERS', response.data)
+        commit('SET_SPRINTREPORTER', response.data)
     },
-    UPDATE_SPRINTREPORTERS: async ({
+    UPDATE_SPRINTREPORTER: async ({
         commit,
     }, {
         url,
         data
     }) => {
         const response = await patch(url, data, {}, 'sprintReporter')
-        commit('SET_SPRINTREPORTERS', response.data)
+        commit('SET_SPRINTREPORTER', response.data)
     },
 
     REMOVE_SPRINTREPORTERS: async ({

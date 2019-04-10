@@ -141,7 +141,7 @@ export default {
 
       const transformedValues = transform(this.sprintReporter, {});
       transformedValues.report_days = days;
-      await this.$store.dispatch("UPDATE_SPRINTREPORTERS", {
+      await this.$store.dispatch("UPDATE_SPRINTREPORTER", {
         url,
         data: transformedValues
       });
@@ -150,7 +150,7 @@ export default {
   beforeCreate() {
     const teamId = store.state.user.bot.team_id;
     const url = `v1/configurations/${teamId}`;
-    this.$store.dispatch("GET_SPRINTREPORTERS", url);
+    this.$store.dispatch("GET_SPRINTREPORTER", url);
   }
 };
 </script>

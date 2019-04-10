@@ -99,20 +99,12 @@ const router = new Router({
       component: () => import('./views/Standups.vue')
     },
     {
-      path: '/sprintreporter/add',
+      path: '/admin/manage_sprint_reporters/add',
       name: 'sprintreporterAdd',
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./components/SprintReporterAdd.vue')
-    },
-    {
-      path: '/sprintreporter/list',
-      name: 'sprintreporterList',
-      meta: {
-        middleware: [auth, log],
-      },
-      component: () => import('./views/SprintReporter.vue')
+      component: () => import('./components/admin/AddSprintReport.vue')
     },
     {
       path: '/standup/:id/edit',
@@ -145,6 +137,14 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./views/Tasks.vue')
+    },
+    {
+      path: '/admin/manage_sprint_reporters',
+      name: 'manageSprintReporters',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/admin/ManageSprintReporter.vue')
     }
   ]
 })
