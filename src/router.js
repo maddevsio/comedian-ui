@@ -145,6 +145,24 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./components/admin/ManageSprintReporter.vue')
+    },
+    {
+      path: '/onduty/tasks/:id/edit',
+      name: 'taskEdit',
+      props: true,
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/onduty/TasksEdit.vue')
+    },
+    {
+      path: '/onduty/tasks/add',
+      name: 'taskAdd',
+      props: true,
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/onduty/TasksAdd.vue')
     }
   ]
 })

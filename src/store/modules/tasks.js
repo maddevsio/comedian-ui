@@ -1,6 +1,7 @@
 import {
     fetch,
     patch,
+    post,
     remove
 } from '../../helpers/requests'
 
@@ -21,7 +22,7 @@ const actions = {
         commit,
     },
         data) => {
-        const response = await post('tasks', data, {}, 'onDuty')
+        const response = await post('v1/tasks', data, {}, 'onDuty')
         commit('ADD_ITEMS', { store: 'tasks', payload: response.data })
     },
 
@@ -40,7 +41,7 @@ const actions = {
     },
         url
     ) => {
-        return await remove(url, {}, {}, 'onDuty')
+        return await remove(url, {}, 'onDuty')
     }
 }
 

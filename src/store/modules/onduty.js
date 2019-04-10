@@ -40,7 +40,7 @@ const actions = {
     },
         url
     ) => {
-        return await remove(url, {}, {}, 'onDuty')
+        return await remove(url, {}, 'onDuty')
     }
 }
 
