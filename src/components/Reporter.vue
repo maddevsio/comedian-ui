@@ -57,7 +57,7 @@
             :label="`${reporter.collector_enabled ? 'Collector Enabled ': 'Collector Disabled' }`"
           />
         </v-flex>
-        <!-- <v-btn block color="primary" @click="Save">Save</v-btn> -->
+        <v-btn block color="primary" @click="Save">Save</v-btn>
       </v-container>
       <v-card>
         <v-layout>
@@ -68,6 +68,7 @@
         </v-layout>
       </v-card>
     </v-form>
+    {{reporter}}
   </v-card>
   <v-card class="mt-3 mx-auto" max-width="400" v-else>
     <v-alert :value="true" color="warning" icon="priority_high" outline>Service is disabled</v-alert>
@@ -84,8 +85,8 @@ export default {
   data() {
     return {
       modal2: false,
-      channels: ["general", "channel1", "channel2"],
-      languages: ["en_EN", "ru_RU"],
+      channels: ["general", "channel1", "channel2", "CGPFD161K"],
+      languages: ["ru_RU", "en_EN"],
       alert: false,
       errorStatus: false,
       errorText: ""

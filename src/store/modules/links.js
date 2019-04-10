@@ -97,6 +97,18 @@ const state = {
       text: 'Settings',
       page: '/reporter'
     }
+  ],
+  adminSideLinks: [
+    {
+      id: 0,
+      text: 'Settings',
+      page: '/reporter'
+    },
+    {
+      id: 0,
+      text: 'Settings',
+      page: '/reporter'
+    }
   ]
 }
 const links = {
