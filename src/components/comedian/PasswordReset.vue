@@ -7,13 +7,22 @@
             <v-text-field
               v-model="oldPassword"
               label="Old Password"
+              :append-icon="show1 ? 'visibility' : 'visibility_off'"
+              :rules="[rules.required]"
+              :type="show1 ? 'text' : 'password'"
+              @click:append="show1 = !show1"
             />
           </v-flex>
           <v-flex xs12 md6>
             <v-text-field
               v-model="newPassword"
               label="New Password"
-              type="password"
+              :append-icon="show2 ? 'visibility' : 'visibility_off'"
+              :rules="[rules.required]"
+              :type="show2 ? 'text' : 'password'"
+              class="input-group--focused"
+              counter
+              @click:append="show2 = !show2"
             />
           </v-flex>
         </v-layout>
@@ -50,11 +59,16 @@ import store from "../../store";
 export default {
   data() {
     return {
+      show1: false,
+      show2: false,
       oldPassword: "",
       newPassword: "",
       alert: false,
       errorStatus: false,
-      errorText: ""
+      errorText: "",
+      rules: {
+        required: value => !!value || "Required."
+      }
     };
   },
   methods: {
