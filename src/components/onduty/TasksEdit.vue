@@ -79,7 +79,7 @@ export default {
       return this.$store.state.links.linksHeader;
     },
     navLinks() {
-      return this.$store.state.links.reporterSideLinks;
+      return this.$store.state.links.onDutySideLinks;
     }
   }),
   components: {
