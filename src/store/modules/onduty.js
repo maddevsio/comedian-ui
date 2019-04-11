@@ -1,7 +1,8 @@
 import {
     fetch,
     patch,
-    remove
+    remove,
+    post
 } from '../../helpers/requests'
 
 
@@ -21,8 +22,9 @@ const actions = {
         commit,
     },
         data) => {
-        const response = await post('settings', data, {}, 'onDuty')
-        commit('ADD_ITEMS', { store: 'onduty', payload: response.data })
+        const response = await post('v1/settings', data, {}, 'onDuty')
+        console.log(response)
+        commit('ADD_ITEM', { store: 'onduty', payload: response.data })
     },
 
     UPDATE_ONDUTY: async ({
