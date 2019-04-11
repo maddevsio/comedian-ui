@@ -27,8 +27,8 @@
             <v-text-field
               v-model="bot.notifier_interval"
               label="Notifier Interval"
-              
               type="number" 
+              min="0"
               required
             />
             </abbr>
@@ -40,6 +40,7 @@
             v-model="bot.reminder_time"
             label="Reminder Time"
             type="number"
+            min="0"
             required
           />
           </abbr>
@@ -51,6 +52,7 @@
               v-model="bot.reminder_repeats_max"
               label="Reminder Repeats"
               type="number"
+              min="0"
               required
             />
             </abbr>
@@ -92,6 +94,9 @@ export default {
   }),
   data() {
     return {
+      rules: {
+        min: v => v.value >= 0 || "Should be > 0 "
+      },
       languages: ["ru_RU", "en_EN"],
       newPassword: "",
       alert: false,

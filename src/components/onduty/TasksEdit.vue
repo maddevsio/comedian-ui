@@ -14,6 +14,7 @@
                   v-model="task.reminder_interval"
                   label="Reminder Interval"
                   type="number"
+                  min="0"
                   required
                 />
               </abbr>

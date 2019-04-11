@@ -68,7 +68,6 @@
         </v-layout>
       </v-card>
     </v-form>
-    {{reporter}}
   </v-card>
   <v-card class="mt-3 mx-auto" max-width="400" v-else>
     <v-alert :value="true" color="warning" icon="priority_high" outline>Service is disabled</v-alert>
