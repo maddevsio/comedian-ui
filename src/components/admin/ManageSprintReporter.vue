@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isAdmin">
     <Header title="Manage SprintReporters" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
       <v-card class="mt-3 mx-auto" max-width="1200">
@@ -22,6 +22,9 @@
       </v-card>
     </v-content>
   </div>
+  <v-card class="mt-3 mx-auto" max-width="400" v-else>
+    <v-alert :value="true" color="warning" icon="priority_high" outline>Content is not allowed</v-alert>
+  </v-card>
 </template>		
 
 <script>
@@ -39,6 +42,9 @@ export default {
     },
     navLinks() {
       return this.$store.state.links.adminSideLinks;
+    },
+    isAdmin() {
+      return this.$store.state.user.bot.admin;
     }
   }),
   data() {

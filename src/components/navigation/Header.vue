@@ -16,6 +16,11 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <router-link
           class="v-btn v-btn--flat theme--light white--text"
+          :to="{ name: 'manageSprintReporters'}"
+          flat
+        >Admin</router-link>
+        <router-link
+          class="v-btn v-btn--flat theme--light white--text"
           v-for="routes in links"
           v-bind:key="routes.id"
           :to="`${routes.page}`"

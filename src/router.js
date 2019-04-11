@@ -6,6 +6,31 @@ import log from './middleware/log';
 
 Vue.use(Router)
 
+const loadedComponents = {}
+
+const HoComponent = (componentPath) => {
+  return Vue.component("HoComponent", {
+    render(createElement, context) {
+      if (this.isAdmin) {
+        return createElement(this.cmp);
+      } else {
+        return createElement(Cmp403);
+      }
+    },
+    computed() {
+      const isAdmin = true
+      if (isAdmin && !loadedComponents[componentPath]) {
+        loadedComponents[componentPath] = import(componentPath)
+      }
+      return {
+        isAdmin,
+        cmp: loadedComponents[componentPath]
+      }
+    }
+  });
+};
+
+
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -144,7 +169,7 @@ const router = new Router({
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./components/admin/ManageSprintReporter.vue')
+      component: () => HoComponent('./components/admin/ManageSprintReporter.vue')
     },
     {
       path: '/onduty/tasks/:id/edit',

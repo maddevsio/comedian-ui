@@ -101,13 +101,8 @@ const state = {
   adminSideLinks: [
     {
       id: 0,
-      text: 'Settings',
-      page: '/reporter'
-    },
-    {
-      id: 0,
-      text: 'Settings',
-      page: '/reporter'
+      text: 'Manage Sprint Reporter',
+      page: '/admin/manage_sprint_reporters'
     }
   ]
 }
