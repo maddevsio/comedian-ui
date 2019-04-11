@@ -18,6 +18,13 @@ const actions = {
         commit('ADD_ITEMS', { store: 'tasks', payload: response.data })
     },
 
+    GET_TASK: async ({
+        commit,
+    }, url) => {
+        const response = await fetch(url, {}, {}, 'onDuty')
+        commit('ADD_ITEM', { store: 'tasks', payload: response.data })
+    },
+
     ADD_TASK: async ({
         commit,
     },
