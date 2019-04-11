@@ -15,6 +15,12 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <router-link
+          v-if="isAdmin"
+          class="v-btn v-btn--flat theme--light white--text"
+          :to="{ name: 'manageSprintReporters'}"
+          flat
+        >Admin</router-link>
+        <router-link
           class="v-btn v-btn--flat theme--light white--text"
           v-for="routes in links"
           v-bind:key="routes.id"
@@ -31,6 +37,11 @@
 export default {
   name: "Header",
   props: ["title", "links", "navLinks"],
+  computed() {
+    return {
+      isAdmin: this.$store.state.user.bot.admin
+    };
+  },
   data() {
     return {
       isNavShown: false

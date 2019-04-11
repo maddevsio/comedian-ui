@@ -163,7 +163,24 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: () => import('./components/onduty/TasksAdd.vue')
+    },
+    {
+      path: '/admin/manage_onduty',
+      name: 'manageOnDuty',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/admin/ManageOnDuty.vue')
+    },
+    {
+      path: '/admin/manage_onduty/add',
+      name: 'onDutyAdd',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/admin/AddOnDuty.vue')
     }
+
   ]
 })
 
