@@ -11,9 +11,10 @@
             <v-flex xs12 md12>
               <abbr title="Update reminder time (in minutes) of the task">
                 <v-text-field
-                  v-model="task.reminder_time"
-                  label="Reminder Time"
+                  v-model="task.reminder_interval"
+                  label="Reminder Interval"
                   type="number"
+                  min="0"
                   required
                 />
               </abbr>
@@ -44,6 +45,12 @@
             <v-flex xs12 md12>
               <v-text-field v-model="task.report_to" label="Report To" required/>
             </v-flex>
+            <v-flex xs12 md12>
+              <v-switch
+                v-model="task.done_status"
+                :label="`Task Done Status ${task.done_status ? 'True': 'False' }`"
+              />
+            </v-flex>
             <v-btn block color="primary" @click="Save">Save</v-btn>
           </v-container>
         </v-form>
@@ -67,15 +74,12 @@ import store from "../../store";
 
 export default {
   computed: mapState({
-    task: state => {
-      const items = getItems(state, "tasks");
-      return items;
-    },
+    task: state => state.tasks.entities[Object.keys(state.tasks.entities)[0]],
     links() {
       return this.$store.state.links.linksHeader;
     },
     navLinks() {
-      return this.$store.state.links.reporterSideLinks;
+      return this.$store.state.links.onDutySideLinks;
     }
   }),
   components: {
@@ -93,15 +97,25 @@ export default {
     async Save() {
       const url = `v1/tasks/${this.$route.params.id}`;
       const transformedValues = transform(this.task, {});
-      await this.$store.dispatch("UPDATE_TASK", {
-        url,
-        data: transformedValues
-      });
+      await this.$store
+        .dispatch("UPDATE_TASK", {
+          url,
+          data: transformedValues
+        })
+        .then(() => {
+          this.alert = true;
+          this.errorStatus = false;
+        })
+        .catch(error => {
+          this.errorStatus = true;
+          this.alert = false;
+          this.errorText = error.response.data;
+        });
     }
   },
   beforeCreate() {
     const url = `v1/tasks/${this.$route.params.id}`;
-    this.$store.dispatch("GET_TASKS", url);
+    this.$store.dispatch("GET_TASK", url);
   }
 };
 </script>

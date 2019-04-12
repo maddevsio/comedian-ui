@@ -23,6 +23,7 @@
                   v-model="task.reminder_interval"
                   label="Reminder Interval"
                   type="number"
+                  min="0"
                   required
                 />
               </abbr>
@@ -80,7 +81,7 @@ export default {
       return this.$store.state.links.linksHeader;
     },
     navLinks() {
-      return this.$store.state.links.reporterSideLinks;
+      return this.$store.state.links.onDutySideLinks;
     }
   },
   components: {

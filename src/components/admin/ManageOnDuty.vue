@@ -1,30 +1,28 @@
 <template>
-  <div v-if="!isAdmin">
-    <Header title="Manage SprintReporters" :links="this.links" :navLinks="this.navLinks"/>
+  <div>
+    <Header title="Manage OnDuty" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
       <v-card class="mt-3 mx-auto" max-width="1200">
-        <v-data-table :headers="headers" :items="sprintReporters" class="elevation-1">
+        <v-data-table :headers="headers" :items="onduty" class="elevation-1">
           <template v-slot:items="props">
             <td class="text-xs-left">{{ props.item.team_name }}</td>
-            <td class="text-xs-left">{{ props.item.report_channel }}</td>
-            <td class="text-xs-left">{{ props.item.report_days }}</td>
-            <td class="text-xs-left">{{ props.item.report_time}}</td>
-            <td class="text-xs-left">{{ props.item.service_enabled }}</td>
+            <td class="text-xs-left">{{ props.item.channel }}</td>
+            <td class="text-xs-left">{{ props.item.notification_time }}</td>
+            <td class="text-xs-left">{{ props.item.members_order}}</td>
+            <td class="text-xs-left">{{ props.item.algorithm }}</td>
+            <td class="text-xs-left">{{ props.item.current_onduty }}</td>
             <td class="text-xs-left">{{ props.item.language }}</td>
           </template>
         </v-data-table>
         <div class="link">
-          <router-link :to="{ name: 'sprintreporterAdd'}">
-            <i class="option-btn option-btn--small">Add sprint reporter</i>
+          <router-link :to="{ name: 'onDutyAdd'}">
+            <i class="option-btn option-btn--small">Add On Duty</i>
             <i class="material-icons option-btn option-btn--add">add</i>
           </router-link>
         </div>
       </v-card>
     </v-content>
   </div>
-  <v-card class="mt-3 mx-auto" max-width="400" v-else>
-    <v-alert :value="true" color="warning" icon="priority_high" outline>Content is not allowed</v-alert>
-  </v-card>
 </template>		
 
 <script>
@@ -33,8 +31,8 @@ import { mapState } from "vuex";
 import { getItems } from "../../my-getters";
 export default {
   computed: mapState({
-    sprintReporters: state => {
-      const items = getItems(state, "sprintReporter");
+    onduty: state => {
+      const items = getItems(state, "onduty");
       return items;
     },
     links() {
@@ -42,9 +40,6 @@ export default {
     },
     navLinks() {
       return this.$store.state.links.adminSideLinks;
-    },
-    isAdmin() {
-      return this.$store.state.user.bot.admin;
     }
   }),
   components: {
@@ -54,17 +49,18 @@ export default {
     return {
       headers: [
         { text: "Team Name", value: "team_name" },
-        { text: "Report Channel", value: "report_channel" },
-        { text: "Report Days", value: "report_days" },
-        { text: "Report Time", value: "report_time" },
-        { text: "Service Enabled", value: "service_enabled" },
+        { text: "Channel", value: "channel" },
+        { text: "Notification Times", value: "notification_time" },
+        { text: "Members Order", value: "members_order" },
+        { text: "Algorithm", value: "algorithm" },
+        { text: "Current Onduty", value: "current_onduty" },
         { text: "Language", value: "language" }
       ]
     };
   },
   beforeCreate() {
-    const url = `v1/configurations`;
-    this.$store.dispatch("GET_SPRINTREPORTER", url);
+    const url = `v1/settings`;
+    this.$store.dispatch("GET_ONDUTY", url);
   }
 };
 </script>

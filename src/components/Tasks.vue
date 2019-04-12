@@ -9,9 +9,7 @@
         <td class="text-xs-left">{{ props.item.done_status }}</td>
         <td class="text-xs-left">{{ props.item.report_to }}</td>
         <td class="text-xs-left">
-          <router-link
-            :to="{ name: 'taskEdit', params: { id: props.item.id }, props: { task: props.item }, component:{TaskEdit} }"
-          >
+          <router-link :to="{ name: 'taskEdit', params: { id: props.item.id }}">
             <i class="material-icons option-btn">edit</i>
           </router-link>
           <i class="material-icons option-btn" @click="deleteTask(props.item.id)">delete</i>
