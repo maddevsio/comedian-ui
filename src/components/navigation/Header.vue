@@ -22,11 +22,6 @@
         >Admin</router-link>
         <router-link
           class="v-btn v-btn--flat theme--light white--text"
-          :to="{ name: 'manageSprintReporters'}"
-          flat
-        >Admin</router-link>
-        <router-link
-          class="v-btn v-btn--flat theme--light white--text"
           v-for="routes in links"
           v-bind:key="routes.id"
           :to="`${routes.page}`"
@@ -39,14 +34,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Header",
   props: ["title", "links", "navLinks"],
-  computed() {
-    return {
-      isAdmin: this.$store.state.user.bot.admin
-    };
-  },
+  computed: mapState({
+    isAdmin: state => {
+      return state.user.bot.admin;
+    }
+  }),
   data() {
     return {
       isNavShown: false

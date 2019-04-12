@@ -16,16 +16,16 @@ const state = {
     //   page: '/#'
     // },
 
-    {
-      id: 3,
-      text: 'Sprint Reporter',
-      page: '/sprintreporter'
-    },
-    {
-      id: 4,
-      text: 'On Duty',
-      page: '/onduty'
-    }
+    // {
+    //   id: 3,
+    //   text: 'Sprint Reporter',
+    //   page: '/sprintreporter'
+    // },
+    // {
+    //   id: 4,
+    //   text: 'On Duty',
+    //   page: '/onduty'
+    // }
   ],
   comedianSideLinks: [{
     id: 0,
@@ -99,6 +99,11 @@ const state = {
       id: 0,
       text: 'Manage Sprint Reporter',
       page: '/admin/manage_sprint_reporters'
+    },
+    {
+      id: 1,
+      text: 'Manage On Duty',
+      page: '/admin/manage_onduty'
     }
   ]
 }

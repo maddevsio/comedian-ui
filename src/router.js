@@ -3,30 +3,31 @@ import Router from 'vue-router'
 import auth from './middleware/auth';
 import anonymous from './middleware/anonymous';
 import log from './middleware/log';
+import ComponentError from './components/ComponentError'
+import { mapState } from "vuex";
+import ManageSprintReporter from './components/admin/ManageSprintReporter'
+import ManageOnDuty from './components/admin/ManageOnDuty.vue'
+import ManageOnDutyAdd from './components/admin/AddOnDuty.vue'
+import AddSprintReport from './components/admin/AddSprintReport.vue'
+
+
 
 Vue.use(Router)
 
-const loadedComponents = {}
-
 const HoComponent = (componentPath) => {
   return Vue.component("HoComponent", {
-    render(createElement, context) {
+    render(createElement) {
+      console.log(this.aa)
       if (this.isAdmin) {
-        return createElement(this.cmp);
+        return createElement(componentPath);
       } else {
-        return createElement(Cmp403);
+        return createElement(ComponentError);
       }
     },
-    computed() {
-      const isAdmin = true
-      if (isAdmin && !loadedComponents[componentPath]) {
-        loadedComponents[componentPath] = import(componentPath)
-      }
-      return {
-        isAdmin,
-        cmp: loadedComponents[componentPath]
-      }
-    }
+    computed: mapState({
+      isAdmin: state => state.user.bot.admin,
+      aa: state => state.user
+    }),
   });
 };
 
@@ -122,7 +123,7 @@ const router = new Router({
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./components/admin/AddSprintReport.vue')
+      component: HoComponent(AddSprintReport)
     },
     {
       path: '/standup/:id/edit',
@@ -162,7 +163,7 @@ const router = new Router({
       meta: {
         middleware: [auth, log],
       },
-      component: () => HoComponent('./components/admin/ManageSprintReporter.vue')
+      component: HoComponent(ManageSprintReporter)
     },
     {
       path: '/onduty/tasks/:id/edit',
@@ -188,7 +189,7 @@ const router = new Router({
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./components/admin/ManageOnDuty.vue')
+      component: HoComponent(ManageOnDuty)
     },
     {
       path: '/admin/manage_onduty/add',
@@ -196,7 +197,7 @@ const router = new Router({
       meta: {
         middleware: [auth, log],
       },
-      component: () => import('./components/admin/AddOnDuty.vue')
+      component: HoComponent(ManageOnDutyAdd)
     }
 
   ]

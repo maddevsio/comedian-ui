@@ -7,9 +7,11 @@ export default function anonymous({
 }) {
   const token = getters.token(store.state)
   if (!!token) {
-    return router.push({
-      name: `comedian`
-    });
+    console.log('ffffffffffffffffffffffffffffffffffffffff')
+    return next({ name: 'comedian', replace: false })
+    // return router.push({
+    //   name: `comedian`
+    // });
   }
   return next();
 }
