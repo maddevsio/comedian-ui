@@ -34,14 +34,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Header",
   props: ["title", "links", "navLinks"],
-  computed() {
-    return {
-      isAdmin: this.$store.state.user.bot.admin
-    };
-  },
+  computed: mapState({
+    isAdmin: state => {
+      return state.user.bot.admin;
+    }
+  }),
   data() {
     return {
       isNavShown: false

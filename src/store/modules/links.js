@@ -16,16 +16,17 @@ const state = {
     //   page: '/#'
     // },
 
-    //{
-    //id: 3,
-    //text: 'Sprint Reporter',
-    // page: '/sprintreporter'
-    //},
-    //{
-    // id: 4,
-    //  text: 'On Duty',
-    // page: '/onduty'
+    // {
+    //   id: 3,
+    //   text: 'Sprint Reporter',
+    //   page: '/sprintreporter'
+    // },
+    // {
+    //   id: 4,
+    //   text: 'On Duty',
+    //   page: '/onduty'
     // }
+
   ],
   comedianSideLinks: [{
     id: 0,
@@ -97,13 +98,13 @@ const state = {
   adminSideLinks: [
     {
       id: 0,
-      text: 'Settings',
-      page: '/reporter'
+      text: 'Manage Sprint Reporter',
+      page: '/admin/manage_sprint_reporters'
     },
     {
-      id: 0,
-      text: 'Settings',
-      page: '/reporter'
+      id: 1,
+      text: 'Manage On Duty',
+      page: '/admin/manage_onduty'
     }
   ]
 }
