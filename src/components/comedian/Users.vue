@@ -8,11 +8,8 @@
         <td class="text-xs-left">{{ props.item.role }}</td>
         <td class="text-xs-left">{{ props.item.real_name }}</td>
         <!-- <td class="text-xs-left">
-          <router-link
-            class="isDisabled"
-            :to="{ name:'users_edit', params: { id: props.item.id } }"
-          >
-            <i class="material-icons option-btn">edit</i>
+          <router-link :to="{ name: 'users_edit', params: { id: props.item.id } }">
+            <v-icon>edit</v-icon>
           </router-link>
         </td>-->
       </template>
@@ -49,17 +46,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.option-btn {
-  color: grey;
-  font-size: 18px;
-  &:hover {
-    color: #42b983;
-    cursor: pointer;
-  }
-}
-.isDisabled {
-  pointer-events: none;
-  cursor: not-allowed;
-}
-</style>
