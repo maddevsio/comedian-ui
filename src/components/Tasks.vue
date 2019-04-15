@@ -9,19 +9,20 @@
         <td class="text-xs-left">{{ props.item.done_status }}</td>
         <td class="text-xs-left">{{ props.item.report_to }}</td>
         <td class="text-xs-left">
-          <router-link :to="{ name: 'taskEdit', params: { id: props.item.id }}">
-            <i class="material-icons option-btn">edit</i>
+          <router-link :to="{ name: 'taskEdit', params: { id: props.item.id } }">
+            <v-icon>edit</v-icon>
           </router-link>
-          <i class="material-icons option-btn" @click="deleteTask(props.item.id)">delete</i>
+          <v-icon @click="deleteTask(props.item.id)">delete</v-icon>
         </td>
       </template>
     </v-data-table>
-    <div class="link">
-      <router-link :to="{ name: 'taskAdd'}">
-        <i class="option-btn option-btn--small">Add Task</i>
-        <i class="material-icons option-btn option-btn--add">add</i>
-      </router-link>
-    </div>
+    <router-link :to="{ name: 'taskAdd'}">
+      <v-fab-transition>
+        <v-btn v-show="!hidden" color="primary" dark fab fixed bottom right>
+          <v-icon>add</v-icon>
+        </v-btn>
+      </v-fab-transition>
+    </router-link>
   </v-card>
 
   <v-card class="mt-3 mx-auto" max-width="400" v-else>

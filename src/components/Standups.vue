@@ -8,13 +8,10 @@
         <td class="text-xs-left">{{ props.item.modified}}</td>
         <td class="text-xs-left">{{ props.item.comment }}</td>
         <!-- <td class="text-xs-left">
-          <router-link
-            class="isDisabled"
-            :to="{ name: 'standupEdit', params: { id: props.item.id } }"
-          >
-            <i class="material-icons option-btn">edit</i>
+          <router-link :to="{ name: 'standupEdit', params: { id: props.item.id } }">
+            <v-icon>edit</v-icon>
           </router-link>
-          <i class="material-icons option-btn" @click="deleteStandup(props.item.id)">delete</i>
+          <v-icon @click="deleteStandup(props.item.id)">delete</v-icon>
         </td>-->
       </template>
     </v-data-table>

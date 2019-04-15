@@ -10,12 +10,13 @@
         <td class="text-xs-left">{{ props.item.language }}</td>
       </template>
     </v-data-table>
-    <div class="link">
-      <router-link :to="{ name: 'onDutyAddUser'}">
-        <i class="option-btn option-btn--small">Add On Duty</i>
-        <i class="material-icons option-btn option-btn--add">add</i>
-      </router-link>
-    </div>
+    <router-link :to="{ name: 'onDutyAddUser'}">
+      <v-fab-transition>
+        <v-btn v-show="!hidden" color="primary" dark fab fixed bottom right>
+          <v-icon>add</v-icon>
+        </v-btn>
+      </v-fab-transition>
+    </router-link>
   </v-card>
 
   <v-card class="mt-3 mx-auto" max-width="400" v-else>
@@ -47,6 +48,7 @@ export default {
       ]
     };
   },
+
   beforeCreate() {
     const teamId = store.state.user.bot.team_id;
     const url = `v1/settings/team/${teamId}`;

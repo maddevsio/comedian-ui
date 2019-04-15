@@ -8,13 +8,10 @@
         <td class="text-xs-left">{{ props.item.submitted_standup_today }}</td>
         <td class="text-xs-left">{{ props.item.created }}</td>
         <!-- <td class="text-xs-left">
-          <router-link
-            class="isDisabled"
-            :to="{ name: 'standuperEdit', params: { id: props.item.id } }"
-          >
-            <i class="material-icons option-btn">edit</i>
+          <router-link :to="{ name: 'standuperEdit', params: { id: props.item.id } }">
+            <v-icon>edit</v-icon>
           </router-link>
-          <i class="material-icons option-btn" @click="deleteStanduper(props.item.id)">delete</i>
+          <v-icon @click="deleteStanduper(props.item.id)">delete</v-icon>
         </td>-->
       </template>
     </v-data-table>

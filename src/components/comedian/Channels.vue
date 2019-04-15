@@ -7,10 +7,10 @@
         <td class="text-xs-left">{{ props.item.channel_id }}</td>
         <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
         <!-- <td class="text-xs-left">
-          <router-link class="isDisabled" :to="{ name: 'edit', params: { id: props.item.id } }">
-            <i class="material-icons option-btn">edit</i>
+          <router-link :to="{ name: 'edit', params: { id: props.item.id } }">
+            <v-icon>edit</v-icon>
           </router-link>
-          <i class="material-icons option-btn" @click="deleteChannel(props.item.id)">delete</i>
+          <v-icon @click="deleteChannel(props.item.id)">delete</v-icon>
         </td>-->
       </template>
     </v-data-table>
@@ -52,17 +52,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.option-btn {
-  color: grey;
-  font-size: 18px;
-  &:hover {
-    color: #42b983;
-    cursor: pointer;
-  }
-}
-.isDisabled {
-  pointer-events: none;
-  cursor: not-allowed;
-}
-</style>
