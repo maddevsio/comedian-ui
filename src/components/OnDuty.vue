@@ -2,7 +2,6 @@
   <v-card class="mt-3 mx-auto" max-width="1200" v-if="onduty">
     <v-data-table :headers="headers" :items="onduty" class="elevation-1">
       <template v-slot:items="props">
-        <td class="text-xs-left">{{ props.item.team_name }}</td>
         <td class="text-xs-left">{{ props.item.channel }}</td>
         <td class="text-xs-left">{{ props.item.notification_time }}</td>
         <td class="text-xs-left">{{ props.item.members_order}}</td>
@@ -11,6 +10,12 @@
         <td class="text-xs-left">{{ props.item.language }}</td>
       </template>
     </v-data-table>
+    <div class="link">
+      <router-link :to="{ name: 'onDutyAddUser'}">
+        <i class="option-btn option-btn--small">Add On Duty</i>
+        <i class="material-icons option-btn option-btn--add">add</i>
+      </router-link>
+    </div>
   </v-card>
 
   <v-card class="mt-3 mx-auto" max-width="400" v-else>
@@ -33,7 +38,6 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Team Name", value: "team_name" },
         { text: "Channel", value: "channel" },
         { text: "Notification Time", value: "notification_time" },
         { text: "Members Order", value: "members_order" },

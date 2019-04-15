@@ -15,7 +15,7 @@
           </template>
         </v-data-table>
         <div class="link">
-          <router-link :to="{ name: 'onDutyAdd'}">
+          <router-link :to="{ name: 'onDutyAddUser'}">
             <i class="option-btn option-btn--small">Add On Duty</i>
             <i class="material-icons option-btn option-btn--add">add</i>
           </router-link>

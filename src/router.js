@@ -198,6 +198,14 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: HoComponent(ManageOnDutyAdd)
+    },
+    {
+      path: '/on_duty/add',
+      name: 'onDutyAddUser',
+      meta: {
+        middleware: [auth, log],
+      },
+      component: () => import('./components/onduty/AddOnDuty.vue')
     }
 
   ]

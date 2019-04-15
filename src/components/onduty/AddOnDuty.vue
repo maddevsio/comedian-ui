@@ -7,7 +7,7 @@
           <v-container>
             <v-flex xs12 md12>
               <v-select
-                v-model="onduty.report_channel"
+                v-model="onduty.channel"
                 :items="channels"
                 label="Channels"
                 data-vv-name="select"
@@ -100,12 +100,18 @@ import Header from "@/components/navigation/Header.vue";
 import axios from "axios";
 import store from "../../store";
 import { mapState } from "vuex";
+import { getItems } from "../../my-getters";
+import transform from "../../helpers/transform";
 
 export default {
   computed: mapState({
     channels: state => {
-      const items = getItems(state, "channels").channel_name;
-      return items;
+      const items = getItems(state, "channels");
+      let channelNames = [];
+      items.forEach(function(item) {
+        channelNames.push(item.channel_name);
+      });
+      return channelNames;
     },
     links() {
       return this.$store.state.links.linksHeader;
@@ -144,7 +150,7 @@ export default {
       const team_name = store.state.user.bot.team_name;
       this.onduty.team_name = store.state.user.bot.team_name;
       this.onduty.team_id = team_id;
-      this.onduty.members_order = this.onduty.members_order.join(",");
+      //   this.onduty.members_order = this.onduty.members_order.join(",");
       this.onduty.algorithm = parseInt(this.onduty.algorithm);
 
       this.onduty.bot_access_token = store.state.user.bot.bot_access_token;
@@ -162,6 +168,10 @@ export default {
           this.errorText = error.response.data;
         });
     }
+  },
+  beforeCreate() {
+    const url = "v1/channels";
+    this.$store.dispatch("GET_CHANNELS", url);
   }
 };
 </script>
