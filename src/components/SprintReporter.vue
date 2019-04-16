@@ -107,7 +107,22 @@ export default {
       // FIXME
       const entities = state.sprintReporter.entities;
       if (typeof entities.report_days === "string") {
-        entities.report_days = entities.report_days.split(",");
+        const weekdays = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ];
+        const intDays = entities.report_days.split(",");
+        entities.report_days = [];
+        for (let i = 0; i < intDays.length; ++i) {
+          if (intDays[i] > 0) {
+            entities.report_days.push(weekdays[i]);
+          }
+        }
       }
       entities.report_time = formatTime(entities.report_time);
       return entities;
@@ -138,15 +153,10 @@ export default {
     async Save() {
       const teamId = store.state.user.bot.team_id;
       const url = `v1/configurations/${teamId}`;
-      var report_days = "";
-      this.sprintReporter.report_days = this.sprintReporter.report_days.join(
-        ","
-      );
-      const days = this.sprintReporter.report_days.join(",");
-      this.sprintReporter.report_days = days;
 
-      const transformedValues = transform(this.sprintReporter, {});
-      transformedValues.report_days = days;
+      const transformedValues = transform(this.sprintReporter, {
+        report_days: "weekdays"
+      });
       await this.$store.dispatch("UPDATE_SPRINTREPORTER", {
         url,
         data: transformedValues
