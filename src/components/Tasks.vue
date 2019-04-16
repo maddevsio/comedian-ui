@@ -62,7 +62,7 @@ export default {
   },
   beforeCreate() {
     const teamId = store.state.user.bot.team_id;
-    const url = `v1/tasks/team/${teamId}/${this.$route.params.channel_id}`;
+    const url = `v1/tasks/${teamId}/${this.$route.params.channel_id}`;
     this.$store.dispatch("GET_TASKS", url);
   }
 };
