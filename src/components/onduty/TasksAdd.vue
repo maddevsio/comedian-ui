@@ -28,11 +28,11 @@
                 />
               </abbr>
             </v-flex>
-            <v-flex xs12 md4>
+            <v-flex xs12 md12>
               <v-dialog
                 ref="dialog"
                 v-model="modal2"
-                :return-value.sync="bot.reporting_time"
+                :return-value.sync="task.deadlinee"
                 persistent
                 lazy
                 full-width
@@ -91,6 +91,7 @@ export default {
   },
   data: () => ({
     menu2: false,
+    modal2: false,
     task: {
       team_name: "",
       team_id: "",
