@@ -38,7 +38,7 @@ const state = {
       page: '/standupers'
     },
     {
-      text: 'Standup',
+      text: 'Standups',
       page: '/standups'
     },
     {
@@ -46,7 +46,7 @@ const state = {
       page: '/users'
     },
     {
-      text: 'Change Password',
+      text: 'Change password',
       page: '/password_reset'
     },
   ],

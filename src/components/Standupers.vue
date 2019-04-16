@@ -1,17 +1,20 @@
 <template>
   <v-card class="mt-3 mx-auto" max-width="1200">
-    <v-data-table :headers="headers" :items="standupers" class="elevation-1">
+    <v-data-table
+      :headers="headers"
+      :items="standupers"
+      class="elevation-1 text-uppercase font-weight-medium"
+      :rows-per-page-items="this.rows"
+    >
       <template v-slot:items="props">
-        <td class="text-xs-left">{{ props.item.user_id }}</td>
-        <td class="text-xs-left">{{ props.item.channel_id }}</td>
-        <td class="text-xs-left">{{ props.item.role_in_channel }}</td>
-        <td class="text-xs-left">{{ props.item.submitted_standup_today }}</td>
-        <td class="text-xs-left">{{ props.item.created }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.user_id }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.channel_id }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.role_in_channel }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.submitted_standup_today }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.created }}</td>
         <!-- <td class="text-xs-left">
-          <router-link :to="{ name: 'standuperEdit', params: { id: props.item.id } }">
-            <v-icon>edit</v-icon>
-          </router-link>
-          <v-icon @click="deleteStanduper(props.item.id)">delete</v-icon>
+          <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
+          <v-icon small @click="delete(props.item.id)">delete</v-icon>
         </td>-->
       </template>
     </v-data-table>
@@ -37,15 +40,24 @@ export default {
         { text: "Role in channel", value: "role_in_channel" },
         { text: "Submitted Standup", value: "submitted_standup_today" },
         { text: "Created", value: "created" }
-        // { text: "Options" }
+        // { text: "Actions" }
+      ],
+      rows: [
+        25,
+        50,
+        100,
+        { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }
       ]
     };
   },
   methods: {
-    async deleteStanduper(id) {
+    async delete(id) {
       return;
       const url = `v1/standupers/${id}`;
       this.$store.dispatch("REMOVE_STANDUPER", url);
+    },
+    edit(id) {
+      this.$router.push({ name: "standuperEdit", params: { id: id } });
     }
   },
   beforeCreate() {
@@ -54,17 +66,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.option-btn {
-  color: grey;
-  font-size: 18px;
-  &:hover {
-    color: #42b983;
-    cursor: pointer;
-  }
-}
-.isDisabled {
-  pointer-events: none;
-  cursor: not-allowed;
-}
-</style>

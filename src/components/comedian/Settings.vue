@@ -3,6 +3,22 @@
     <v-form method="post">
     <v-container>
       <v-layout>       
+        <v-flex xs12 md5>
+          <v-text-field
+            v-model="bot.team_id"
+            label="Team Id"
+            readonly
+          />
+        </v-flex>   
+        <v-flex xs12 md7> 
+          <v-text-field
+            v-model="bot.bot_access_token"
+            label="Bot Access Token"
+            readonly
+          />
+        </v-flex>
+      </v-layout> 
+      <v-layout>       
           <v-flex xs12 md6>
             <v-select
               v-model="bot.language"
@@ -48,14 +64,9 @@
             />
             </abbr>
           </v-flex>
-          </v-layout> 
-          <v-layout>
-            <v-flex xs12 md12>
-             <h2 class="text-uppercase title font-weight-regular text-lg-left" >Reporter</h2>
-            </v-flex>
-          </v-layout>      
+          </v-layout>             
           <v-layout> 
-          <v-flex xs12 md6>
+          <v-flex xs12 md4>
             <v-select
               v-model="bot.reporting_channel"
               :items="channels"
@@ -63,7 +74,7 @@
               data-vv-name="select"
             />
           </v-flex>
-          <v-flex xs12 md6>
+          <v-flex xs12 md4>
             <v-dialog
               ref="dialog"
               v-model="modal2"
@@ -88,13 +99,14 @@
               </v-time-picker>
             </v-dialog>
           </v-flex>
-          </v-layout> 
-           <v-flex xs12 md6>
+           <v-flex xs12 md4>
           <v-switch
             v-model="bot.individual_reports_on"
             :label="`Individual Report Status ${bot.individual_reports_on ? 'ON': 'OFF' }`"
           />
         </v-flex>
+
+          </v-layout> 
         <v-btn color="primary white--text" @click='Save'>Save</v-btn>
       </v-layout>  
     </v-container> 

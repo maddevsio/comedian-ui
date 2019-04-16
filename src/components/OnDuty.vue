@@ -1,13 +1,18 @@
  <template>
   <v-card class="mt-3 mx-auto" max-width="1200" v-if="onduty">
-    <v-data-table :headers="headers" :items="onduty" class="elevation-1">
+    <v-data-table
+      :headers="headers"
+      :items="onduty"
+      class="elevation-1 text-uppercase font-weight-medium"
+      :rows-per-page-items="this.rows"
+    >
       <template v-slot:items="props">
-        <td class="text-xs-left">{{ props.item.channel }}</td>
-        <td class="text-xs-left">{{ props.item.notification_time }}</td>
-        <td class="text-xs-left">{{ props.item.members_order}}</td>
-        <td class="text-xs-left">{{ props.item.algorithm }}</td>
-        <td class="text-xs-left">{{ props.item.current_onduty }}</td>
-        <td class="text-xs-left">{{ props.item.language }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.channel }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.notification_time }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.members_order}}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.algorithm }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.current_onduty }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.language }}</td>
       </template>
     </v-data-table>
     <router-link :to="{ name: 'onDutyAddUser'}">
@@ -36,14 +41,6 @@ export default {
       return items;
     }
   }),
-  // watch: {
-  //   isShow: onduty => {
-  //     if (onduty == null || onduty == undefined) {
-  //       return false;
-  //     }
-  //     return true;
-  //   }
-  //},
   data() {
     return {
       headers: [
@@ -53,6 +50,12 @@ export default {
         { text: "Algorithm", value: "algorithm" },
         { text: "Current Onduty", value: "current_onduty" },
         { text: "Language", value: "language" }
+      ],
+      rows: [
+        25,
+        50,
+        100,
+        { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }
       ]
     };
   },
