@@ -28,36 +28,27 @@ const state = {
     }
 
   ],
-  comedianSideLinks: [{
-    id: 0,
-    text: 'Settings',
-    page: '/comedian'
-  },
-  {
-    id: 1,
-    text: 'Password Change',
-    page: '/password_reset'
-  },
-  {
-    id: 2,
-    text: 'Channels',
-    page: '/channels'
-  },
-  {
-    id: 3,
-    text: 'Standupers',
-    page: '/standupers'
-  },
-  {
-    id: 4,
-    text: 'StandUp',
-    page: '/standups'
-  },
-  {
-    id: 5,
-    text: 'Users',
-    page: '/users'
-  }
+  comedianSideLinks: [
+    {
+      text: 'Channels',
+      page: '/channels'
+    },
+    {
+      text: 'Standupers',
+      page: '/standupers'
+    },
+    {
+      text: 'Standup',
+      page: '/standups'
+    },
+    {
+      text: 'Users',
+      page: '/users'
+    },
+    {
+      text: 'Change Password',
+      page: '/password_reset'
+    },
   ],
   sprintReporterSideLinks: [
     {
