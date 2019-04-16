@@ -38,10 +38,14 @@
 <script>
 import transform from "../../helpers/transform";
 import { mapState } from "vuex";
+import { getItems } from "../../my-getters";
 
 export default {
   computed: mapState({
-    channel: state => state.channels.channels
+    channel: state => {
+      const items = getItems(state, "channels");
+      return items;
+    }
   }),
   methods: {
     async Save() {

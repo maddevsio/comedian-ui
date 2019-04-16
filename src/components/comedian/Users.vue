@@ -1,16 +1,19 @@
 <template>
   <v-card class="mt-3 mx-auto" max-width="1200">
-    <v-data-table :headers="headers" :items="users" class="elevation-1">
+    <v-data-table
+      :headers="headers"
+      :items="users"
+      class="elevation-1 text-uppercase font-weight-medium"
+      :rows-per-page-items="this.rows"
+    >
       <template v-slot:items="props">
-        <td class="text-xs-left">{{ props.item.team_id }}</td>
-        <td class="text-xs-left">{{ props.item.user_name }}</td>
-        <td class="text-xs-left">{{ props.item.user_id }}</td>
-        <td class="text-xs-left">{{ props.item.role }}</td>
-        <td class="text-xs-left">{{ props.item.real_name }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.team_id }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.user_name }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.user_id }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.role }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.real_name }}</td>
         <!-- <td class="text-xs-left">
-          <router-link :to="{ name: 'users_edit', params: { id: props.item.id } }">
-            <v-icon>edit</v-icon>
-          </router-link>
+          <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
         </td>-->
       </template>
     </v-data-table>
@@ -36,7 +39,13 @@ export default {
         { text: "User_id", value: "user_id" },
         { text: "Role", value: "role" },
         { text: "Real_name", value: "real_name" }
-        // { text: "Options", value: "" }
+        // { text: "Actions"}
+      ],
+      rows: [
+        25,
+        50,
+        100,
+        { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }
       ]
     };
   },

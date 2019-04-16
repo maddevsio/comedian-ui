@@ -1,7 +1,8 @@
 import {
   fetch,
   patch,
-  remove
+  remove,
+  post
 } from '../../helpers/requests'
 
 const state = {
@@ -17,7 +18,7 @@ const actions = {
   },
 
   UPDATE_CHANNEL: async ({ commit }, { url, data }) => {
-    const response = await post(url, data)
+    const response = await patch(url, data)
     commit('ADD_ITEM', { store: 'channels', payload: response.data })
   },
 

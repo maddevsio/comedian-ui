@@ -1,17 +1,20 @@
  <template>
   <v-card class="mt-3 mx-auto" max-width="1200">
-    <v-data-table :headers="headers" :items="standups" class="elevation-1">
+    <v-data-table
+      :headers="headers"
+      :items="standups"
+      class="elevation-1 text-uppercase font-weight-medium"
+      :rows-per-page-items="this.rows"
+    >
       <template v-slot:items="props">
-        <td class="text-xs-left">{{ props.item.user_id }}</td>
-        <td class="text-xs-left">{{ props.item.channel_id }}</td>
-        <td class="text-xs-left">{{ props.item.created }}</td>
-        <td class="text-xs-left">{{ props.item.modified}}</td>
-        <td class="text-xs-left">{{ props.item.comment }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.user_id }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.channel_id }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.created }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.modified}}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.comment }}</td>
         <!-- <td class="text-xs-left">
-          <router-link :to="{ name: 'standupEdit', params: { id: props.item.id } }">
-            <v-icon>edit</v-icon>
-          </router-link>
-          <v-icon @click="deleteStandup(props.item.id)">delete</v-icon>
+          <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
+          <v-icon small @click="delete(props.item.id)">delete</v-icon>
         </td>-->
       </template>
     </v-data-table>
@@ -37,16 +40,25 @@ export default {
         { text: "Created", value: "created" },
         { text: "Modified", value: "modified" },
         { text: "Text", value: "comment" }
-        // { text: "Options" }
+        // { text: "Actions" }
+      ],
+      rows: [
+        25,
+        50,
+        100,
+        { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }
       ]
     };
   },
 
   methods: {
-    deleteStandup(id) {
+    delete(id) {
       return;
       const url = `v1/standups/${id}`;
       this.$store.dispatch("REMOVE_STANDUP", url);
+    },
+    edit(id) {
+      this.$router.push({ name: "standupEdit", params: { id: id } });
     }
   },
   beforeCreate() {

@@ -19,28 +19,31 @@
                 />
               </abbr>
             </v-flex>
+
             <v-flex xs12 md12>
-              <v-menu
-                v-model="menu2"
-                :close-on-content-click="false"
-                :nudge-right="40"
+              <v-dialog
+                ref="dialog"
+                v-model="modal2"
+                :return-value.sync="task.deadline"
+                persistent
                 lazy
-                transition="scale-transition"
-                offset-y
                 full-width
-                min-width="290px"
+                width="290px"
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
                     v-model="task.deadline"
                     label="Deadline"
-                    append-icon="event"
+                    append-icon="access_time"
                     readonly
                     v-on="on"
                   ></v-text-field>
                 </template>
-                <v-date-picker v-model="task.deadline" @input="menu2 = false"></v-date-picker>
-              </v-menu>
+                <v-time-picker v-if="modal2" v-model="task.deadline" full-width>
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="primary" @click="$refs.dialog.save(task.deadline)">OK</v-btn>
+                </v-time-picker>
+              </v-dialog>
             </v-flex>
             <v-flex xs12 md12>
               <v-text-field v-model="task.report_to" label="Report To" required/>
@@ -86,8 +89,7 @@ export default {
     Header
   },
   data: () => ({
-    date: new Date().toISOString().substr(0, 10),
-    modal: false,
+    modal2: false,
     menu2: false,
     alert: false,
     errorStatus: false,
