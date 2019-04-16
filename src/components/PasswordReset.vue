@@ -1,6 +1,6 @@
 <template lang="html">
 <div>
-  <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
+  <Header title="Change Password" :links="this.links" :navLinks="this.navLinks"/>
   <v-content fluid fill-height>
     <PasswordReset/>
   </v-content>

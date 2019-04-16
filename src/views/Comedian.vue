@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Header title="Settings" :links="this.links" :navLinks="this.navLinks"/>
+    <Header :title="this.title" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
       <Settings/>
     </v-content>
@@ -20,6 +20,9 @@ export default {
     },
     navLinks() {
       return this.$store.state.links.comedianSideLinks;
+    },
+    title() {
+      return this.$store.state.user.bot.team_name;
     }
   },
   components: {
