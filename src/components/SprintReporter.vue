@@ -111,6 +111,12 @@ export default {
       }
       entities.report_time = formatTime(entities.report_time);
       return entities;
+    },
+    isShown: state => {
+      return (
+        state.sprintReporter.entities.length != 0 ||
+        state.sprintReporter != undefined
+      );
     }
   }),
   data() {

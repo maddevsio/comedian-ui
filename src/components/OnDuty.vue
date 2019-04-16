@@ -1,5 +1,5 @@
  <template>
-  <v-card class="mt-3 mx-auto" max-width="1200" v-if="onduty">
+  <v-card class="mt-3 mx-auto" max-width="1200" v-if="isShown">
     <v-data-table
       :headers="headers"
       :items="onduty"
@@ -39,6 +39,9 @@ export default {
     onduty: state => {
       const items = getItems(state, "onduty");
       return items;
+    },
+    isShown: state => {
+      return state.onduty.entities.length != 0 || state.onduty != undefined;
     }
   }),
   data() {

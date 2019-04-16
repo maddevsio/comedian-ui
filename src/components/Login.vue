@@ -39,7 +39,7 @@
       </v-layout>
     </v-container>
     <v-layout>
-      <v-alert v-model="errorStatus" dismissible type="error">{{errorText}}</v-alert>
+      <v-alert v-model="errorStatus" dismissible type="error" class="text-capitalize">{{errorText}}</v-alert>
     </v-layout>
   </v-content>
 </template>
@@ -70,9 +70,13 @@ export default {
         .dispatch("LOGIN", payload)
         .then(bot => this.$router.push({ path: `/comedian` }))
         .catch(err => {
+          this.resetForm();
           this.errorStatus = true;
           this.errorText = err.response.data;
         });
+    },
+    resetForm() {
+      this.password = "";
     }
   }
 };
