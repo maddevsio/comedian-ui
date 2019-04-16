@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Header title="On Duty" :links="this.links" :navLinks="this.navLinks"/>
+    <Header title="On Duty" :links="this.links"/>
     <v-content fluid fill-height>
       <OnDuty/>
     </v-content>
@@ -8,8 +8,10 @@
 </template>
 
 <script>
-import Header from "@/components/navigation/Header.vue";
+import Header from "@/components/navigation/HeaderOnDuty.vue";
 import OnDuty from "@/components/OnDuty.vue";
+import { mapState } from "vuex";
+import { getItems } from "../my-getters";
 
 export default {
   computed: {

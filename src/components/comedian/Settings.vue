@@ -134,7 +134,6 @@ export default {
     return {
       modal2: false,
       languages: ["ru_RU", "en_EN"],
-      newPassword: "",
       alert: false,
       errorStatus: false,
       errorText: ""

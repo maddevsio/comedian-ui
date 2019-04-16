@@ -7,7 +7,6 @@ import ComponentError from './components/ComponentError'
 import { mapState } from "vuex";
 import ManageSprintReporter from './components/admin/ManageSprintReporter'
 import ManageOnDuty from './components/admin/ManageOnDuty.vue'
-import ManageOnDutyAdd from './components/admin/AddOnDuty.vue'
 import AddSprintReport from './components/admin/AddSprintReport.vue'
 
 
@@ -150,7 +149,7 @@ const router = new Router({
       component: () => import('./views/OnDuty.vue')
     },
     {
-      path: '/onduty/tasks',
+      path: '/onduty/tasks/:team_id/:channel_id',
       name: 'ondutyTasks',
       meta: {
         middleware: [auth, log],
@@ -190,14 +189,6 @@ const router = new Router({
         middleware: [auth, log],
       },
       component: HoComponent(ManageOnDuty)
-    },
-    {
-      path: '/admin/manage_onduty/add',
-      name: 'onDutyAdd',
-      meta: {
-        middleware: [auth, log],
-      },
-      component: HoComponent(ManageOnDutyAdd)
     },
     {
       path: '/on_duty/add',
