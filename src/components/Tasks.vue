@@ -2,7 +2,6 @@
   <v-card class="mt-3 mx-auto" max-width="1200" v-if="tasks">
     <v-data-table :headers="headers" :items="tasks" class="elevation-1">
       <template v-slot:items="props">
-        <td class="text-xs-left">{{ props.item.channel }}</td>
         <td class="text-xs-left">{{ props.item.description }}</td>
         <td class="text-xs-left">{{ props.item.deadline }}</td>
         <td class="text-xs-left">{{ props.item.reminder_interval}}</td>
@@ -46,7 +45,6 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Channel", value: "channel" },
         { text: "Description", value: "description" },
         { text: "Deadline", value: "deadline" },
         { text: "Reminder Interval", value: "reminder_interval" },
@@ -64,7 +62,7 @@ export default {
   },
   beforeCreate() {
     const teamId = store.state.user.bot.team_id;
-    const url = `v1/tasks/team/${teamId}`;
+    const url = `v1/tasks/team/${teamId}/${this.$route.params.channel_id}`;
     this.$store.dispatch("GET_TASKS", url);
   }
 };

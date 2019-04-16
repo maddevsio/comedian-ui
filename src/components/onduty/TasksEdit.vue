@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header title="Tasks" :links="this.links" :navLinks="this.navLinks"/>
+    <Header title="Tasks" :links="this.links"/>
     <v-content fluid fill-height>
       <v-card class="mt-3 mx-auto" max-width="500">
         <v-form method="post">
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import Header from "@/components/navigation/Header.vue";
+import Header from "@/components/navigation/HeaderOnDuty.vue";
 import { mapState } from "vuex";
 import transform from "../../helpers/transform";
 import { getItems } from "../../my-getters";

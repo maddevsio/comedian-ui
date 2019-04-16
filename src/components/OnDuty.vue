@@ -12,7 +12,7 @@
     </v-data-table>
     <router-link :to="{ name: 'onDutyAddUser'}">
       <v-fab-transition>
-        <v-btn v-show="!hidden" color="primary" dark fab fixed bottom right>
+        <v-btn color="primary" dark fab fixed bottom right>
           <v-icon>add</v-icon>
         </v-btn>
       </v-fab-transition>
