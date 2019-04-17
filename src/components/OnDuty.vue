@@ -41,7 +41,9 @@ export default {
       return items;
     },
     isShown: state => {
-      return state.onduty.entities.length != 0 || state.onduty != undefined;
+      return (
+        state.onduty.entities.length != 0 || typeof state.onduty != undefined
+      );
     }
   }),
   data() {

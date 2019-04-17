@@ -6,15 +6,6 @@
         <v-form method="post">
           <v-container>
             <v-flex xs12 md12>
-              <v-select
-                v-model="task.channel"
-                :items="channels"
-                label="Channel"
-                data-vv-name="select"
-                required
-              />
-            </v-flex>
-            <v-flex xs12 md12>
               <v-text-field v-model="task.description" label="Description" type="text" required/>
             </v-flex>
             <v-flex xs12 md12>
@@ -101,7 +92,6 @@ export default {
       reminder_interval: 0,
       report_to: ""
     },
-    channels: ["channel1", "channrl2", "channel3"],
     alert: false,
     errorStatus: false,
     errorText: ""
@@ -111,7 +101,6 @@ export default {
       this.task.team_name = store.state.user.bot.team_name;
       this.task.team_id = store.state.user.bot.team_id;
       this.task.reminder_interval = parseInt(this.task.reminder_interval);
-      const transformedValues = transform(this.task, {});
       await this.$store
         .dispatch("ADD_TASK", this.task)
         .then(() => {
