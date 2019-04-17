@@ -46,7 +46,7 @@
             <v-flex xs12 md12>
               <v-select
                 v-model="onduty.members_order"
-                :items="members_order"
+                :items="users"
                 label="Members Order"
                 data-vv-name="select"
                 multiple
@@ -66,7 +66,7 @@
               <v-select
                 v-model="onduty.current_onduty"
                 label="Current Onduty"
-                :items="members_order"
+                :items="users"
                 data-vv-name="select"
                 required
               />
@@ -105,11 +105,19 @@ import transform from "../../helpers/transform";
 
 export default {
   computed: mapState({
+    users: state => {
+      const items = getItems(state, "users");
+      let userNames = [];
+      items.forEach(function(item) {
+        userNames.push(item.real_name);
+      });
+      return userNames;
+    },
     channels: state => {
       const items = getItems(state, "channels");
       let channelNames = [];
       items.forEach(function(item) {
-        channelNames.push(item.channel_name);
+        channelNames.push({ value: item.channel_id, text: item.channel_name });
       });
       return channelNames;
     },
@@ -140,8 +148,10 @@ export default {
       },
       modal2: false,
       algorithm: ["0", "1", "2"],
-      languages: ["en_EN", "ru_RU"],
-      members_order: ["u1", "u2", "u3"]
+      languages: [
+        { value: "ru_RU", text: "русский" },
+        { value: "en_EN", text: "english" }
+      ]
     };
   },
   methods: {
@@ -172,6 +182,8 @@ export default {
   beforeCreate() {
     const url = "v1/channels";
     this.$store.dispatch("GET_CHANNELS", url);
+    const urlUsers = "v1/users";
+    this.$store.dispatch("GET_USERS", urlUsers);
   }
 };
 </script>
