@@ -7,7 +7,7 @@
       :rows-per-page-items="this.rows"
     >
       <template v-slot:items="props">
-        <td class="text-xs-left text-lowercase">{{ props.item.channel }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.channel}}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.notification_time }}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.members_order}}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.algorithm }}</td>

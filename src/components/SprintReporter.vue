@@ -96,7 +96,7 @@ export default {
       const items = getItems(state, "channels");
       let channelNames = [];
       items.forEach(function(item) {
-        channelNames.push(item.channel_name);
+        channelNames.push({ value: item.channel_id, text: item.channel_name });
       });
       return channelNames;
     },
