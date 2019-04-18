@@ -11,9 +11,11 @@ import sprintReporter from './modules/sprintReporter'
 import onduty from './modules/onduty'
 import tasks from './modules/tasks'
 import reporter from './modules/reporter'
+import errors from './modules/errors'
 import getters from './getters'
 import mutations from './mutations'
 import * as LocalStorage from './localStorage'
+import { createFlashStore } from 'vuex-flash';
 
 Vue.use(Vuex)
 
@@ -29,10 +31,14 @@ const store = new Vuex.Store({
     onduty,
     tasks,
     reporter,
-    user
+    user,
+    errors,
   },
   getters,
   mutations,
+  plugins: [
+    createFlashStore(),
+  ]
 })
 
 const initialUser = LocalStorage.get('user')

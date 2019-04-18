@@ -110,8 +110,9 @@
         <v-btn color="primary white--text" @click='Save'>Save</v-btn>
       </v-layout>  
     </v-container> 
+    
     </v-form>
-    <v-layout> 
+    <!-- <v-layout> 
       <v-alert
         v-model="alert"
         dismissible
@@ -128,7 +129,7 @@
       >
         {{errorText}}
       </v-alert>
-    </v-layout> 
+    </v-layout>  -->
   </v-card>
 </template>
 
@@ -178,13 +179,17 @@ export default {
           data: transformedValues
         })
         .then(() => {
-          this.alert = true;
-          this.errorStatus = false;
+          this.flash({ message: "Successfully saved", variant: "success" });
+
+          // this.alert = true;
+          // this.errorStatus = false;
         })
         .catch(error => {
-          this.errorStatus = true;
-          this.alert = false;
-          this.errorText = error.response.data;
+          this.flash({ message: error.response.data, variant: "error" });
+
+          // this.errorStatus = true;
+          // this.alert = false;
+          // this.errorText = error.response.data;
         });
     }
   },

@@ -12,4 +12,7 @@ export default {
     REMOVE_ITEM: (state, { store, payload }) => {
         delete state[store].entities[payload.id]
     },
+    CLEAR_ITEMS: (state, { store }) => {
+        state[store] = null
+    }
 }
