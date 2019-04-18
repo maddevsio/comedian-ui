@@ -6,6 +6,11 @@ const sprintReporterBaseUrl = process.env.VUE_APP_SPRINT_REPORTER_API_BASE_URL /
 const onDutyBaseUrl = process.env.VUE_APP_ON_DUTY_BASE_URL // 'https://staging-onduty-service.comedian.maddevs.co'
 const reporterBaseUrl = process.env.VUE_APP_TEST
 
+console.log('baseApiUrl : ', baseApiUrl)
+console.log('sprintReporterBaseUrl : ', sprintReporterBaseUrl)
+console.log('onDutyBaseUrl : ', onDutyBaseUrl)
+
+
 const getFullUrl = (service, url) => {
   let baseUrl
 
@@ -57,7 +62,6 @@ export async function post(path, data, headers = {}, service = 'comedian', withA
   if (withAuth) {
     headers = addToken(headers)
   }
-
   return await axios.post(url, data, {
     headers,
   });
