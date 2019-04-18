@@ -36,12 +36,25 @@ export default {
   methods: {
     async Save() {
       const url = `v1/standupers/${this.$route.params.id}`;
-      await this.$store.dispatch("UPDATE_STANDUPERS", {
-        url,
-        data: {
-          role_in_channel: this.standuper.role_in_channel
-        }
-      });
+      await this.$store
+        .dispatch("UPDATE_STANDUPERS", {
+          url,
+          data: {
+            role_in_channel: this.standuper.role_in_channel
+          }
+        })
+        .then(() => {
+          this.flashMessage.success({
+            title: "",
+            message: "Successfully saved"
+          });
+        })
+        .catch(error => {
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
+        });
     }
   },
   beforeCreate() {

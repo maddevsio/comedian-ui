@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <router-view/>
-      <ErrorComponent/>
+      <FlashMessage position="left bottom"></FlashMessage>
     </v-app>
   </div>
 </template>
@@ -16,11 +16,3 @@
   color: #2c3e50;
 }
 </style>
-<script>
-import ErrorComponent from "./components/ErrorComponent.vue";
-export default {
-  components: {
-    ErrorComponent
-  }
-};
-</script>

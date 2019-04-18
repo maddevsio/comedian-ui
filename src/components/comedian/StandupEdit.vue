@@ -27,12 +27,25 @@ export default {
   methods: {
     async Save() {
       const url = `v1/standups/${this.$route.params.id}`;
-      await this.$store.dispatch("UPDATE_STANDUPS", {
-        url,
-        data: {
-          comment: this.standup.comment
-        }
-      });
+      await this.$store
+        .dispatch("UPDATE_STANDUPS", {
+          url,
+          data: {
+            comment: this.standup.comment
+          }
+        })
+        .then(() => {
+          this.flashMessage.success({
+            title: "",
+            message: "Successfully saved"
+          });
+        })
+        .catch(error => {
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
+        });
     }
   },
   beforeCreate() {

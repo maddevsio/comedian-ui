@@ -59,12 +59,6 @@
         </v-form>
       </v-card>
     </v-content>
-    <v-layout>
-      <v-alert v-model="alert" dismissible type="success">Successfully saved</v-alert>
-    </v-layout>
-    <v-layout>
-      <v-alert v-model="errorStatus" dismissible type="error">{{errorText}}</v-alert>
-    </v-layout>
   </div>
 </template>
 
@@ -90,10 +84,7 @@ export default {
   },
   data: () => ({
     modal2: false,
-    menu2: false,
-    alert: false,
-    errorStatus: false,
-    errorText: ""
+    menu2: false
   }),
   methods: {
     async Save() {
@@ -105,13 +96,16 @@ export default {
           data: transformedValues
         })
         .then(() => {
-          this.alert = true;
-          this.errorStatus = false;
+          this.flashMessage.success({
+            title: "",
+            message: "Successfully saved"
+          });
         })
         .catch(error => {
-          this.errorStatus = true;
-          this.alert = false;
-          this.errorText = error.response.data;
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
         });
     }
   },
