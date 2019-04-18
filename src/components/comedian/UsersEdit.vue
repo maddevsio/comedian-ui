@@ -31,10 +31,23 @@ export default {
   methods: {
     async Save() {
       const url = `v1/users/${this.$route.params.id}`;
-      await this.$store.dispatch("UPDATE_CHANNEL", {
-        url,
-        data: this.user.role
-      });
+      await this.$store
+        .dispatch("UPDATE_CHANNEL", {
+          url,
+          data: this.user.role
+        })
+        .then(() => {
+          this.flashMessage.success({
+            title: "",
+            message: "Successfully saved"
+          });
+        })
+        .catch(error => {
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
+        });
     }
   }
 };

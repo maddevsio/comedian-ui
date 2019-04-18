@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@smartweb/vue-flash-message": "^0.4.1",
     "axios": "^0.18.0",
     "material-design-icons-iconfont": "^4.0.5",
     "semantic-ui-css": "^2.4.1",
@@ -18,7 +19,8 @@
     "vue-hoc": "^0.4.7",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.7",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-flash": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

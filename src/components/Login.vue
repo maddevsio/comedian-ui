@@ -38,9 +38,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-layout>
-      <v-alert v-model="errorStatus" dismissible type="error" class="text-capitalize">{{errorText}}</v-alert>
-    </v-layout>
   </v-content>
 </template>
 
@@ -50,10 +47,7 @@ export default {
   data() {
     return {
       teamname: "",
-      password: "",
-      error: "",
-      errorStatus: false,
-      errorText: ""
+      password: ""
     };
   },
 
@@ -71,8 +65,10 @@ export default {
         .then(bot => this.$router.push({ path: `/comedian` }))
         .catch(err => {
           this.resetForm();
-          this.errorStatus = true;
-          this.errorText = err.response.data;
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
         });
     },
     resetForm() {

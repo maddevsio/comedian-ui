@@ -79,12 +79,6 @@
             <v-btn block color="primary" @click="Save">Save</v-btn>
           </v-container>
         </v-form>
-        <v-layout>
-          <v-alert v-model="alert" dismissible type="success">Successfully saved</v-alert>
-        </v-layout>
-        <v-layout>
-          <v-alert v-model="errorStatus" dismissible type="error">{{errorText}}</v-alert>
-        </v-layout>
       </v-card>
     </v-content>
   </div>
@@ -110,9 +104,6 @@ export default {
   },
   data() {
     return {
-      alert: false,
-      errorStatus: false,
-      errorText: "",
       sprintReporter: {
         team_id: "",
         language: "en_US",
@@ -149,13 +140,16 @@ export default {
       this.$store
         .dispatch("ADD_SPRINTREPORTER", this.sprintReporter)
         .then(() => {
-          this.alert = true;
-          this.errorStatus = false;
+          this.flashMessage.success({
+            title: "",
+            message: "Successfully saved"
+          });
         })
         .catch(error => {
-          this.errorStatus = true;
-          this.alert = false;
-          this.errorText = error.response.data;
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
         });
     }
   }

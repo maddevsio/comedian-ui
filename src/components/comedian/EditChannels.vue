@@ -52,10 +52,23 @@ export default {
       const url = `v1/channels/${this.$route.params.id}`;
       const transformedValues = transform(this.channel, {});
 
-      await this.$store.dispatch("UPDATE_CHANNEL", {
-        url,
-        data: transformedValues
-      });
+      await this.$store
+        .dispatch("UPDATE_CHANNEL", {
+          url,
+          data: transformedValues
+        })
+        .then(() => {
+          this.flashMessage.success({
+            title: "",
+            message: "Successfully saved"
+          });
+        })
+        .catch(error => {
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
+        });
     }
   },
   data() {

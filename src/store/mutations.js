@@ -11,5 +11,5 @@ export default {
     },
     REMOVE_ITEM: (state, { store, payload }) => {
         delete state[store].entities[payload.id]
-    },
+    }
 }
