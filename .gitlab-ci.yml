@@ -11,7 +11,7 @@ build_staging:
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
-    - docker build --build-arg VUE_APP_COMEDIAN_API_BASE_URL=$STAGING_COMEDIAN_API_BASE_URL --build-arg VUE_APP_SPRINT_REPORTER_API_BASE_URL=$STAGING_SPRINT_REPORTER_API_BASE_URL --build-arg VUE_APP_REPORTER_API_BASE_URL=$STAGING_REPORTER_API_BASE_URL --build-arg VUE_APP_ON_DUTY_BASE_URL=$STAGING_ON_DUTY_BASE_URL --pull -t registry.gitlab.com/team-monitoring/comedian-ui .
+    - docker build --build-arg VUE_APP_COMEDIAN_API_BASE_URL=$STAGING_COMEDIAN_API_BASE_URL --build-arg VUE_APP_SPRINT_REPORTER_API_BASE_URL=$STAGING_SPRINT_REPORTER_API_BASE_URL --build-arg VUE_APP_REPORTER_API_BASE_URL=$STAGING_REPORTER_API_BASE_URL --build-arg VUE_APP_ON_DUTY_BASE_URL=$STAGING_ON_DUTY_BASE_URL --pull -t registry.gitlab.com/team-monitoring/comedian-ui:staging .
     - docker tag registry.gitlab.com/team-monitoring/comedian-ui registry.gitlab.com/team-monitoring/comedian-ui:staging
     - docker push registry.gitlab.com/team-monitoring/comedian-ui:staging
   only:
@@ -25,7 +25,7 @@ build_prod:
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
-    - docker build --build-arg VUE_APP_COMEDIAN_API_BASE_URL=$PROD_COMEDIAN_API_BASE_URL --build-arg VUE_APP_SPRINT_REPORTER_API_BASE_URL=$PROD_SPRINT_REPORTER_API_BASE_URL --build-arg VUE_APP_REPORTER_API_BASE_URL=$PROD_REPORTER_API_BASE_URL --build-arg VUE_APP_ON_DUTY_BASE_URL=$PROD_ON_DUTY_BASE_URL --pull -t registry.gitlab.com/team-monitoring/comedian-ui:staging .
+    - docker build --build-arg VUE_APP_COMEDIAN_API_BASE_URL=$PROD_COMEDIAN_API_BASE_URL --build-arg VUE_APP_SPRINT_REPORTER_API_BASE_URL=$PROD_SPRINT_REPORTER_API_BASE_URL --build-arg VUE_APP_REPORTER_API_BASE_URL=$PROD_REPORTER_API_BASE_URL --build-arg VUE_APP_ON_DUTY_BASE_URL=$PROD_ON_DUTY_BASE_URL --pull -t registry.gitlab.com/team-monitoring/comedian-ui .
     - docker tag registry.gitlab.com/team-monitoring/comedian-ui registry.gitlab.com/team-monitoring/comedian-ui:latest
     - docker push registry.gitlab.com/team-monitoring/comedian-ui
   only:
