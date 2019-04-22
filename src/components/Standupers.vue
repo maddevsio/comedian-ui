@@ -7,8 +7,8 @@
       :rows-per-page-items="this.rows"
     >
       <template v-slot:items="props">
-        <td class="text-xs-left text-lowercase">{{ props.item.user_id }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.channel_id }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.real_name }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.channel_name }}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.role_in_channel }}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.submitted_standup_today }}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.created }}</td>
@@ -35,8 +35,8 @@ export default {
     return {
       dialog: false,
       headers: [
-        { text: "Slack ID", value: "user_id" },
-        { text: "Channel ID", value: "channel_id" },
+        { text: "Real Name", value: "real_name" },
+        { text: "Channel", value: "channel_name" },
         { text: "Role in channel", value: "role_in_channel" },
         { text: "Submitted Standup", value: "submitted_standup_today" },
         { text: "Created", value: "created" }

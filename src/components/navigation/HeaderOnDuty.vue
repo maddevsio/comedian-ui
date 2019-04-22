@@ -16,8 +16,8 @@
             </v-list-tile>
           </template>
 
-          <v-list-tile v-for="subItem in channels" :key="subItem.channel_id">
-            <v-list-tile-content>
+          <v-list-tile>
+            <v-list-tile-content v-for="subItem in channels" :key="subItem.channel_id">
               <router-link
                 :to="{ name: 'ondutyTasks', params : {team_id:subItem.team_id ,channel_id:subItem.channel_id}}"
               >
@@ -68,7 +68,7 @@ export default {
       // items.forEach(function(item) {
       //   const link = { title: item.channel_name, id: item.channel_id };
       //   subItems = { ...subItems, link };
-      // });
+      //});
       return items;
     },
     teamId: state => {

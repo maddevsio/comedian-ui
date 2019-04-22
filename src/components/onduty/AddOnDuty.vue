@@ -7,11 +7,13 @@
           <v-container>
             <v-flex xs12 md12>
               <v-select
-                v-model="onduty.channel"
+                v-model="channel"
                 :items="channels"
                 label="Channels"
                 data-vv-name="select"
                 required
+                return-object
+                @change="getUsers"
               />
             </v-flex>
             <v-flex xs12 md12>
@@ -99,19 +101,15 @@ import transform from "../../helpers/transform";
 
 export default {
   computed: mapState({
-    users: state => {
-      const items = getItems(state, "users");
-      let userNames = [];
-      items.forEach(function(item) {
-        userNames.push(item.real_name);
-      });
-      return userNames;
-    },
     channels: state => {
       const items = getItems(state, "channels");
       let channelNames = [];
       items.forEach(function(item) {
-        channelNames.push({ value: item.channel_id, text: item.channel_name });
+        channelNames.push({
+          value: item.id,
+          text: item.channel_name,
+          id: item.channel_id
+        });
       });
       return channelNames;
     },
@@ -138,11 +136,17 @@ export default {
         current_onduty: ""
       },
       modal2: false,
-      algorithm: ["0", "1", "2"],
+      algorithm: [
+        { value: "0", text: "working days" },
+        { value: "1", text: "every day" },
+        { value: "2", text: "Friday and weekends" }
+      ],
       languages: [
         { value: "ru_RU", text: "русский" },
         { value: "en_EN", text: "english" }
-      ]
+      ],
+      users: [],
+      channel: {}
     };
   },
   methods: {
@@ -151,7 +155,8 @@ export default {
       const team_name = store.state.user.bot.team_name;
       this.onduty.team_name = store.state.user.bot.team_name;
       this.onduty.team_id = team_id;
-      //   this.onduty.members_order = this.onduty.members_order.join(",");
+      // this.onduty.members_order = this.onduty.members_order.join(",");
+      this.onduty.channel = this.channel.id;
       this.onduty.algorithm = parseInt(this.onduty.algorithm);
 
       this.onduty.bot_access_token = store.state.user.bot.bot_access_token;
@@ -171,13 +176,24 @@ export default {
             message: error.response.data
           });
         });
+    },
+    getUsers() {
+      const urlUsers = `v1/channels/${this.channel.value}/standupers`;
+      this.$store.dispatch("GET_CHANNEL_STANDUPERS", urlUsers);
+      let usersObjects = getItems(store.state, "channelStandupers");
+      console.log("usersObjects", usersObjects);
+      let usersList = [];
+      usersObjects.forEach(function(item) {
+        usersList.push({ value: item.user_id, text: item.real_name });
+      });
+      console.log("usersList", usersList);
+      this.users = usersList;
+      console.log("this.users", this.users);
     }
   },
   beforeCreate() {
     const url = "v1/channels";
     this.$store.dispatch("GET_CHANNELS", url);
-    const urlUsers = "v1/users";
-    this.$store.dispatch("GET_USERS", urlUsers);
   }
 };
 </script>
