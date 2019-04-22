@@ -113,6 +113,14 @@ export default {
       });
       return channelNames;
     },
+    users: state => {
+      const usersObjects = getItems(store.state, "channelStandupers") || [];
+      console.log("usersObjects", usersObjects);
+      return usersObjects.map(item => ({
+        value: item.user_id,
+        text: item.real_name
+      }));
+    },
     links() {
       return this.$store.state.links.linksHeader;
     },
@@ -145,7 +153,6 @@ export default {
         { value: "ru_RU", text: "русский" },
         { value: "en_EN", text: "english" }
       ],
-      users: [],
       channel: {}
     };
   },
@@ -180,15 +187,6 @@ export default {
     getUsers() {
       const urlUsers = `v1/channels/${this.channel.value}/standupers`;
       this.$store.dispatch("GET_CHANNEL_STANDUPERS", urlUsers);
-      let usersObjects = getItems(store.state, "channelStandupers");
-      console.log("usersObjects", usersObjects);
-      let usersList = [];
-      usersObjects.forEach(function(item) {
-        usersList.push({ value: item.user_id, text: item.real_name });
-      });
-      console.log("usersList", usersList);
-      this.users = usersList;
-      console.log("this.users", this.users);
     }
   },
   beforeCreate() {

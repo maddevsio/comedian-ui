@@ -7,7 +7,6 @@ export default function anonymous({
 }) {
   const token = getters.token(store.state)
   if (!!token) {
-    console.log('ffffffffffffffffffffffffffffffffffffffff')
     return next({ name: 'comedian', replace: false })
     // return router.push({
     //   name: `comedian`
