@@ -5,13 +5,11 @@ export default function auth({
   router,
   to,
 }) {
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>')
   if (!getters.token(store.state)) {
     return router.push({
       name: `login`
     });
   } else if (to.name === 'login') {
-    console.log('jjjjjj')
     return next({ name: `comedian` })
     return router.push({
       name: `comedian`
