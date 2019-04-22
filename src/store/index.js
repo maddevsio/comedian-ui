@@ -14,7 +14,7 @@ import reporter from './modules/reporter'
 import getters from './getters'
 import mutations from './mutations'
 import * as LocalStorage from './localStorage'
-import { createFlashStore } from 'vuex-flash';
+import channelStandupers from './modules/channelStandupers'
 
 Vue.use(Vuex)
 
@@ -31,6 +31,7 @@ const store = new Vuex.Store({
     tasks,
     reporter,
     user,
+    channelStandupers
   },
   getters,
   mutations,

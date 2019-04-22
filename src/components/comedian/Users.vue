@@ -14,7 +14,7 @@
         <td class="text-xs-left text-lowercase">{{ props.item.real_name }}</td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
-        </td>-->
+        </td> -->
       </template>
     </v-data-table>
   </v-card>
@@ -38,8 +38,8 @@ export default {
         { text: "User_name", value: "user_name" },
         { text: "User_id", value: "user_id" },
         { text: "Role", value: "role" },
-        { text: "Real_name", value: "real_name" }
-        // { text: "Actions"}
+        { text: "Real_name", value: "real_name" },
+        // { text: "Actions" }
       ],
       rows: [
         25,
