@@ -3,14 +3,13 @@
     <v-data-table
       :headers="headers"
       :items="channels"
-      class="elevation-1 text-uppercase font-weight-medium"
+      class="elevation-1 font-weight-medium"
       :rows-per-page-items="this.rows"
     >
       <template v-slot:items="props">
-        <td class="text-xs-left text-lowercase">{{ props.item.team_id }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.channel_name }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.channel_id }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.channel_standup_time }}</td>
+        <td class="text-xs-left">{{ props.item.channel_name }}</td>
+        <td class="text-xs-left">{{ props.item.channel_id }}</td>
+        <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
           <v-icon small @click="delete(props.item.id)">delete</v-icon>
@@ -34,10 +33,21 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Team Id", value: "team_id" },
-        { text: "Channel Name", value: "channel_name" },
-        { text: "Channel Id", value: "channel_id" },
-        { text: "Channel Standup Time", value: "channel_standup_time" }
+        {
+          text: "Channel Name",
+          value: "channel_name",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Channel Id",
+          value: "channel_id",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Channel Standup Time",
+          value: "channel_standup_time",
+          class: "text-uppercase font-weight-bold"
+        }
         // { text: "Actions", value: "" }
       ],
       rows: [

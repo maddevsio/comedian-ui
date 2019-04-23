@@ -188,6 +188,12 @@ export default {
         });
     }
   },
+  created() {
+    this.flashMessage.info({
+      title: "This service is in Beta testing now",
+      message: "Contact Mad Devs to discuss how to use it"
+    });
+  },
   beforeCreate() {
     const teamId = store.state.user.bot.team_id;
     const url = `v1/configurations/${teamId}`;

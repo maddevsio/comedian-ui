@@ -49,13 +49,41 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Team Name", value: "team_name" },
-        { text: "Channel", value: "channel" },
-        { text: "Notification Times", value: "notification_time" },
-        { text: "Members Order", value: "members_order" },
-        { text: "Algorithm", value: "algorithm" },
-        { text: "Current Onduty", value: "current_onduty" },
-        { text: "Language", value: "language" }
+        {
+          text: "Team Name",
+          value: "team_name",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Channel",
+          value: "channel",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Notification Times",
+          value: "notification_time",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Members Order",
+          value: "members_order",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Algorithm",
+          value: "algorithm",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Current Onduty",
+          value: "current_onduty",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Language",
+          value: "language",
+          class: "text-uppercase font-weight-bold"
+        }
       ]
     };
   },

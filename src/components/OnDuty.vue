@@ -3,16 +3,16 @@
     <v-data-table
       :headers="headers"
       :items="onduty"
-      class="elevation-1 text-uppercase font-weight-medium"
+      class="elevation-1 font-weight-medium"
       :rows-per-page-items="this.rows"
     >
       <template v-slot:items="props">
-        <td class="text-xs-left text-lowercase">{{ props.item.channel_name}}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.notification_time }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.memberOrders}}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.algorithm }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.currentOnduty }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.language }}</td>
+        <td class="text-xs-left">{{ props.item.channel_name}}</td>
+        <td class="text-xs-left">{{ props.item.notification_time }}</td>
+        <td class="text-xs-left">{{ props.item.memberOrders}}</td>
+        <td class="text-xs-left">{{ props.item.algorithm }}</td>
+        <td class="text-xs-left">{{ props.item.currentOnduty }}</td>
+        <td class="text-xs-left">{{ props.item.language }}</td>
       </template>
     </v-data-table>
     <router-link :to="{ name: 'onDutyAddUser'}">
@@ -73,12 +73,36 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Channel", value: "channel_name" },
-        { text: "Notification Time", value: "notification_time" },
-        { text: "Members Order", value: "members_order" },
-        { text: "Algorithm", value: "algorithm" },
-        { text: "Current Onduty", value: "current_onduty" },
-        { text: "Language", value: "language" }
+        {
+          text: "Channel",
+          value: "channel_name",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Notification Time",
+          value: "notification_time",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Members Order",
+          value: "members_order",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Algorithm",
+          value: "algorithm",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Current Onduty",
+          value: "current_onduty",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Language",
+          value: "language",
+          class: "text-uppercase font-weight-bold"
+        }
       ],
       rows: [
         25,

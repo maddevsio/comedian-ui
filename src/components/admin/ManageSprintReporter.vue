@@ -48,12 +48,36 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Team Name", value: "team_name" },
-        { text: "Report Channel", value: "report_channel" },
-        { text: "Report Days", value: "report_days" },
-        { text: "Report Time", value: "report_time" },
-        { text: "Service Enabled", value: "service_enabled" },
-        { text: "Language", value: "language" }
+        {
+          text: "Team Name",
+          value: "team_name",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Report Channel",
+          value: "report_channel",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Report Days",
+          value: "report_days",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Report Time",
+          value: "report_time",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Service Enabled",
+          value: "service_enabled",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Language",
+          value: "language",
+          class: "text-uppercase font-weight-bold"
+        }
       ]
     };
   },
