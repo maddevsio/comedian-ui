@@ -91,7 +91,10 @@ export default {
       this.$store.dispatch("REMOVE_TASK", url);
     },
     edit(id) {
-      this.$router.push({ name: "taskEdit", params: { id: id } });
+      this.$router.push({
+        name: "taskEdit",
+        params: { id: id, channelId: this.$route.params.id }
+      });
     }
   },
   beforeCreate() {

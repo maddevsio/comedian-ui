@@ -165,7 +165,7 @@ const router = new Router({
       component: HoComponent(ManageSprintReporter)
     },
     {
-      path: '/onduty/tasks/:id/edit',
+      path: '/onduty/:channelId/tasks/:id/edit',
       name: 'taskEdit',
       props: true,
       meta: {
