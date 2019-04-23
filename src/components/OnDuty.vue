@@ -7,11 +7,11 @@
       :rows-per-page-items="this.rows"
     >
       <template v-slot:items="props">
-        <td class="text-xs-left text-lowercase">{{ props.item.channel}}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.channel_name}}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.notification_time }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.members_order}}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.memberOrders}}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.algorithm }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.current_onduty }}</td>
+        <td class="text-xs-left text-lowercase">{{ props.item.currentOnduty }}</td>
         <td class="text-xs-left text-lowercase">{{ props.item.language }}</td>
       </template>
     </v-data-table>
@@ -31,13 +31,37 @@
 <script>
 import { mapState } from "vuex";
 import transform from "../helpers/transform";
-import { getItems } from "../my-getters";
+import { getItems, getItemByField } from "../my-getters";
 import store from "../store";
 
 export default {
   computed: mapState({
     onduty: state => {
       const items = getItems(state, "onduty");
+      const allUsers = getItems(state, "users");
+
+      items.forEach(item => {
+        const memberOrders = item.members_order.map(member => {
+          const user = allUsers.find(({ user_id }) => member === user_id);
+          if (!user) {
+            return "N/A";
+          }
+          return user.user_name;
+        });
+        item.memberOrders = memberOrders.join(", ");
+      });
+
+      items.forEach(item => {
+        const user = allUsers.find(
+          ({ user_id }) => item.current_onduty === user_id
+        );
+        if (!user) {
+          return "N/A";
+        }
+        item.currentOnduty = user.user_name;
+        return item.currentOnduty;
+      });
+      console.log("items>>>   ", items);
       return items;
     },
     isShown: state => {
@@ -49,7 +73,7 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Channel", value: "channel" },
+        { text: "Channel", value: "channel_name" },
         { text: "Notification Time", value: "notification_time" },
         { text: "Members Order", value: "members_order" },
         { text: "Algorithm", value: "algorithm" },
@@ -69,6 +93,8 @@ export default {
     const teamId = store.state.user.bot.team_id;
     const url = `v1/settings/team/${teamId}`;
     this.$store.dispatch("GET_ONDUTY", url);
+    const urlUsers = "v1/users";
+    this.$store.dispatch("GET_USERS", urlUsers);
   }
 };
 </script>

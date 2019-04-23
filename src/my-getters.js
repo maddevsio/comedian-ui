@@ -5,27 +5,7 @@ export const getItems = (state, mod) => {
 
 export const getItem = (state, mod, id) => state[mod].entities[id]
 
-/*
-const arrayToMap = arr => {
-  const result = {}
-  arr.forEach(item => {
-    result[item.id] = item
-  })
-
-  return result
+export const getItemByField = (state, mod, fieldName, id) => {
+  const entities = state[mod].entities
+  return entities.filter(e => e[fieldName] === id)[0]
 }
-
-
-const res = await fetch('/list')
-const asMap = arrayToMap(res)
-commit('ADD_BOTS', asMap)
-
-const res = await fetch('/list/4')
-const bots = state.bots.entities
-bots[res.id] = res
-commit('UPDATE_BOTS', asMap)
-
-const res = await remove('/list/4')
-delete state.bots.entities[4]
-commit('DELETE_BOTS', 4)
-*/

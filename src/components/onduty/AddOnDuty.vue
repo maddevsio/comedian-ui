@@ -136,7 +136,8 @@ export default {
       onduty: {
         team_id: "",
         team_name: "",
-        channel: "",
+        channel_id: "",
+        channel_name: "",
         language: "en_US",
         notification_time: "",
         members_order: [],
@@ -163,9 +164,9 @@ export default {
       this.onduty.team_name = store.state.user.bot.team_name;
       this.onduty.team_id = team_id;
       // this.onduty.members_order = this.onduty.members_order.join(",");
-      this.onduty.channel = this.channel.id;
+      this.onduty.channel_id = this.channel.id;
+      this.onduty.channel_name = this.channel.text;
       this.onduty.algorithm = parseInt(this.onduty.algorithm);
-
       this.onduty.bot_access_token = store.state.user.bot.bot_access_token;
       const transformedValues = transform(this.onduty, {});
 
