@@ -4,27 +4,33 @@
       <v-list dense>
         <v-list-tile :to="{ name: 'onduty'}">
           <v-list-tile-content>
-            <v-list-tile-title>On Duty</v-list-tile-title>
+            <v-list-tile-title>
+              <strong>On Duty settings</strong>
+            </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-group>
           <template v-slot:activator>
             <v-list-tile>
               <v-list-tile-content>
-                <v-list-tile-title>Tasks</v-list-tile-title>
+                <v-list-tile-title class="primary--text">
+                  <strong>Tasks by channels</strong>
+                </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </template>
 
-          <v-list-tile>
-            <v-list-tile-content v-for="subItem in channels" :key="subItem.channel_id">
+          <v-list-tile v-for="subItem in channels" :key="subItem.channel_id">
+            <v-list-tile-content>
               <router-link
+                style="text-decoration:none"
                 :to="{ name: 'ondutyTasks', params : {team_id:subItem.team_id ,channel_id:subItem.channel_id}}"
               >
                 <v-list-tile-title>{{ subItem.channel_name }}</v-list-tile-title>
               </router-link>
             </v-list-tile-content>
           </v-list-tile>
+          <v-list-tile v-if="channels.lenght<1"></v-list-tile>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
@@ -64,11 +70,7 @@ export default {
     },
     channels: state => {
       const items = getItems(state, "channels");
-      // let subItems = null;
-      // items.forEach(function(item) {
-      //   const link = { title: item.channel_name, id: item.channel_id };
-      //   subItems = { ...subItems, link };
-      //});
+
       return items;
     },
     teamId: state => {
