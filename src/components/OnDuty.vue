@@ -39,14 +39,13 @@ export default {
     onduty: state => {
       const items = getItems(state, "onduty");
       const allUsers = getItems(state, "users");
-
       items.forEach(item => {
         const memberOrders = item.members_order.map(member => {
           const user = allUsers.find(({ user_id }) => member === user_id);
           if (!user) {
             return "N/A";
           }
-          return user.user_name;
+          return user.real_name;
         });
         item.memberOrders = memberOrders.join(", ");
       });

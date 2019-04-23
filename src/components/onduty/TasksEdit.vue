@@ -46,7 +46,13 @@
               </v-dialog>
             </v-flex>
             <v-flex xs12 md12>
-              <v-text-field v-model="task.report_to" label="Report To" required/>
+              <v-select
+                v-model="task.report_to"
+                label="Report To"
+                :items="users"
+                data-vv-name="select"
+                required
+              />
             </v-flex>
             <v-flex xs12 md12>
               <v-switch
@@ -66,17 +72,29 @@
 import Header from "@/components/navigation/HeaderOnDuty.vue";
 import { mapState } from "vuex";
 import transform from "../../helpers/transform";
-import { getItems } from "../../my-getters";
+import { getItem, getItems } from "../../my-getters";
 import store from "../../store";
 
 export default {
   computed: mapState({
-    task: state => state.tasks.entities[Object.keys(state.tasks.entities)[0]],
+    task() {
+      const id = this.$route.params.id;
+      let task = getItem(this.$store.state, "tasks", id);
+      console.log("task", task);
+      return task;
+    },
     links() {
       return this.$store.state.links.linksHeader;
     },
     navLinks() {
       return this.$store.state.links.onDutySideLinks;
+    },
+    users: state => {
+      const usersObjects = getItems(state, "channelStandupers") || [];
+      return usersObjects.map(item => ({
+        value: item.user_id,
+        text: item.real_name
+      }));
     }
   }),
   components: {
@@ -112,6 +130,9 @@ export default {
   beforeCreate() {
     const url = `v1/tasks/${this.$route.params.id}`;
     this.$store.dispatch("GET_TASK", url);
+    const id = this.$route.params.channelId;
+    const urlUsers = `v1/channels/${id}/standupers`;
+    this.$store.dispatch("GET_CHANNEL_STANDUPERS", urlUsers);
   }
 };
 </script>

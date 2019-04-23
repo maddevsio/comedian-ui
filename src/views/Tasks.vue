@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Header title="On Duty" :links="this.links"/>
+    <Header title="Tasks" :links="this.links"/>
     <v-content fluid fill-height>
       <Tasks/>
     </v-content>
