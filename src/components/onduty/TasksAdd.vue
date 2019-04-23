@@ -23,7 +23,7 @@
               <v-dialog
                 ref="dialog"
                 v-model="modal2"
-                :return-value.sync="task.deadlinee"
+                :return-value.sync="task.deadline"
                 persistent
                 lazy
                 full-width
@@ -45,7 +45,13 @@
               </v-dialog>
             </v-flex>
             <v-flex xs12 md12>
-              <v-text-field v-model="task.report_to" label="Report To" required/>
+              <v-select
+                v-model="task.report_to"
+                label="Report To"
+                :items="users"
+                data-vv-name="select"
+                required
+              />
             </v-flex>
             <v-btn block color="primary" @click="Save">Save</v-btn>
           </v-container>
@@ -63,14 +69,21 @@ import { getItems } from "../../my-getters";
 import store from "../../store";
 
 export default {
-  computed: {
+  computed: mapState({
     links() {
       return this.$store.state.links.linksHeader;
     },
     navLinks() {
       return this.$store.state.links.onDutySideLinks;
+    },
+    users: state => {
+      const usersObjects = getItems(state, "channelStandupers") || [];
+      return usersObjects.map(item => ({
+        value: item.user_id,
+        text: item.real_name
+      }));
     }
-  },
+  }),
   components: {
     Header
   },
@@ -80,7 +93,6 @@ export default {
     task: {
       team_name: "",
       team_id: "",
-      channel: "",
       description: "",
       deadline: "",
       reminder_interval: 0,
@@ -89,9 +101,11 @@ export default {
   }),
   methods: {
     async Save() {
+      this.task.channel = this.$route.params.channel_id;
       this.task.team_name = store.state.user.bot.team_name;
       this.task.team_id = store.state.user.bot.team_id;
       this.task.reminder_interval = parseInt(this.task.reminder_interval);
+      console.log(this.task);
       await this.$store
         .dispatch("ADD_TASK", this.task)
         .then(() => {
@@ -103,10 +117,15 @@ export default {
         .catch(error => {
           this.flashMessage.error({
             title: error.name || "Error",
-            message: error.response.data
+            message: error.response.data || "Error"
           });
         });
     }
+  },
+  beforeCreate() {
+    const id = this.$route.params.id;
+    const urlUsers = `v1/channels/${id}/standupers`;
+    this.$store.dispatch("GET_CHANNEL_STANDUPERS", urlUsers);
   }
 };
 </script>

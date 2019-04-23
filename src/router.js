@@ -149,7 +149,7 @@ const router = new Router({
       component: () => import('./views/OnDuty.vue')
     },
     {
-      path: '/onduty/tasks/:team_id/:channel_id',
+      path: '/onduty/tasks/:id/:channel_id',
       name: 'ondutyTasks',
       meta: {
         middleware: [auth, log],
@@ -174,7 +174,7 @@ const router = new Router({
       component: () => import('./components/onduty/TasksEdit.vue')
     },
     {
-      path: '/onduty/tasks/add',
+      path: '/onduty/tasks/:id/:channel_id/add',
       name: 'taskAdd',
       props: true,
       meta: {

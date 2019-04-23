@@ -18,7 +18,9 @@
         </td>
       </template>
     </v-data-table>
-    <router-link :to="{ name: 'taskAdd'}">
+    <router-link
+      :to="{ name: 'taskAdd' , params:  {id: this.$route.params.id,channel_id: this.$route.params.channel_id} }"
+    >
       <v-fab-transition>
         <v-btn v-show="!hidden" color="primary" dark fab fixed bottom right>
           <v-icon>add</v-icon>

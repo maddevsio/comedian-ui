@@ -24,7 +24,7 @@
             <v-list-tile-content>
               <router-link
                 style="text-decoration:none"
-                :to="{ name: 'ondutyTasks', params : {team_id:subItem.team_id ,channel_id:subItem.channel_id}}"
+                :to="{ name: 'ondutyTasks', params : {id:subItem.id ,channel_id:subItem.channel_id}}"
               >
                 <v-list-tile-title>{{ subItem.channel_name }}</v-list-tile-title>
               </router-link>
