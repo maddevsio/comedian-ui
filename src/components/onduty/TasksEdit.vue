@@ -107,11 +107,10 @@ export default {
   methods: {
     async Save() {
       const url = `v1/tasks/${this.$route.params.id}`;
-      const transformedValues = transform(this.task, {});
       await this.$store
         .dispatch("UPDATE_TASK", {
           url,
-          data: transformedValues
+          data: this.task
         })
         .then(() => {
           this.flashMessage.success({

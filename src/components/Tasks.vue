@@ -22,7 +22,7 @@
       :to="{ name: 'taskAdd' , params:  {id: this.$route.params.id,channel_id: this.$route.params.channel_id} }"
     >
       <v-fab-transition>
-        <v-btn v-show="!hidden" color="primary" dark fab fixed bottom right>
+        <v-btn color="primary" dark fab fixed bottom right>
           <v-icon>add</v-icon>
         </v-btn>
       </v-fab-transition>
@@ -44,6 +44,21 @@ export default {
   computed: mapState({
     tasks: state => {
       const items = getItems(state, "tasks");
+      const allUsers = getItems(state, "users");
+      items.forEach(item => {
+        if (!item.report_to) {
+          item.report_to = "N/A";
+        } else {
+          const user = allUsers.find(
+            ({ user_id }) => item.report_to === user_id
+          );
+          if (!user) {
+            item.report_to = "N/A";
+          } else {
+            item.report_to = user.real_name;
+          }
+        }
+      });
       return items;
     }
   }),

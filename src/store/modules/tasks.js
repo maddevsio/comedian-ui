@@ -30,7 +30,7 @@ const actions = {
     },
         data) => {
         const response = await post('v1/tasks', data, {}, 'onDuty')
-        commit('ADD_ITEMS', { store: 'tasks', payload: response.data })
+        commit('ADD_ITEM', { store: 'tasks', payload: response.data })
     },
 
     UPDATE_TASK: async ({
