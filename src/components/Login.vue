@@ -6,7 +6,7 @@
           <v-card class="elevation-12">
             <v-form v-on:submit.prevent="submit">
               <v-toolbar dark color="primary">
-                <v-toolbar-title>Login</v-toolbar-title>
+                <v-toolbar-title class="text-md-center text-xs-center" style="width:100%">Login</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-tooltip bottom>
                   <v-btn icon large target="_blank" slot="activator"></v-btn>
@@ -29,7 +29,7 @@
                   v-model="password"
                 ></v-text-field>
               </v-card-text>
-              <v-card-actions>
+              <v-card-actions style="display: block;">
                 <v-spacer></v-spacer>
                 <v-btn type="submit" color="primary">Login</v-btn>
               </v-card-actions>
@@ -73,6 +73,7 @@ export default {
     },
     resetForm() {
       this.password = "";
+      this.teamname = "";
     }
   }
 };

@@ -3,15 +3,15 @@
     <v-data-table
       :headers="headers"
       :items="standupers"
-      class="elevation-1 text-uppercase font-weight-medium"
+      class="elevation-1 font-weight-medium"
       :rows-per-page-items="this.rows"
     >
       <template v-slot:items="props">
-        <td class="text-xs-left text-lowercase">{{ props.item.real_name }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.channel_name }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.role_in_channel }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.submitted_standup_today }}</td>
-        <td class="text-xs-left text-lowercase">{{ props.item.created }}</td>
+        <td class="text-xs-left">{{ props.item.real_name }}</td>
+        <td class="text-xs-left">{{ props.item.channel_name }}</td>
+        <td class="text-xs-left">{{ props.item.role_in_channel }}</td>
+        <td class="text-xs-left">{{ props.item.submitted_standup_today }}</td>
+        <td class="text-xs-left">{{ props.item.created }}</td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
           <v-icon small @click="delete(props.item.id)">delete</v-icon>
@@ -35,11 +35,31 @@ export default {
     return {
       dialog: false,
       headers: [
-        { text: "Real Name", value: "real_name" },
-        { text: "Channel", value: "channel_name" },
-        { text: "Role in channel", value: "role_in_channel" },
-        { text: "Submitted Standup", value: "submitted_standup_today" },
-        { text: "Created", value: "created" }
+        {
+          text: "Real Name",
+          value: "real_name",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Channel",
+          value: "channel_name",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Role in channel",
+          value: "role_in_channel",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Submitted Standup",
+          value: "submitted_standup_today",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Created",
+          value: "created",
+          class: "text-uppercase font-weight-bold"
+        }
         // { text: "Actions" }
       ],
       rows: [
