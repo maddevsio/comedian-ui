@@ -115,7 +115,6 @@ export default {
     },
     users: state => {
       const usersObjects = getItems(store.state, "channelStandupers") || [];
-      console.log("usersObjects", usersObjects);
       return usersObjects.map(item => ({
         value: item.user_id,
         text: item.real_name

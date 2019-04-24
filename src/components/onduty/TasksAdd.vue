@@ -105,7 +105,6 @@ export default {
       this.task.team_name = store.state.user.bot.team_name;
       this.task.team_id = store.state.user.bot.team_id;
       this.task.reminder_interval = parseInt(this.task.reminder_interval);
-      console.log(this.task);
       await this.$store
         .dispatch("ADD_TASK", this.task)
         .then(() => {

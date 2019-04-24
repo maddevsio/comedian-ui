@@ -16,7 +16,6 @@ Vue.use(Router)
 const HoComponent = (componentPath) => {
   return Vue.component("HoComponent", {
     render(createElement) {
-      console.log(this.aa)
       if (this.isAdmin) {
         return createElement(componentPath);
       } else {
