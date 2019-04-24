@@ -60,6 +60,28 @@ export default {
         item.currentOnduty = user.user_name;
         return item.currentOnduty;
       });
+      items.forEach(item => {
+        if (item.language == "ru_RU") {
+          item.language = "русский";
+        } else {
+          item.language = "english";
+        }
+
+        switch (item.algorithm) {
+          case 0:
+            item.algorithm = "working days";
+            break;
+          case 1:
+            item.algorithm = "every day";
+            break;
+          case 2:
+            item.algorithm = "Friday and weekends";
+            break;
+          default:
+            item.algorithm = "";
+            break;
+        }
+      });
       return items;
     },
     isShown: state => {

@@ -3,10 +3,17 @@
     <Header title="Tasks" :links="this.links"/>
     <v-content fluid fill-height>
       <v-card class="mt-3 mx-auto" max-width="500">
-        <v-form method="post">
+        <v-form method="post" lazy-validation ref="form" v-model="valid">
           <v-container>
             <v-flex xs12 md12>
-              <v-text-field v-model="task.description" label="Description" type="text" required/>
+              <v-text-field
+                v-model="task.description"
+                label="Description"
+                :counter="10"
+                :rules="minLength"
+                type="text"
+                required
+              />
             </v-flex>
             <v-flex xs12 md12>
               <abbr title="Update reminder time (in minutes) of the task">
@@ -49,6 +56,7 @@
                 v-model="task.report_to"
                 label="Report To"
                 :items="users"
+                :rules="required"
                 data-vv-name="select"
                 required
               />
@@ -88,37 +96,56 @@ export default {
     Header
   },
   data: () => ({
+    valid: true,
     menu2: false,
     modal2: false,
+    required: [v => !!v || "This field is required"],
+    minLength: [
+      v => (v && v.length >= 10) || "This field must be more than 10 characters"
+    ],
     task: {
       team_name: "",
       team_id: "",
       description: "",
       deadline: "",
       reminder_interval: 0,
-      report_to: ""
+      report_to: null
     }
   }),
   methods: {
     async Save() {
-      this.task.channel = this.$route.params.channel_id;
-      this.task.team_name = store.state.user.bot.team_name;
-      this.task.team_id = store.state.user.bot.team_id;
-      this.task.reminder_interval = parseInt(this.task.reminder_interval);
-      await this.$store
-        .dispatch("ADD_TASK", this.task)
-        .then(() => {
-          this.flashMessage.success({
-            title: "",
-            message: "Successfully saved"
+      if (this.validate()) {
+        this.task.channel = this.$route.params.channel_id;
+        this.task.team_name = store.state.user.bot.team_name;
+        this.task.team_id = store.state.user.bot.team_id;
+        this.task.reminder_interval = parseInt(this.task.reminder_interval);
+        await this.$store
+          .dispatch("ADD_TASK", this.task)
+          .then(() => {
+            this.flashMessage.success({
+              title: "",
+              message: "Successfully saved"
+            });
+          })
+          .catch(error => {
+            this.flashMessage.error({
+              title: error.name || "Error",
+              message: error.response.data || "Error"
+            });
           });
-        })
-        .catch(error => {
-          this.flashMessage.error({
-            title: error.name || "Error",
-            message: error.response.data || "Error"
-          });
+      } else {
+        this.flashMessage.error({
+          title: "Form validation",
+          message: "Please, fill all fields correctly"
         });
+      }
+    },
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+        return true;
+      }
+      return false;
     }
   },
   beforeCreate() {
