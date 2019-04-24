@@ -60,7 +60,6 @@ export default {
         item.currentOnduty = user.user_name;
         return item.currentOnduty;
       });
-      console.log("items>>>   ", items);
       return items;
     },
     isShown: state => {

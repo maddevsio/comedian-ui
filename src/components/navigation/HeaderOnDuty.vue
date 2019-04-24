@@ -61,6 +61,8 @@
 <script>
 import { mapState } from "vuex";
 import { getItems } from "../../my-getters";
+import store from "../../store";
+
 export default {
   name: "Header",
   props: ["title", "links"],
@@ -69,9 +71,24 @@ export default {
       return state.user.bot.admin;
     },
     channels: state => {
-      const items = getItems(state, "channels");
-
-      return items;
+      const onduty = getItems(state, "onduty");
+      const channels = getItems(state, "channels");
+      let channelList = [];
+      onduty.forEach(item => {
+        const channel = channels.find(
+          ({ channel_id }) => item.channel_id === channel_id
+        );
+        if (!channel) {
+          return "no channel";
+        } else {
+          channelList.push({
+            id: channel.id,
+            channel_id: channel.channel_id,
+            channel_name: channel.channel_name
+          });
+        }
+      });
+      return channelList;
     },
     teamId: state => {
       return state.user.bot.team_id;
@@ -99,6 +116,9 @@ export default {
   beforeCreate() {
     const url = "v1/channels";
     this.$store.dispatch("GET_CHANNELS", url);
+    const teamId = store.state.user.bot.team_id;
+    const urlSetting = `v1/settings/team/${teamId}`;
+    this.$store.dispatch("GET_ONDUTY", urlSetting);
   }
 };
 </script>

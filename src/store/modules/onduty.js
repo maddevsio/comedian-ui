@@ -23,7 +23,6 @@ const actions = {
     },
         data) => {
         const response = await post('v1/settings', data, {}, 'onDuty')
-        console.log(response)
         commit('ADD_ITEM', { store: 'onduty', payload: response.data })
     },
 

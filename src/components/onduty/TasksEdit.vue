@@ -80,7 +80,6 @@ export default {
     task() {
       const id = this.$route.params.id;
       let task = getItem(this.$store.state, "tasks", id);
-      console.log("task", task);
       return task;
     },
     links() {
