@@ -12,7 +12,7 @@
         <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
-          <v-icon small @click="delete(props.item.id)">delete</v-icon>
+          <v-icon small @click="deleteItem(props.item.id)">delete</v-icon>
         </td>-->
       </template>
     </v-data-table>
@@ -66,10 +66,23 @@ export default {
     edit(id) {
       this.$router.push({ name: "edit", params: { id: id } });
     },
-    delete(id) {
+    deleteItem(id) {
       return;
       const url = `v1/channels/${id}`;
-      this.$store.dispatch("REMOVE_CHANNEL", { url });
+      this.$store
+        .dispatch("REMOVE_CHANNEL", { url, id: id })
+        .then(response => {
+          this.flashMessage.success({
+            title: "",
+            message: "Successfully deleted"
+          });
+        })
+        .catch(error => {
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
+        });
     }
   }
 };

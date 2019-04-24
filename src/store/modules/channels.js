@@ -25,9 +25,10 @@ const actions = {
   REMOVE_CHANNEL: async ({
     commit,
   },
-    url
+    { url, id }
   ) => {
-    return await remove(url)
+    await remove(url)
+    commit('REMOVE_ITEM', { store: 'channels', id: id })
   }
 }
 
