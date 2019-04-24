@@ -46,9 +46,10 @@ const actions = {
     REMOVE_TASK: async ({
         commit,
     },
-        url
+        { url, id }
     ) => {
-        return await remove(url, {}, 'onDuty')
+        await remove(url, {}, 'onDuty')
+        commit('REMOVE_ITEM', { store: 'tasks', id: id })
     }
 }
 

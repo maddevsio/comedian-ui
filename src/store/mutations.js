@@ -9,7 +9,8 @@ export default {
     ADD_ITEM: (state, { store, payload }) => {
         state[store].entities[payload.id] = payload
     },
-    REMOVE_ITEM: (state, { store, payload }) => {
-        delete state[store].entities[payload.id]
+    REMOVE_ITEM: (state, { store, id }) => {
+        delete state[store].entities[id]
+        state[store].entities = { ...state[store].entities }
     }
 }

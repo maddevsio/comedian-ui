@@ -25,9 +25,11 @@ const actions = {
   REMOVE_STANDUP: async ({
     commit,
   },
-    url
+    { url, id }
   ) => {
-    return await remove(url)
+    await remove(url)
+    commit('REMOVE_ITEM', { store: 'standups', id: id })
+
   },
 
   ADD_STANDUP: async ({ commit }, { url, data }) => {

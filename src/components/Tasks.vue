@@ -14,7 +14,7 @@
         <td class="text-xs-left">{{ props.item.report_to }}</td>
         <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
-          <v-icon small @click="delete(props.item.id)">delete</v-icon>
+          <v-icon small class="mr-2" @click.prevent="deleteItem(props.item.id)">delete</v-icon>
         </td>
       </template>
     </v-data-table>
@@ -90,7 +90,7 @@ export default {
           value: "report_to",
           class: "text-uppercase font-weight-bold"
         },
-        { text: "Options", class: "text-uppercase font-weight-bold" }
+        { text: "Actions", class: "text-uppercase font-weight-bold" }
       ],
       rows: [
         25,
@@ -101,9 +101,22 @@ export default {
     };
   },
   methods: {
-    async delete(id) {
+    deleteItem(id) {
       const url = `v1/tasks/${id}`;
-      this.$store.dispatch("REMOVE_TASK", url);
+      this.$store
+        .dispatch("REMOVE_TASK", { url, id: id })
+        .then(response => {
+          this.flashMessage.success({
+            title: "",
+            message: "Task successfully deleted"
+          });
+        })
+        .catch(error => {
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
+        });
     },
     edit(id) {
       this.$router.push({
@@ -116,6 +129,9 @@ export default {
     const teamId = store.state.user.bot.team_id;
     const url = `v1/tasks/${teamId}/${this.$route.params.channel_id}`;
     this.$store.dispatch("GET_TASKS", url);
+  },
+  mounted() {
+    this.$store.watch({});
   }
 };
 </script>

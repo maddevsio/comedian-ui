@@ -14,7 +14,7 @@
         <td class="text-xs-left">{{ props.item.comment }}</td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
-          <v-icon small @click="delete(props.item.id)">delete</v-icon>
+          <v-icon small @click="deleteItem(props.item.id)">delete</v-icon>
         </td>-->
       </template>
     </v-data-table>
@@ -72,10 +72,23 @@ export default {
   },
 
   methods: {
-    delete(id) {
+    deleteItem(id) {
       return;
       const url = `v1/standups/${id}`;
-      this.$store.dispatch("REMOVE_STANDUP", url);
+      this.$store
+        .dispatch("REMOVE_STANDUP", { url, id: id })
+        .then(response => {
+          this.flashMessage.success({
+            title: "",
+            message: "Task successfully deleted"
+          });
+        })
+        .catch(error => {
+          this.flashMessage.error({
+            title: error.name || "Error",
+            message: error.response.data
+          });
+        });
     },
     edit(id) {
       this.$router.push({ name: "standupEdit", params: { id: id } });

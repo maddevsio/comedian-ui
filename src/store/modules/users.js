@@ -29,11 +29,11 @@ const actions = {
 
     REMOVE_USER: async ({
         commit,
-    }, {
-        url
-    }) => {
-        // commit('REMOVE_ITEM', item)
-        return await remove(url)
+    },
+        { url, id }
+    ) => {
+        await remove(url)
+        commit('REMOVE_ITEM', { store: 'users', id: id })
     }
 }
 
