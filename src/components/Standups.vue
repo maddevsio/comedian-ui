@@ -11,7 +11,12 @@
         <td class="text-xs-left">{{ props.item.channel_id }}</td>
         <td class="text-xs-left">{{ props.item.created }}</td>
         <td class="text-xs-left">{{ props.item.modified}}</td>
-        <td class="text-xs-left">{{ props.item.comment }}</td>
+        <td class="text-xs-left comment">
+          <p
+            :class="['comment__text', { 'comment__text--full': textToggle }]"
+          >{{ props.item.comment }}</p>
+          <span class="text__show" @click="toggleText()">Show all standup text</span>
+        </td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
           <v-icon small @click="deleteItem(props.item.id)">delete</v-icon>
@@ -28,6 +33,10 @@ export default {
   computed: mapState({
     standups: state => {
       const items = getItems(state, "standups");
+      items.map(item => {
+        item.created = item.created.toDateString();
+        item.modified = item.modified.toDateString();
+      });
       return items;
     }
   }),
@@ -67,7 +76,8 @@ export default {
         50,
         100,
         { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }
-      ]
+      ],
+      textToggle: false
     };
   },
 
@@ -92,6 +102,15 @@ export default {
     },
     edit(id) {
       this.$router.push({ name: "standupEdit", params: { id: id } });
+    },
+    toggleText() {
+      this.textToggle = !this.textToggle;
+      if (this.textToggle == true) {
+        document.getElementsByClassName("text__show")[0].innerHTML = "HideText";
+      } else {
+        document.getElementsByClassName("text__show")[0].innerHTML =
+          "Show all standup text";
+      }
     }
   },
   beforeCreate() {
@@ -102,16 +121,36 @@ export default {
 </script>    
 
 <style lang="scss" scoped>
-.option-btn {
-  color: grey;
-  font-size: 18px;
-  &:hover {
-    color: #42b983;
-    cursor: pointer;
+.comment {
+  &__text {
+    overflow: hidden;
+    position: relative;
+    line-height: 1.2em;
+    max-height: 3.6em;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+      content: "...";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+    }
+    &--full {
+      max-width: none;
+    }
   }
 }
-.isDisabled {
-  pointer-events: none;
-  cursor: not-allowed;
+.text__show {
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
