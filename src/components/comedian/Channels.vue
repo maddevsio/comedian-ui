@@ -10,10 +10,10 @@
         <td class="text-xs-left">{{ props.item.channel_name }}</td>
         <td class="text-xs-left">{{ props.item.channel_id }}</td>
         <td class="text-xs-left">{{ props.item.channel_standup_time }}</td>
-        <!-- <td class="text-xs-left">
+        <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
           <v-icon small @click="deleteItem(props.item.id)">delete</v-icon>
-        </td>-->
+        </td>
       </template>
     </v-data-table>
   </v-card>
@@ -47,8 +47,8 @@ export default {
           text: "Channel Standup Time",
           value: "channel_standup_time",
           class: "text-uppercase font-weight-bold"
-        }
-        // { text: "Actions", value: "" }
+        },
+        { text: "Actions", value: "" }
       ],
       rows: [
         25,

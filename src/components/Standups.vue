@@ -15,7 +15,7 @@
           <p
             :class="['comment__text', { 'comment__text--full': textToggle }]"
           >{{ props.item.comment }}</p>
-          <span class="text__show" @click="toggleText()">Show all standup text</span>
+          <span class="primary--text text__show" @click="toggleText()">Show all standup text</span>
         </td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
@@ -34,8 +34,39 @@ export default {
     standups: state => {
       const items = getItems(state, "standups");
       items.map(item => {
-        item.created = item.created.toDateString();
-        item.modified = item.modified.toDateString();
+        let created = new Date(item.created);
+        let modified = new Date(item.modified);
+        item.created = created.toUTCString();
+        item.modified = modified.toUTCString();
+      });
+      const allUsers = getItems(state, "users");
+      const channels = getItems(state, "channels");
+
+      items.forEach(item => {
+        if (!item.user_id) {
+          item.user_id = "N/A";
+        } else {
+          const user = allUsers.find(({ user_id }) => item.user_id === user_id);
+          if (!user) {
+            item.user_id = "N/A";
+          } else {
+            item.user_id = user.real_name;
+          }
+        }
+      });
+      items.forEach(item => {
+        if (!item.channel_id) {
+          item.channel_id = "N/A";
+        } else {
+          const channel = channels.find(
+            ({ channel_id }) => item.channel_id === channel_id
+          );
+          if (!channel) {
+            item.channel_id = "N/A";
+          } else {
+            item.channel_id = channel.channel_name;
+          }
+        }
       });
       return items;
     }
@@ -45,12 +76,12 @@ export default {
     return {
       headers: [
         {
-          text: "User ID",
+          text: "User",
           value: "user_id",
           class: "text-uppercase font-weight-bold"
         },
         {
-          text: "Channel ID",
+          text: "Channel",
           value: "channel_id",
           class: "text-uppercase font-weight-bold"
         },
@@ -116,6 +147,10 @@ export default {
   beforeCreate() {
     const url = "v1/standups";
     this.$store.dispatch("GET_STANDUPS", url);
+    const urlChannels = "v1/channels";
+    this.$store.dispatch("GET_CHANNELS", urlChannels);
+    const urlUsers = "v1/users";
+    this.$store.dispatch("GET_USERS", urlUsers);
   }
 };
 </script>    
@@ -144,10 +179,10 @@ export default {
       height: 1em;
       margin-top: 0.2em;
     }
-    &--full {
-      max-width: none;
-    }
   }
+}
+.comment__text--full {
+  max-height: none;
 }
 .text__show {
   font-weight: bold;
