@@ -57,7 +57,7 @@ export default {
         if (!user) {
           return "N/A";
         }
-        item.currentOnduty = user.user_name;
+        item.currentOnduty = user.real_name;
         return item.currentOnduty;
       });
       items.forEach(item => {

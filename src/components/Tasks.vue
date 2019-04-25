@@ -129,6 +129,8 @@ export default {
     const teamId = store.state.user.bot.team_id;
     const url = `v1/tasks/${teamId}/${this.$route.params.channel_id}`;
     this.$store.dispatch("GET_TASKS", url);
+    const urlUsers = "v1/users";
+    this.$store.dispatch("GET_USERS", urlUsers);
   },
   mounted() {
     this.$store.watch({});
