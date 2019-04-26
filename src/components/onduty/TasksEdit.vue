@@ -54,12 +54,6 @@
                 required
               />
             </v-flex>
-            <v-flex xs12 md12>
-              <v-switch
-                v-model="task.done_status"
-                :label="`Task Done Status ${task.done_status ? 'True': 'False' }`"
-              />
-            </v-flex>
             <v-btn block color="primary" @click="Save">Save</v-btn>
           </v-container>
         </v-form>

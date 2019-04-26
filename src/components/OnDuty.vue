@@ -13,6 +13,11 @@
         <td class="text-xs-left">{{ props.item.algorithm }}</td>
         <td class="text-xs-left">{{ props.item.currentOnduty }}</td>
         <td class="text-xs-left">{{ props.item.language }}</td>
+        <td class="text-xs-left">
+          <router-link
+            :to="{ name: 'ondutyTasks', params : {id:props.item.id,channel_id:props.item.channel_id}}"
+          >{{ props.item.channel_name}} tasks</router-link>
+        </td>
       </template>
     </v-data-table>
     <router-link :to="{ name: 'onDutyAddUser'}">
@@ -121,6 +126,10 @@ export default {
         {
           text: "Language",
           value: "language",
+          class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Tasks",
           class: "text-uppercase font-weight-bold"
         }
       ],

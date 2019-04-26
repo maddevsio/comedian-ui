@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Header title="Tasks" :links="this.links"/>
+    <Header title="Tasks" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
       <Tasks/>
     </v-content>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Header from "@/components/navigation/HeaderOnDuty.vue";
+import Header from "@/components/navigation/Header.vue";
 import Tasks from "@/components/Tasks.vue";
 
 export default {
