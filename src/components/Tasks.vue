@@ -131,9 +131,6 @@ export default {
     this.$store.dispatch("GET_TASKS", url);
     const urlUsers = "v1/users";
     this.$store.dispatch("GET_USERS", urlUsers);
-  },
-  mounted() {
-    this.$store.watch({});
   }
 };
 </script>
