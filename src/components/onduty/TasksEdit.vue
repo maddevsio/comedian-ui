@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header title="Tasks" :links="this.links"/>
+    <Header title="Tasks" :links="this.links" :navLinks="this.navLinks"/>
     <v-content fluid fill-height>
       <v-card class="mt-3 mx-auto" max-width="500">
         <v-form method="post">
@@ -54,12 +54,6 @@
                 required
               />
             </v-flex>
-            <v-flex xs12 md12>
-              <v-switch
-                v-model="task.done_status"
-                :label="`Task Done Status ${task.done_status ? 'True': 'False' }`"
-              />
-            </v-flex>
             <v-btn block color="primary" @click="Save">Save</v-btn>
           </v-container>
         </v-form>
@@ -69,7 +63,7 @@
 </template>
 
 <script>
-import Header from "@/components/navigation/HeaderOnDuty.vue";
+import Header from "@/components/navigation/Header.vue";
 import { mapState } from "vuex";
 import transform from "../../helpers/transform";
 import { getItem, getItems } from "../../my-getters";

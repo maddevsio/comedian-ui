@@ -66,8 +66,8 @@ export default {
         .catch(err => {
           this.resetForm();
           this.flashMessage.error({
-            title: error.name || "Error",
-            message: error.response.data
+            title: err.name || "Error",
+            message: err.response.data
           });
         });
     },

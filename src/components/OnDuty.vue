@@ -13,6 +13,11 @@
         <td class="text-xs-left">{{ props.item.algorithm }}</td>
         <td class="text-xs-left">{{ props.item.currentOnduty }}</td>
         <td class="text-xs-left">{{ props.item.language }}</td>
+        <td class="text-xs-left">
+          <router-link
+            :to="{ name: 'ondutyTasks', params : {id:props.item.channelId,channel_id:props.item.channel_id}}"
+          >{{ props.item.channel_name}} tasks</router-link>
+        </td>
       </template>
     </v-data-table>
     <router-link :to="{ name: 'onDutyAddUser'}">
@@ -39,6 +44,7 @@ export default {
     onduty: state => {
       const items = getItems(state, "onduty");
       const allUsers = getItems(state, "users");
+      const channels = getItems(state, "channels");
       items.forEach(item => {
         const memberOrders = item.members_order.map(member => {
           const user = allUsers.find(({ user_id }) => member === user_id);
@@ -60,6 +66,14 @@ export default {
         item.currentOnduty = user.real_name;
         return item.currentOnduty;
       });
+
+      items.forEach(item => {
+        const channel = channels.find(
+          ({ channel_id }) => item.channel_id === channel_id
+        );
+        item.channelId = channel.id;
+      });
+
       items.forEach(item => {
         if (item.language == "ru_RU") {
           item.language = "русский";
@@ -92,6 +106,7 @@ export default {
   }),
   data() {
     return {
+      channels: [],
       headers: [
         {
           text: "Channel",
@@ -122,6 +137,10 @@ export default {
           text: "Language",
           value: "language",
           class: "text-uppercase font-weight-bold"
+        },
+        {
+          text: "Tasks",
+          class: "text-uppercase font-weight-bold"
         }
       ],
       rows: [
@@ -139,6 +158,8 @@ export default {
     this.$store.dispatch("GET_ONDUTY", url);
     const urlUsers = "v1/users";
     this.$store.dispatch("GET_USERS", urlUsers);
+    const urlChannels = "v1/channels";
+    this.$store.dispatch("GET_CHANNELS", urlChannels);
   }
 };
 </script>

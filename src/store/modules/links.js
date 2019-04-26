@@ -70,14 +70,10 @@ const state = {
   onDutySideLinks: [
     {
       id: 0,
-      text: 'Settings',
+      text: 'Settings On Duty',
       page: '/onduty'
-    },
-    {
-      id: 1,
-      text: 'Tasks',
-      page: '/onduty/tasks'
     }
+
   ],
   reporterSideLinks: [
     {

@@ -15,7 +15,7 @@
           <p
             :class="['comment__text', { 'comment__text--full': textToggle }]"
           >{{ props.item.comment }}</p>
-          <span class="primary--text text__show" @click="toggleText()">Show all standup text</span>
+          <span class="primary--text text__show" @click="toggleText()">Show full standup text</span>
         </td>
         <!-- <td class="text-xs-left">
           <v-icon small class="mr-2" @click="edit(props.item.id)">edit</v-icon>
