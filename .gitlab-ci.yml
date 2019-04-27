@@ -1,9 +1,17 @@
 stages:
+  - test
   - build
   - deploy
 services:
   - docker:dind
 
+
+test:
+  image: node:lts-alpine
+  stage: test
+  script:
+    - yarn
+    - yarn lint
 
 build_staging:
   image: docker:latest
