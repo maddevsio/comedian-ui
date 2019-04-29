@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {
   post,
-  fetch,
-  patch
 } from '../../helpers/requests'
 
 Vue.use(Vuex)
@@ -31,13 +29,9 @@ const actions = {
     return bot
   },
   LOGOUT: async ({ commit }) => {
-    const response = await post('v1/logout')
+    await post('v1/logout')
     commit('LOGOUT')
   },
-  UPDATE_PASSWORD: async ({ commit }, { url, data }) => {
-    const response = await post(url, data)
-    return response
-  }
 }
 
 const user = {

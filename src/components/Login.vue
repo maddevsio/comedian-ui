@@ -62,7 +62,7 @@ export default {
       };
       this.$store
         .dispatch("LOGIN", payload)
-        .then(bot => this.$router.push({ path: `/comedian` }))
+        .then(() => this.$router.push({ path: `/comedian` }))
         .catch(err => {
           this.resetForm();
           this.flashMessage.error({

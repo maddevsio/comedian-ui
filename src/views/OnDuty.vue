@@ -10,8 +10,6 @@
 <script>
 import Header from "@/components/navigation/Header.vue";
 import OnDuty from "@/components/OnDuty.vue";
-import { mapState } from "vuex";
-import { getItems } from "../my-getters";
 
 export default {
   computed: {

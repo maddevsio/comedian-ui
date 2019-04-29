@@ -10,7 +10,6 @@ export default function auth({
       name: `login`
     });
   } else if (to.name === 'login') {
-    return next({ name: `comedian` })
     return router.push({
       name: `comedian`
     });

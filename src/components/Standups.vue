@@ -114,11 +114,10 @@ export default {
 
   methods: {
     deleteItem(id) {
-      return;
       const url = `v1/standups/${id}`;
       this.$store
         .dispatch("REMOVE_STANDUP", { url, id: id })
-        .then(response => {
+        .then(() => {
           this.flashMessage.success({
             title: "",
             message: "Task successfully deleted"

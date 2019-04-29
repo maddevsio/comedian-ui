@@ -1,24 +1,24 @@
 <template lang="html">
   <v-card class="mt-3 mx-auto" max-width="900">
     <v-form method="post">
-    <v-container>
-      <v-layout>       
-        <v-flex xs12 md5>
-          <v-text-field
-            v-model="bot.team_id"
-            label="Team Id"
-            readonly
-          />
-        </v-flex>   
-        <v-flex xs12 md7> 
-          <v-text-field
-            v-model="bot.bot_access_token"
-            label="Bot Access Token"
-            readonly
-          />
-        </v-flex>
-      </v-layout> 
-      <v-layout>       
+      <v-container>
+        <v-layout>       
+          <v-flex xs12 md5>
+            <v-text-field
+              v-model="bot.team_id"
+              label="Team Id"
+              readonly
+            />
+          </v-flex>   
+          <v-flex xs12 md7> 
+            <v-text-field
+              v-model="bot.bot_access_token"
+              label="Bot Access Token"
+              readonly
+            />
+          </v-flex>
+        </v-layout> 
+        <v-layout>       
           <v-flex xs12 md6>
             <v-select
               v-model="bot.language"
@@ -40,18 +40,18 @@
             />
             </abbr>
           </v-flex>
-          </v-layout> 
-          <v-layout> 
+        </v-layout> 
+        <v-layout> 
           <v-flex xs12 md6>
-          <abbr title="Update reminder time (in minutes) of the bot">     
-          <v-text-field
-            v-model="bot.reminder_time"
-            label="Reminder Time"
-            type="number"
-            min="0"
-            required
-          />
-          </abbr>
+            <abbr title="Update reminder time (in minutes) of the bot">     
+            <v-text-field
+              v-model="bot.reminder_time"
+              label="Reminder Time"
+              type="number"
+              min="0"
+              required
+            />
+            </abbr>
           </v-flex>          
           <v-flex xs12 md6>
             <abbr title="Update maximum reminder attempts of the bot">  
@@ -64,8 +64,8 @@
             />
             </abbr>
           </v-flex>
-          </v-layout>             
-          <v-layout> 
+        </v-layout>             
+        <v-layout> 
           <v-flex xs12 md4>
             <v-select
               v-model="bot.reporting_channel"
@@ -99,17 +99,15 @@
               </v-time-picker>
             </v-dialog>
           </v-flex>
-           <v-flex xs12 md4>
-          <v-switch
-            v-model="bot.individual_reports_on"
-            :label="`Individual Report Status ${bot.individual_reports_on ? 'ON': 'OFF' }`"
-          />
-        </v-flex>
-
-          </v-layout> 
+          <v-flex xs12 md4>
+            <v-switch
+              v-model="bot.individual_reports_on"
+              :label="`Individual Report Status ${bot.individual_reports_on ? 'ON': 'OFF' }`"
+            />
+          </v-flex>
+        </v-layout> 
         <v-btn color="primary white--text" @click='Save'>Save</v-btn>
-      </v-layout>  
-    </v-container>    
+      </v-container>    
     </v-form>
   </v-card>
 </template>
@@ -151,7 +149,7 @@ export default {
         reminder_time: "int"
       });
 
-      await this.$store
+      await store
         .dispatch("UPDATE_BOT", {
           url,
           data: transformedValues
@@ -171,11 +169,11 @@ export default {
     }
   },
   beforeCreate() {
-    const botId = this.$store.state.user.bot.id;
+    const botId = store.state.user.bot.id;
     const url = `v1/bots/${botId}`;
-    this.$store.dispatch("GET_BOT", url);
+    store.dispatch("GET_BOT", url);
     const channelUrl = "v1/channels";
-    this.$store.dispatch("GET_CHANNELS", channelUrl);
+    store.dispatch("GET_CHANNELS", channelUrl);
   }
 };
 </script>

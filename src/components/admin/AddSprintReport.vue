@@ -87,7 +87,6 @@
 
 <script>
 import Header from "@/components/navigation/Header.vue";
-import axios from "axios";
 import store from "../../store";
 
 export default {

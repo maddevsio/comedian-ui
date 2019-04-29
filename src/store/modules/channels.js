@@ -2,7 +2,6 @@ import {
   fetch,
   patch,
   remove,
-  post
 } from '../../helpers/requests'
 
 const state = {

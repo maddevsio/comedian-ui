@@ -65,7 +65,6 @@
 <script>
 import Header from "@/components/navigation/Header.vue";
 import { mapState } from "vuex";
-import transform from "../../helpers/transform";
 import { getItem, getItems } from "../../my-getters";
 import store from "../../store";
 
@@ -73,14 +72,14 @@ export default {
   computed: mapState({
     task() {
       const id = this.$route.params.id;
-      let task = getItem(this.$store.state, "tasks", id);
+      let task = getItem(store.state, "tasks", id);
       return task;
     },
-    links() {
-      return this.$store.state.links.linksHeader;
+    links: state => {
+      return state.links.linksHeader;
     },
-    navLinks() {
-      return this.$store.state.links.onDutySideLinks;
+    navLinks: state => {
+      return state.links.onDutySideLinks;
     },
     users: state => {
       const usersObjects = getItems(state, "channelStandupers") || [];

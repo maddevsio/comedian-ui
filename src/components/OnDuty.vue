@@ -35,8 +35,7 @@
 </template>		
 <script>
 import { mapState } from "vuex";
-import transform from "../helpers/transform";
-import { getItems, getItemByField } from "../my-getters";
+import { getItems } from "../my-getters";
 import store from "../store";
 
 export default {

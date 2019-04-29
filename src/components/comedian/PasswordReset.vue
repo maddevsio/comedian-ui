@@ -35,9 +35,8 @@
 </template>
 
 <script>
-import transform from "../../helpers/transform";
 import store from "../../store";
-
+import { post } from "../../helpers/requests";
 export default {
   data() {
     return {
@@ -54,14 +53,11 @@ export default {
     async Save() {
       const botId = store.state.user.bot.id;
       const url = `v1/bots/${botId}/update-password`;
-      await this.$store
-        .dispatch("UPDATE_PASSWORD", {
-          url,
-          data: {
-            old_password: this.oldPassword,
-            new_password: this.newPassword
-          }
-        })
+
+      await post(url, {
+        old_password: this.oldPassword,
+        new_password: this.newPassword
+      })
         .then(() => {
           this.flashMessage.success({
             title: "",
