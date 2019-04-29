@@ -33,17 +33,20 @@ const actions = {
         data
     }) => {
         const response = await patch(url, data, {}, 'onDuty')
-        commit('ADD_ITEM', { store: 'tasks', payload: response.data })
+        commit('ADD_ITEM', { store: 'onduty', payload: response.data })
     },
 
     REMOVE_ONDUTY: async ({
         commit,
     },
-        url
+        { url, id }
     ) => {
-        return await remove(url, {}, 'onDuty')
+        await remove(url, {}, 'onDuty')
+        commit('REMOVE_ITEM', { store: 'onduty', id: id })
+
     }
 }
+
 
 export default {
     state,

@@ -16,7 +16,6 @@
     </v-container>
 </template>
 <script>
-import transform from "../../helpers/transform";
 import { mapState } from "vuex";
 
 export default {

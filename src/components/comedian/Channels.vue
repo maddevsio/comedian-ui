@@ -67,11 +67,10 @@ export default {
       this.$router.push({ name: "edit", params: { id: id } });
     },
     deleteItem(id) {
-      return;
       const url = `v1/channels/${id}`;
       this.$store
         .dispatch("REMOVE_CHANNEL", { url, id: id })
-        .then(response => {
+        .then(() => {
           this.flashMessage.success({
             title: "",
             message: "Successfully deleted"

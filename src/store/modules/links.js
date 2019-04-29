@@ -75,13 +75,6 @@ const state = {
     }
 
   ],
-  reporterSideLinks: [
-    {
-      id: 0,
-      text: 'Settings',
-      page: '/reporter'
-    }
-  ],
   adminSideLinks: [
     {
       id: 0,

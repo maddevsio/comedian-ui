@@ -36,7 +36,6 @@
 
 <script>
 import { mapState } from "vuex";
-import transform from "../helpers/transform";
 import { getItems } from "../my-getters";
 import store from "../store";
 
@@ -105,7 +104,7 @@ export default {
       const url = `v1/tasks/${id}`;
       this.$store
         .dispatch("REMOVE_TASK", { url, id: id })
-        .then(response => {
+        .then(() => {
           this.flashMessage.success({
             title: "",
             message: "Task successfully deleted"

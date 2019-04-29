@@ -79,7 +79,6 @@
 </template>
 <script>
 import transform from "../helpers/transform";
-import { patch } from "../helpers/requests";
 import store from "../store";
 import { mapState } from "vuex";
 import { getItems } from "../my-getters";

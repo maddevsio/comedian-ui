@@ -72,11 +72,10 @@ export default {
   },
   methods: {
     async deleteItem(id) {
-      return;
       const url = `v1/standupers/${id}`;
       this.$store
         .dispatch("REMOVE_STANDUPER", { url, id: id })
-        .then(response => {
+        .then(() => {
           this.flashMessage.success({
             title: "",
             message: "Task successfully deleted"

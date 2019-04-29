@@ -10,7 +10,6 @@ import user from './modules/user'
 import sprintReporter from './modules/sprintReporter'
 import onduty from './modules/onduty'
 import tasks from './modules/tasks'
-import reporter from './modules/reporter'
 import getters from './getters'
 import mutations from './mutations'
 import * as LocalStorage from './localStorage'
@@ -29,7 +28,6 @@ const store = new Vuex.Store({
     sprintReporter,
     onduty,
     tasks,
-    reporter,
     user,
     channelStandupers
   },

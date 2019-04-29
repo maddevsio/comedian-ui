@@ -93,7 +93,6 @@
 
 <script>
 import Header from "@/components/navigation/HeaderOnDuty.vue";
-import axios from "axios";
 import store from "../../store";
 import { mapState } from "vuex";
 import { getItems } from "../../my-getters";
@@ -114,17 +113,17 @@ export default {
       return channelNames;
     },
     users: state => {
-      const usersObjects = getItems(store.state, "channelStandupers") || [];
+      const usersObjects = getItems(state, "channelStandupers") || [];
       return usersObjects.map(item => ({
         value: item.user_id,
         text: item.real_name
       }));
     },
-    links() {
-      return this.$store.state.links.linksHeader;
+    links: state => {
+      return state.links.linksHeader;
     },
-    navLinks() {
-      return this.$store.state.links.adminSideLinks;
+    navLinks: state => {
+      return state.links.adminSideLinks;
     }
   }),
   components: {
@@ -159,7 +158,6 @@ export default {
   methods: {
     async Save() {
       const team_id = store.state.user.bot.team_id;
-      const team_name = store.state.user.bot.team_name;
       this.onduty.team_name = store.state.user.bot.team_name;
       this.onduty.team_id = team_id;
       // this.onduty.members_order = this.onduty.members_order.join(",");

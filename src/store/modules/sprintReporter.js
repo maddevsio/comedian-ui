@@ -4,7 +4,6 @@ import {
     post,
     fetch,
     patch,
-    remove
 } from '../../helpers/requests'
 
 Vue.use(Vuex)
@@ -43,14 +42,6 @@ const actions = {
         const response = await patch(url, data, {}, 'sprintReporter')
         commit('SET_SPRINTREPORTER', response.data)
     },
-
-    REMOVE_SPRINTREPORTERS: async ({
-        commit,
-    }, {
-        url
-    }) => {
-        return await remove(url, {}, {}, 'sprintReporter')
-    }
 }
 
 export default {

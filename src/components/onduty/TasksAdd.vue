@@ -72,7 +72,6 @@
 <script>
 import Header from "@/components/navigation/HeaderOnDuty.vue";
 import { mapState } from "vuex";
-import transform from "../../helpers/transform";
 import { getItems } from "../../my-getters";
 import store from "../../store";
 
