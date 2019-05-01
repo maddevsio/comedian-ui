@@ -21,11 +21,11 @@ const state = {
       text: 'Sprint Reporter',
       page: '/sprintreporter'
     },
-    {
-      id: 4,
-      text: 'On Duty',
-      page: '/onduty'
-    }
+    // {
+    //   id: 4,
+    //   text: 'On Duty',
+    //   page: '/onduty'
+    // }
 
   ],
   comedianSideLinks: [
