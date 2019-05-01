@@ -21,11 +21,11 @@ const state = {
       text: 'Sprint Reporter',
       page: '/sprintreporter'
     },
-    {
-      id: 4,
-      text: 'On Duty',
-      page: '/onduty'
-    }
+    // {
+    //   id: 4,
+    //   text: 'On Duty',
+    //   page: '/onduty'
+    // }
 
   ],
   comedianSideLinks: [
@@ -81,11 +81,11 @@ const state = {
       text: 'Manage Sprint Reporter',
       page: '/admin/manage_sprint_reporters'
     },
-    {
-      id: 1,
-      text: 'Manage On Duty',
-      page: '/admin/manage_onduty'
-    }
+    // {
+    //   id: 1,
+    //   text: 'Manage On Duty',
+    //   page: '/admin/manage_onduty'
+    // }
   ]
 }
 const links = {
