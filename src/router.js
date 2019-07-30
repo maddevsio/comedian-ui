@@ -43,6 +43,14 @@ const router = new Router({
       component: () => import('./views/About.vue')
     },
     {
+      path: '/oauth',
+      name: 'oauth',
+      meta: {
+        middleware: [anonymous, log],
+      },
+      component: () => import('./components/OAuth.vue')
+    },
+    {
       path: '/comedian',
       name: 'comedian',
       meta: {

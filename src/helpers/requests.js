@@ -19,6 +19,9 @@ const getFullUrl = (service, url) => {
     case 'reporter':
       baseUrl = reporterBaseUrl
       break;
+    case 'slack':
+      baseUrl = process.env.VUE_APP_COMEDIAN_API_BASE_URL+"/login"
+        break;
     default:
       baseUrl = baseApiUrl
       break;
