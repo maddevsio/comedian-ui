@@ -18,7 +18,7 @@ const getFullUrl = (service, url) => {
       break;
     case 'reporter':
       baseUrl = reporterBaseUrl
-      break;
+      break;   
     default:
       baseUrl = baseApiUrl
       break;

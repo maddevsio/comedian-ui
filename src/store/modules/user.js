@@ -23,10 +23,15 @@ const mutations = {
 }
 
 const actions = {
+  // LOGIN: async ({ commit }, payload) => {
+  //   const { data: { bot, token } } = await post('login', payload, {}, 'comedian', false)
+  //   commit('LOGIN', { token, bot })
+  //   return bot
+  // },
   LOGIN: async ({ commit }, payload) => {
-    const { data: { bot, token } } = await post('login', payload, {}, 'comedian', false)
-    commit('LOGIN', { token, bot })
-    return bot
+    const { data } = await post('login', payload, {}, 'comedian', false)
+    commit('LOGIN', {data})
+    return data
   },
   LOGOUT: async ({ commit }) => {
     await post('v1/logout')
